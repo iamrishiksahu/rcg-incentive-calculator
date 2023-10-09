@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login2 from './Components/Login/Login2';
 import Page404 from './Components/Page404/Page404';
 import { createTheme, ThemeProvider } from '@mui/material';
+import Window2 from './Components/Window2/Window2';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
 
           <Route path='/'>
             <Route index element={<Login2 />} />
+            <Route path='second' element={<Window2 />} />
           </Route>
 
           <Route path='*' element={<Page404 />} />
