@@ -21,9 +21,12 @@ h2 {
 }
 
 :root{
+  --color-primary: #111158;
+  --color-primary-dark: #1f1f70;
+  --color-primary-light: #cce4ff;
+  --color-primary-light-2: #e6f2ff;
 
-  --color-primary: #7380ec;
-  --color-primary-light: #f3f1ff;
+  /* --color-primary: #7380ec; */
   --color-danger:#ff7782;
   --color-success: #41f1b6;
   --color-warning: #ffbb55;

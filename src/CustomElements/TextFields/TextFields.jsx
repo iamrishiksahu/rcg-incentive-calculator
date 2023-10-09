@@ -8,8 +8,9 @@ const LoginTextField = (props) => {
             alignItems: 'center',
             gap: '1rem',
             borderRadius: '0.75rem',
-            backgroundColor: 'var(--color-primary-light)',
-            padding: '0.75rem 1rem',
+            backgroundColor: 'var(--color-primary-light-2)',
+            padding: '1rem 1.5rem',
+            minWidth: '20rem',
 
         }}
     >

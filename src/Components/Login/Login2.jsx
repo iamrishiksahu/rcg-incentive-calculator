@@ -9,79 +9,81 @@ import { VGap } from '../../CustomElements/Gaps/Gap';
 import { LoginButton } from '../../CustomElements/Buttons/Buttons';
 
 
-const Login = () => {
+const Login2 = () => {
     return (
         <Container sx={{
             display: 'flex',
             minHeight: '100vh',
             minWidth: '100vw',
-            background: 'var(--bg-gradient-1)',
+            // backgroundColor: '#e3e3e384',
+            background: 'linear-gradient(to right,var(--color-primary-light) 0%,var(--color-primary-light) 50%,var(--color-primary) 50%,var(--color-primary) 100% )',
             justifyContent: 'center',
             alignItems: 'center',
             gap: '1rem',
             padding: '1rem',
         }}>
 
-           
+
             <Card sx={{
-                minWidth: '55rem',
-                minHeight: '30rem',
+                minWidth: '80rem',
+                minHeight: '40rem',
+                borderRadius: '2rem',
                 display: 'flex',
-                boxShadow: '0 0 50px #7f75a36e'
+                boxShadow: '0 0 50px #ffffff40'
             }}>
 
-                <img src=''/>
-                <Box50 sx={{
-                    flexDirection: 'column',
-                    backgroundColor: 'var(--color-primary)',
-                    borderRight: '4px var(--color-light) solid'
-                }}>
+                <img src='' />
 
-                    {/* Add company logo */}
-
-                    <FlexBoxH sx={{
-                        backgroundColor: 'white',
-                        marginTop: '0rem',
-                        width: '200px',
-                        height: '200px',
-                        borderRadius: '50%',
-                        boxShadow: 'var(--box-shadow)'
-                    }}>
-
-                        <img width='220px' src='/images/rapid-consulting-logo.png' />
-
-                    </FlexBoxH>
-
-                    <VGap value='1rem' />
-                    <H2 sx={{ fontWeight: '600', color: 'var(--white)' }}>HR Portal</H2>
-
-                </Box50>
                 <Box50 sx={{
                     flexDirection: 'column',
                     gap: '1rem',
                     backgroundColor: 'white',
                 }}>
 
-                    
+                    <img style={{ marginTop: '-4rem' }} width='180px' src='/images/rapid-consulting-logo.png' />
+
+
+
+                    <VGap value='-2rem' />
 
                     <H2 sx={{
                         fontWeight: '700',
                         borderBottom: '2px var(--color-info-dark) solid'
-                    }}>LOGIN</H2>
+                    }}>HR Portal</H2>
 
-                    <VGap value='1rem' />
+                    <PText>Login with your credentials.</PText>
+
+                    {/* <VGap value='1rem' /> */}
 
                     <LoginTextField icon='alternate_email' type='email' placeholder='Email' />
                     <LoginTextField icon='key' type='password' placeholder='Password' />
 
                     <VGap value='0.25rem' />
 
-                    <Small>Forgot Password?</Small>
-                    <VGap value='1rem' />
+                    <LoginButton >Login Now </LoginButton>
+                    {/* <VGap value='1rem' /> */}
+                    <PText sx={{cursor: 'pointer'}}>Forgot Password?</PText>
 
-                    <LoginButton>Login Now</LoginButton>
 
                 </Box50>
+                <Box50 sx={{
+                    flexDirection: 'column',
+                    backgroundColor: 'var(--color-primary-light-2)',
+                }}>
+
+
+
+                    <H2 sx={{fontWeight: '700'}}>Welcome Back!</H2>
+                    <Small>"A new day comes with all new energy and enthusiasm"</Small>
+                    <VGap value='3rem' />
+                    <img style={{
+                        marginLeft: '-3rem',
+                    }} width='550px' src='/images/login-page-hero-image.png' />
+
+
+
+                </Box50>
+
 
 
             </Card>
@@ -91,4 +93,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default Login2;
