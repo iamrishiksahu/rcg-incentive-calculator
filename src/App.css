@@ -26,6 +26,17 @@ h2 {
   --color-primary-light: #cce4ff;
   --color-primary-light-2: #e6f2ff;
 
+
+  /* --color-primary: #d11b21;
+  --color-primary-dark: #1f1f70;
+  --color-primary-light: #fbcbcb;
+  --color-primary-light-2: #fff3f3; */
+
+  --color-primary: #1092de;
+  --color-primary-dark: #009ffa;
+  --color-primary-light: #d2efff;
+  --color-primary-light-2: #eef9ff; 
+
   /* --color-primary: #7380ec; */
   --color-danger:#ff7782;
   --color-success: #41f1b6;
