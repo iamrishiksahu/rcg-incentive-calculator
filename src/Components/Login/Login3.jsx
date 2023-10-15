@@ -16,7 +16,7 @@ const Login2 = () => {
             minHeight: '100vh',
             minWidth: '100vw',
             backgroundColor: 'var(--color-background)',
-            // background: 'linear-gradient(to right,var(--color-primary-light) 0%,var(--color-primary-light) 50%,var(--color-primary) 50%,var(--color-primary) 100% )',
+            // background:'linear-gradient(to right,var(--color-primary-light) 0%,var(--color-primary-light) 50%,var(--color-primary) 50%,var(--color-primary) 100% )',
             justifyContent: 'center',
             alignItems: 'center',
             gap: '1rem',
@@ -37,7 +37,7 @@ const Login2 = () => {
                 <Box50 sx={{
                     flexDirection: 'column',
                     gap: '1rem',
-                    backgroundColor: 'white',
+                    backgroundColor: 'var(--color-)',
                 }}>
 
                     <img style={{ marginTop: '-4rem' }} width='180px' src='/images/rapid-consulting-logo.png' />
@@ -50,7 +50,8 @@ const Login2 = () => {
                         fontWeight: '700',
                         borderBottom: '2px var(--color-info-dark) solid'
                     }}>HR Portal</H2>
-
+                    
+                
                     <PText>Login with your credentials.</PText>
 
                     {/* <VGap value='1rem' /> */}
@@ -62,7 +63,7 @@ const Login2 = () => {
 
                     <LoginButton >Login Now </LoginButton>
                     {/* <VGap value='1rem' /> */}
-                    <PText sx={{cursor: 'pointer'}}>Forgot Password?</PText>
+                    <PText sx={{ cursor: 'pointer' }}>Forgot Password?</PText>
 
 
                 </Box50>
@@ -73,21 +74,14 @@ const Login2 = () => {
 
 
 
-                    <H2 sx={{fontWeight: '700'}}>Welcome Back!</H2>
+                    <H2 sx={{ fontWeight: '700' }}>Welcome Back!</H2>
                     <Small>"A new day comes with all new energy and enthusiasm"</Small>
                     <VGap value='3rem' />
                     <img style={{
                         marginLeft: '-3rem',
                     }} width='550px' src='/images/login-page-hero-image.png' />
-
-
-
                 </Box50>
-
-
-
             </Card>
-
 
         </Container>
     )

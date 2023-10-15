@@ -34,7 +34,21 @@ const H2 = (props) => {
 const PText = (props) => {
     return (
         <Typography
-        variant='body'
+            variant='body'
+            sx={{
+                ...props.sx,
+            }} >
+
+            {props.children}
+        </Typography>
+    )
+}
+
+// Custom Paragraph Test [Label]
+const Label = (props) => {
+    return (
+        <Typography
+            variant='body'
             sx={{
                 ...props.sx,
             }} >
@@ -47,7 +61,7 @@ const PText = (props) => {
 const Small = (props) => {
     return (
         <Typography
-        variant='body'
+            variant='body'
             sx={{
                 fontSize: '0.75rem',
                 ...props.sx,
@@ -60,4 +74,4 @@ const Small = (props) => {
 }
 
 
-export { H1, H2, PText, Small};
+export { H1, H2, PText, Small };

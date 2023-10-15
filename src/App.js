@@ -5,6 +5,7 @@ import Login2 from './Components/Login/Login2';
 import Page404 from './Components/Page404/Page404';
 import { createTheme, ThemeProvider } from '@mui/material';
 import Window2 from './Components/Window2/Window2';
+import Login4 from './Components/Login/Login4';
 
 function App() {
 
@@ -24,7 +25,7 @@ function App() {
         <Routes>
 
           <Route path='/'>
-            <Route index element={<Login2 />} />
+            <Route index element={<Login4 />} />
             <Route path='second' element={<Window2 />} />
           </Route>
 

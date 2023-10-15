@@ -7,6 +7,7 @@ const Box50 = (props) => {
         <Box
             sx={{
                 width: '50%',
+                // maxWidth: '50%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
