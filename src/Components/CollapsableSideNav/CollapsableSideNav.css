@@ -1,0 +1,42 @@
+aside{
+    width: max-content;
+    box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.05);
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+aside header{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 1.5rem;
+}
+
+.menu{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-left: 1.5rem;
+}
+.menu li{
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 100ms ease;
+}
+
+.menu li:hover{
+    scale: 1.018;
+}
+
+.menu li:last-child{
+    position: absolute;
+    bottom: 2rem;
+}
+
+.menu li active{
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}

@@ -6,6 +6,7 @@ import Page404 from './Components/Page404/Page404';
 import { createTheme, ThemeProvider } from '@mui/material';
 import Window2 from './Components/Window2/Window2';
 import Login4 from './Components/Login/Login4';
+import Dashboard from './Components/Dashboard/Dashboard';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
           <Route path='/'>
             <Route index element={<Login4 />} />
             <Route path='second' element={<Window2 />} />
+            <Route path='dashboard' element={<Dashboard />} />
           </Route>
 
           <Route path='*' element={<Page404 />} />
