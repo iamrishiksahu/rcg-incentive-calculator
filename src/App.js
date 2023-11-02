@@ -1,18 +1,17 @@
 import './App.css';
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Login2 from './Components/Login/Login2';
 import Page404 from './Components/Page404/Page404';
 import { createTheme, ThemeProvider } from '@mui/material';
 import Window2 from './Components/Window2/Window2';
-import Login4 from './Components/Login/Login4';
+import Login5 from './Components/Login/Login5';
 import Dashboard from './Components/Dashboard/Dashboard';
 
 function App() {
 
   const lightTheme = createTheme({
     typography: {
-      fontFamily: 'Poppins, sans-serif',
+      fontFamily: 'Inter, sans-serif',
     },
   });
 
@@ -26,9 +25,10 @@ function App() {
         <Routes>
 
           <Route path='/'>
-            <Route index element={<Login4 />} />
+            <Route index element={<Login5 />} />
             <Route path='second' element={<Window2 />} />
-            <Route path='dashboard' element={<Dashboard />} />
+            <Route path='/dashboard/*' element={<Dashboard />} />
+            {/* <Route path='add-candidate' element={<Dashboard />} /> */}
           </Route>
 
           <Route path='*' element={<Page404 />} />

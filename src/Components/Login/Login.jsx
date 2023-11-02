@@ -14,7 +14,7 @@ const Login = () => {
         <Container sx={{
             display: 'flex',
             minHeight: '100vh',
-            minWidth: '100vw',
+            width: '100%',
             background: 'var(--bg-gradient-1)',
             justifyContent: 'center',
             alignItems: 'center',

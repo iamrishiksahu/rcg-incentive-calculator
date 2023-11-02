@@ -1,8 +1,8 @@
-import { Box, Container, Card, Checkbox } from '@mui/material'
+import { Box, Container, Card, Checkbox, Typography } from '@mui/material'
 import React from 'react'
 import { Box50 } from '../../CustomElements/Containers/Box50'
 import { VGap } from '../../CustomElements/Gaps/Gap'
-import { PText, Small } from '../../CustomElements/Typography/Typgraphy'
+import { H3, PText, Small } from '../../CustomElements/Typography/Typgraphy'
 import { LoginButton } from '../../CustomElements/Buttons/Buttons'
 import { LoginTextField } from '../../CustomElements/TextFields/TextFields'
 import { H2 } from '../../CustomElements/Typography/Typgraphy'
@@ -10,7 +10,7 @@ import { FlexBoxH } from '../../CustomElements/Containers/FlexBoxH'
 import './Login.css'
 import axios from 'axios'
 
-const Login4 = () => {
+const Login5 = () => {
 
     const testApi = async () => {
 
@@ -48,7 +48,7 @@ const Login4 = () => {
             //     console.log(data)
             //  })
 
-            
+
         } catch (err) {
             console.log(err);
         }
@@ -59,54 +59,26 @@ const Login4 = () => {
 
 
         <div className='login-main-container'>
-            <img
-                style={{
-                    position: 'fixed',
-                    right: '0rem',
-                    width: '100vw',
-                    top: '-3rem',
-                    marginBottom: '0rem',
-                    zIndex: '-1',
-                }}
-
-                src='/images/login-page/top-wave.svg'
-            />
-            <img
-                style={{
-                    position: 'fixed',
-                    left: '-25rem',
-                    bottom: '-20rem',
-                    marginBottom: '0rem'
-                }}
-
-                src='/images/login-page/circle-2.svg'
-
-            />
 
 
-            <img
-                style={{
-                    position: 'fixed',
-                    left: '3rem',
-                    bottom: '-18rem',
-                    marginBottom: '0rem'
-                }}
-
-                src='/images/login-page/circle-1.svg'
-
-            />
 
             {/* Add logo */}
 
-            <img className='img-logo' src='/images/rapid-consulting-logo.png' />
 
             <div className='login-grid-section'>
 
                 {/* 2 CONTAINERS */}
                 <div className='login-left-container'>
                     {/* Contains the left image */}
+                    <img className='img-logo' src='/images/rapid-consulting-logo.png' />
 
-                    <img src='/images/login-page-hero-vector.svg' />
+                    <img src='/images/login-page-hero-vector.svg' style={{marginTop: '-4rem'}} />
+
+                    <PText bold >Redefining HR Management</PText >
+                    <PText sx={{ textAlign: 'center' }}>
+                        The best Human Resource Management Platform<br />
+                        Powering Over 500+ Businesses.</PText>
+                    <Small sx={{ color: 'var(--color-info-dark)'}}>© 2023 - Rapid Consulting Services</Small>
 
                 </div>
                 {/* Contains the login system */}
@@ -185,4 +157,4 @@ const Login4 = () => {
     )
 }
 
-export default Login4
+export default Login5

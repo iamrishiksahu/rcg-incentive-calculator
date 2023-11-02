@@ -7,6 +7,7 @@ const H1 = (props) => {
         <Typography
             sx={{
                 fontSize: '3rem',
+                fontWeight: props.bold? '600' : '400',
                 ...props.sx,
             }} >
 
@@ -22,6 +23,24 @@ const H2 = (props) => {
             sx={{
                 fontSize: '2rem',
                 color: 'var(--color-dark)',
+                fontWeight: props.bold? '600' : '400',
+                ...props.sx,
+
+            }} >
+
+            {props.children}
+        </Typography>
+    )
+}
+// Custom Heading 2 [H2]
+
+const H3 = (props) => {
+    return (
+        <Typography
+            sx={{
+                fontSize: '1.5rem',
+                color: 'var(--color-dark)',
+                fontWeight: props.bold? '600' : '400',
                 ...props.sx,
             }} >
 
@@ -36,6 +55,7 @@ const PText = (props) => {
         <Typography
             variant='body'
             sx={{
+                fontWeight: props.bold? '600' : '400',
                 ...props.sx,
             }} >
 
@@ -74,4 +94,4 @@ const Small = (props) => {
 }
 
 
-export { H1, H2, PText, Small };
+export { H1, H2, H3, PText, Small };

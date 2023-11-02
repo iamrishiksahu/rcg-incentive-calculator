@@ -1,0 +1,22 @@
+.parent{
+    margin: 0;
+    padding: 2rem;
+}
+
+.card{
+    border-radius: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 2rem;
+    width: 50rem;
+    background-color: var(--white);
+}
+
+h3{
+    width: 100%;
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+
+}
