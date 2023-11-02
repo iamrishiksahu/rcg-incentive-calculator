@@ -1,15 +1,19 @@
 .parent{
     margin: 0;
     padding: 2rem;
+    display: flex;
+    gap: 2rem;
+    box-sizing: border-box;
 }
 
 .card{
     border-radius: 1rem;
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
     padding: 2rem;
-    width: 50rem;
+    width: 100%;
+    gap: 1rem;
+    box-sizing: border-box;
     background-color: var(--white);
 }
 

@@ -17,7 +17,7 @@ const Dashboard = () => {
 
       <main style={{
         marginLeft: '18rem',
-        width: 'calc(100vw - 18rem)',
+        maxWidth: 'calc(100vw - 18rem)',
         backgroundColor: 'var(--color-main-bg)',
         height: '100vh',
       }}>
@@ -35,11 +35,6 @@ const Dashboard = () => {
         </Routes>
 
       </main>
-
-      <div >
-      </div>
-
-
 
     </div>
   )

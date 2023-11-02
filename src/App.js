@@ -6,35 +6,34 @@ import { createTheme, ThemeProvider } from '@mui/material';
 import Window2 from './Components/Window2/Window2';
 import Login5 from './Components/Login/Login5';
 import Dashboard from './Components/Dashboard/Dashboard';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { LightTheme } from './Utils/LightTheme';
 
 function App() {
 
-  const lightTheme = createTheme({
-    typography: {
-      fontFamily: 'Inter, sans-serif',
-    },
-  });
-
-
-  const [theme, setTheme] = useState(lightTheme);
+  const [theme, setTheme] = useState(LightTheme);
 
   return (
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
 
-        <Routes>
+        <BrowserRouter>
 
-          <Route path='/'>
-            <Route index element={<Login5 />} />
-            <Route path='second' element={<Window2 />} />
-            <Route path='/dashboard/*' element={<Dashboard />} />
-            {/* <Route path='add-candidate' element={<Dashboard />} /> */}
-          </Route>
+          <Routes>
 
-          <Route path='*' element={<Page404 />} />
+            <Route path='/'>
+              <Route index element={<Login5 />} />
+              <Route path='second' element={<Window2 />} />
+              <Route path='/dashboard/*' element={<Dashboard />} />
+              {/* <Route path='add-candidate' element={<Dashboard />} /> */}
+            </Route>
 
-        </Routes>
-      </BrowserRouter>
+            <Route path='*' element={<Page404 />} />
+
+          </Routes>
+        </BrowserRouter>
+      </LocalizationProvider>
     </ThemeProvider>
   );
 }
