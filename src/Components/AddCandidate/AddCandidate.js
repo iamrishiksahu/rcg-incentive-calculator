@@ -3,7 +3,7 @@ import './AddCandidate.css'
 import { TextFieldGroupContainer } from '../../CustomElements/Containers/TexFieldGroupContainer'
 import { DatePicker } from '@mui/x-date-pickers'
 import { useRef } from 'react'
-
+import axiosp from '../../Utils/axiosConfig'
 const AddCandidate = () => {
 
     const refCandidateSalutation = useRef()
@@ -40,7 +40,89 @@ const AddCandidate = () => {
     const refOutsideCommissions = useRef();
     const refOutsideCommissionsUnit = useRef();
     const refPayRollID = useRef();
-  
+
+    const handleAddCandidateSubmit = async (e) => {
+        // e.preventDefault()
+
+        // const data = getFormData();
+
+
+        try {
+            const res = await axiosp.get('/products/1');
+            console.log(res);
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const getFormData = () => {
+
+        // const approvalData = {
+        //     start_date: refStartDate.current.value,
+        //     end_date: refEndDate.current.value,
+        //     job_diva_job_number: refJobDivaID.current.value,
+        //     job_title: refJobTitle.current.value,
+        //     employment_category: refEmploymentCategory.current.value,
+        //     payment_frequency: refPaymentFrequency.current.value,
+        //     payable_rates: refPayRate.current.value,
+            
+        //     // hire_history: .current.value,
+        //     // currency: .current.value,
+        //     // job_company: .current.value,
+        //     // manage_stipends: .current.value,
+        //     // overtime_exempt: .current.value,
+
+        //     per_diem: refPerDiem.current.value,
+        //     other_expenses: refOtherExpenses.current.value,
+        //     outside_commission: refOutsideCommissions.current.value,
+        //     fixed_costs: .current.value,
+        //     payroll_profile_id: refPayRollID.current.value,
+        //     pay_rate: refPayRate.current.value,
+        // }
+
+        const candidateDate = () => {
+
+        }
+
+        // data = {
+        //     salutation : refCandidateSalutation.current.value,
+        //     firstname : refFirstName.current.value,
+        //     : refLastName.current.value,
+        //     : refLegalFullName.current.value,
+        //     : refSuffix.current.value,
+        //     : refPrimaryEmail.current.value,
+        //     : refSecondaryEmail.current.value,
+        //     : refAddressLine1.current.value,
+        //     : refAddressLine2.current.value,
+        //     : refState.current.value,
+        //     : refCity.current.value,
+        //     : refZipCode.current.value,
+        //     : refCountry.current.value,
+        //     : refPhonePersonal.current.value,
+        //     : refPhoneHome.current.value,
+        //     : refPhoneWork.current.value,
+        //     : refStartDate.current.value,
+        //     : refEndDate.current.value,
+        //     : refJobDivaID.current.value,
+        //     : refCustomerReferenceNo.current.value,
+        //     : refPurchaseOrderNo.current.value,
+        //     : refJobTitle.current.value,
+        //     : refEmploymentCategory.current.value,
+        //     : refPayRate.current.value,
+        //     : refPayRateUnit.current.value,
+        //     : refPaymentFrequency.current.value,
+        //    : refPaymentFrequencyUnit.current.value,
+        //     : refPerDiem.current.value,
+        //     : refPerDiemUnit.current.value,
+        //     : refOtherExpenses.current.value,
+        //     : refOtherExpensesUnit.current.value,
+        //     : refOutsideCommissions.current.value,
+        //     : refOutsideCommissionsUnit.current.value,
+        //     : refPayRollID.current.value,
+        // }
+
+    }
+
     return (
 
         <div className='parent'>
@@ -87,10 +169,10 @@ const AddCandidate = () => {
 
                 </TextFieldGroupContainer>
                 <TextFieldGroupContainer cols='3fr 1fr 3fr 1fr'>
-                    <TextField variant='outlined' size='small' label='Test' />
-                    <TextField variant='outlined' size='small' label='Test' />
-                    <TextField variant='outlined' size='small' label='Test' />
-                    <TextField variant='outlined' size='small' label='Test' />
+                    <TextField variant='outlined' size='small' label='Current Salary' />
+                    <TextField variant='outlined' size='small' label='Rs/Yr' />
+                    <TextField variant='outlined' size='small' label='Preferred Salary' />
+                    <TextField variant='outlined' size='small' label='Rs/Yr' />
                 </TextFieldGroupContainer>
 
                 <Button variant='outlined'
@@ -99,6 +181,7 @@ const AddCandidate = () => {
 
                 </Button>
                 <Button variant='contained'
+                    onClick={handleAddCandidateSubmit}
                 >
                     Add Candidate
 
@@ -155,7 +238,7 @@ const AddCandidate = () => {
 
                 </Button>
                 <Button variant='contained'
-               
+
                 >
                     Approve
 
