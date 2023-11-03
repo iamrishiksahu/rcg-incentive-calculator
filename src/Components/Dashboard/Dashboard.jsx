@@ -6,6 +6,7 @@ import Login2 from '../Login/Login2'
 import Test from '../Test'
 import AddCandidate from '../AddCandidate/AddCandidate'
 import DashboardTopBar from '../TopBar/DashboardTopBar'
+import AddAssignment from '../AddAssignment/AddAssignment'
 
 const Dashboard = () => {
 
@@ -19,7 +20,7 @@ const Dashboard = () => {
         marginLeft: '18rem',
         maxWidth: 'calc(100vw - 18rem)',
         backgroundColor: 'var(--color-main-bg)',
-        height: '100vh',
+        minHeight: '100vh',
       }}>
 
         <DashboardTopBar title={title}/>
@@ -28,7 +29,7 @@ const Dashboard = () => {
           <Route path='/' element={<Login2 />} />
           <Route path='/approve-timesheete' element={<Test />} />
           <Route path='/add-candidate' element={<AddCandidate />} />
-          <Route path='/add-assignment' element={<Login />} />
+          <Route path='/add-assignment' element={<AddAssignment />} />
           <Route path='/generate-invoice' element={<Login />} />
           <Route path='/submit-timesheet' element={<Login />} />
           <Route path='/hrms' element={<Login />} />
