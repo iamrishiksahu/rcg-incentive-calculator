@@ -1,5 +1,5 @@
 import { Box, Container, Card, Checkbox, Typography } from '@mui/material'
-import React from 'react'
+import React, { useRef } from 'react'
 import { Box50 } from '../../CustomElements/Containers/Box50'
 import { VGap } from '../../CustomElements/Gaps/Gap'
 import { H3, PText, Small } from '../../CustomElements/Typography/Typgraphy'
@@ -8,52 +8,37 @@ import { LoginTextField } from '../../CustomElements/TextFields/TextFields'
 import { H2 } from '../../CustomElements/Typography/Typgraphy'
 import { FlexBoxH } from '../../CustomElements/Containers/FlexBoxH'
 import './Login.css'
-import axios from 'axios'
+import axiosp from '../../Utils/axiosConfig'
+import { useNavigate } from 'react-router'
 
 const Login5 = () => {
 
-    const testApi = async () => {
+    const navigate = useNavigate();
+    const refEmail = useRef()
+    const refPassword = useRef()
 
-        // axios.post('https://bb71-122-175-123-108.ngrok-free.app/contacts_info', {
-
-        //         "first_name": "Test Rks",
-        //         "last_name": "string",
-        //         "legal_name": "string",
-        //         "suffix": "string",
-        //         "emails": "user@example.com",
-        //         "address": "string",
-        //         "city": "string",
-        //         "state": "string",
-        //         "pin_code": 2147483647,
-        //         "country": "string",
-        //         "home": "string",
-        //         "mobile": "string",
-        //         "work": "string",
-        //         "ext": "string",
-        //         "home_fax": "string",
-        //         "Pay_rate": "string",
-        //         "Bill_rate": "string"
-
-        // }).then((data) => {
-        //     console.log(data)
-        // }).catch((err) => {
-        //     console.log(err)
-        // })
+    const loginHandler = async (e) =>{
+        e.preventDefault()
 
         try {
 
-            //     fetch('http://bb71-122-175-123-108.ngrok-free.app/contacts_info/')
-            //  .then(response => console.log(response))
-            //  .then(data => {
-            //     console.log(data)
-            //  })
+            const res = await axiosp.post('login_user/', {
+                email: refEmail.current.value,
+                password: refPassword.current.value
+            })
 
+            const accessToken = res?.data?.access_token
 
-        } catch (err) {
-            console.log(err);
+            console.log(accessToken)
+            if(accessToken){
+                navigate('/dashboard')
+
+            }
+            
+
+        }catch(err){
+            console.log(err)
         }
-
-
     }
     return (
 
@@ -117,11 +102,11 @@ const Login5 = () => {
 
                         <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                             <PText>Email</PText>
-                            <LoginTextField icon='alternate_email' type='email' placeholder='youremail@gmail.com' />
+                            <LoginTextField inputRef={refEmail} icon='alternate_email' type='email' placeholder='youremail@gmail.com' />
                         </Box>
                         <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                             <PText>Password</PText>
-                            <LoginTextField icon='key' type='password' placeholder='password' />
+                            <LoginTextField inputRef={refPassword} icon='key' type='password' placeholder='password' />
                         </Box>
 
                         <FlexBoxH sx={{
@@ -142,7 +127,7 @@ const Login5 = () => {
 
                         <VGap value='1rem' />
 
-                        <LoginButton onClick={testApi} >Login</LoginButton>
+                        <LoginButton onClick={loginHandler} >Login</LoginButton>
 
                     </div>
 

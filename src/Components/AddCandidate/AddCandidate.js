@@ -40,49 +40,102 @@ const AddCandidate = () => {
     const refOutsideCommissions = useRef();
     const refOutsideCommissionsUnit = useRef();
     const refPayRollID = useRef();
+    const refCurrentSalary = useRef()
+    const refPreferredSalary = useRef()
 
     const handleAddCandidateSubmit = async (e) => {
         // e.preventDefault()
 
         // const data = getFormData();
+        const getCandidateData =  {
+            
+            salutation : refCandidateSalutation.current.value,
+            first_name : refFirstName.current.value,
+            last_name: refLastName.current.value,
+            legal_name: refLegalFullName.current.value,
+            suffix: refSuffix.current.value,
+            email: refPrimaryEmail.current.value,
+            // : refSecondaryEmail.current.value,
+            address : refAddressLine1.current.value + " " + refAddressLine2.current.value,
+            state: refState.current.value,
+            city: refCity.current.value,
+            pin_code: refZipCode.current.value,
+            country: refCountry.current.value,
+            mobile: refPhonePersonal.current.value,
+            home: refPhoneHome.current.value,
+            work: refPhoneWork.current.value,
+            bill_rate: refPreferredSalary.current.value,
+            pay_rate: refCurrentSalary.current.value,
+            
+        
 
+        }
 
         try {
-            const res = await axiosp.get('/products/1');
+            const res = await axiosp.post('/add_candidate_and_send_credentials/', getCandidateData);
             console.log(res);
+            if(res.status == 201){
+                alert('Successfully Added Candidate!')
+            }else{
+                alert('Failed!')
+
+            }
         } catch (err) {
             console.log(err)
         }
     }
 
-    const getFormData = () => {
+    const handlePayApprovalSubmit = async (e) => {
 
-        // const approvalData = {
-        //     start_date: refStartDate.current.value,
-        //     end_date: refEndDate.current.value,
-        //     job_diva_job_number: refJobDivaID.current.value,
-        //     job_title: refJobTitle.current.value,
-        //     employment_category: refEmploymentCategory.current.value,
-        //     payment_frequency: refPaymentFrequency.current.value,
-        //     payable_rates: refPayRate.current.value,
+        e.preventDefault()
+
+        const approvalData = {
+            start_date: refStartDate.current.value,
+            end_date: refEndDate.current.value,
+            job_diva_job_number: refJobDivaID.current.value,
+            job_title: refJobTitle.current.value,
+            employment_category: refEmploymentCategory.current.value,
+            payment_frequency: refPaymentFrequency.current.value,
+            // payable_rates: refPayRate.current.value,
+
+
             
-        //     // hire_history: .current.value,
-        //     // currency: .current.value,
-        //     // job_company: .current.value,
-        //     // manage_stipends: .current.value,
-        //     // overtime_exempt: .current.value,
+            // hire_history: .current.value,
+            // currency: .current.value,
+            // job_company: .current.value,
+            // manage_stipends: .current.value,
+            // overtime_exempt: .current.value,
+            // fixed_costs: .current.value,
+            
+            per_diem: refPerDiem.current.value,
+            other_expenses: refOtherExpenses.current.value,
+            outside_commission: refOutsideCommissions.current.value,
+            payroll_profile_id: refPayRollID.current.value,
+            pay_rate: refPayRate.current.value,
 
-        //     per_diem: refPerDiem.current.value,
-        //     other_expenses: refOtherExpenses.current.value,
-        //     outside_commission: refOutsideCommissions.current.value,
-        //     fixed_costs: .current.value,
-        //     payroll_profile_id: refPayRollID.current.value,
-        //     pay_rate: refPayRate.current.value,
-        // }
-
-        const candidateDate = () => {
+            payable_rates: 100000,
+              "manage_stipends": 123,
+              "per_diem": 123,
+              "other_expenses": 123123,
+              "outside_commission": 898,
+              "fixed_costs": 23463,
+              "pay_rate": 23456,
 
         }
+        try{
+            const res = await axiosp.post('/pay-approval/approval-details/', approvalData)
+            console.log(res);
+            if(res.status == 201){
+                alert('Successfully Added Candidate!')
+            }else{
+                alert('Failed!')
+
+            }
+        }catch(err){
+            console.log(err)
+        }
+    } 
+
 
         // data = {
         //     salutation : refCandidateSalutation.current.value,
@@ -121,7 +174,7 @@ const AddCandidate = () => {
         //     : refPayRollID.current.value,
         // }
 
-    }
+    
 
     return (
 
@@ -169,8 +222,8 @@ const AddCandidate = () => {
 
                 </TextFieldGroupContainer>
                 <TextFieldGroupContainer cols='3fr 1fr 3fr 1fr'>
-                    <TextField variant='outlined' size='small' label='Current Salary' />
-                    <TextField variant='outlined' size='small' label='Rs/Yr' />
+                    <TextField inputRef={refCurrentSalary} variant='outlined' size='small' label='Current Salary' />
+                    <TextField inputRef={refPreferredSalary} variant='outlined' size='small' label='Rs/Yr' />
                     <TextField variant='outlined' size='small' label='Preferred Salary' />
                     <TextField variant='outlined' size='small' label='Rs/Yr' />
                 </TextFieldGroupContainer>
@@ -238,6 +291,7 @@ const AddCandidate = () => {
 
                 </Button>
                 <Button variant='contained'
+                onClick={handlePayApprovalSubmit}
 
                 >
                     Approve
