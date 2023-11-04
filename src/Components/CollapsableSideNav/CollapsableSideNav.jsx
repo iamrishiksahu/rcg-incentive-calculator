@@ -19,6 +19,11 @@ const menuItems = [
         endpoint: 'add-candidate'
     },
     {
+        icon_url: '/images/side-nav/dashboard.png',
+        nav_item_name: 'Assignment Dashboard',
+        endpoint: 'assignments'
+    },
+    {
         icon_url: '/images/side-nav/add-assignment.png',
         nav_item_name: 'Add Assignment',
         endpoint: 'add-assignment'

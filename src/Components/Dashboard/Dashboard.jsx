@@ -7,7 +7,7 @@ import Test from '../Test'
 import AddCandidate from '../AddCandidate/AddCandidate'
 import DashboardTopBar from '../TopBar/DashboardTopBar'
 import AddAssignment from '../AddAssignment/AddAssignment'
-
+import AssignmentDashboard from '../Assignments/AssignmentDashboard'
 const Dashboard = () => {
 
   const [title, setTitle] = useState('Dashboard');
@@ -29,6 +29,7 @@ const Dashboard = () => {
           <Route path='/' element={<Login2 />} />
           <Route path='/approve-timesheete' element={<Test />} />
           <Route path='/add-candidate' element={<AddCandidate />} />
+          <Route path='/assignments' element={<AssignmentDashboard />} />
           <Route path='/add-assignment' element={<AddAssignment />} />
           <Route path='/generate-invoice' element={<Login />} />
           <Route path='/submit-timesheet' element={<Login />} />
