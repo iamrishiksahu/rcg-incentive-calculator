@@ -6,6 +6,7 @@ import Login2 from '../Login/Login2'
 import Test from '../Test'
 import AddCandidate from '../AddCandidate/AddCandidate'
 import DashboardTopBar from '../TopBar/DashboardTopBar'
+import MainDashboard from './MainDashboard'
 import AddAssignment from '../AddAssignment/AddAssignment'
 import AssignmentDashboard from '../Assignments/AssignmentDashboard'
 const Dashboard = () => {
@@ -26,7 +27,7 @@ const Dashboard = () => {
         <DashboardTopBar title={title}/>
 
         <Routes>
-          <Route path='/' element={<Login2 />} />
+          <Route path='/' element={<MainDashboard />} />
           <Route path='/approve-timesheete' element={<Test />} />
           <Route path='/add-candidate' element={<AddCandidate />} />
           <Route path='/assignments' element={<AssignmentDashboard />} />
