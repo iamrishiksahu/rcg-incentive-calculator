@@ -1,11 +1,13 @@
 import React, { useRef } from 'react'
-import { Button, TextField } from '@mui/material'
+import { Button, TextField, Autocomplete, Box } from '@mui/material'
 import './AddAssignment.css'
 import { TextFieldGroupContainer } from '../../CustomElements/Containers/TexFieldGroupContainer'
 import { DatePicker } from '@mui/x-date-pickers'
+import { DivisionsList } from '../../Utils/constants'
 
 
 const AddAssignment = () => {
+    
 
     const refStartDate = useRef();
     const refEndDate = useRef();
@@ -38,6 +40,11 @@ const AddAssignment = () => {
     const refOverTime = useRef();
     const refDoubleTime = useRef();
 
+    const handleSubmitClick = (e) => {
+        e.preventDefault()
+
+    }
+
     return (
         <div className='parent'>
 
@@ -45,7 +52,7 @@ const AddAssignment = () => {
 
                 <h3>Billing Details</h3>
 
-             
+
                 <TextFieldGroupContainer cols='1fr 1fr 1fr'>
                     <DatePicker inputRef={refStartDate} slotProps={{ textField: { size: 'small' } }} label="Start Date" />
                     <DatePicker inputRef={refEndDate} slotProps={{ textField: { size: 'small' } }} label="End Date" />
@@ -61,7 +68,13 @@ const AddAssignment = () => {
 
                 <TextFieldGroupContainer cols='1fr 1fr'>
                     <TextField inputRef={refJobTitle} variant='outlined' size='small' label='Job Title' />
-                    <TextField inputRef={refDivision} variant='outlined' size='small' label='Division' />
+
+                    <Autocomplete
+                        disablePortal
+                        options={DivisionsList}
+                        renderInput={(params) => <TextField {...params} ariant='outlined' size='small' inputRef={refDivision} label="Division" />}
+                    />
+
                 </TextFieldGroupContainer>
 
 
@@ -89,7 +102,7 @@ const AddAssignment = () => {
                     <TextField inputRef={refPaymentFrequency} variant='outlined' size='small' label='Payment Frequency' />
                     <TextField inputRef={refPaymentFrequencyUnit} variant='outlined' size='small' label='H' />
                 </TextFieldGroupContainer>
-                
+
                 <TextFieldGroupContainer cols='3fr 1fr 3fr 1fr'>
                     <TextField inputRef={refPerDiem} variant='outlined' size='small' label='Per Diem' />
                     <TextField inputRef={refPerDiemUnit} variant='outlined' size='small' label='H' />
@@ -102,7 +115,7 @@ const AddAssignment = () => {
                     <TextField inputRef={refOutsideCommissionsUnit} variant='outlined' size='small' label='H' />
                     <TextField inputRef={refPayRollID} variant='outlined' size='small' label='Pay Roll ID' />
                 </TextFieldGroupContainer>
-             
+
             </div>
 
 
@@ -120,8 +133,8 @@ const AddAssignment = () => {
                 </TextFieldGroupContainer>
 
                 <TextFieldGroupContainer cols='3fr 1fr 3fr 1fr'>
-                    <TextField  variant='outlined' size='small' label='Bill Rate' />
-                    <TextField  variant='outlined' size='small' label='/ H' />
+                    <TextField variant='outlined' size='small' label='Bill Rate' />
+                    <TextField variant='outlined' size='small' label='/ H' />
                     <TextField inputRef={refDefaultDiscount} variant='outlined' size='small' label='Default Discount' />
                     <TextField inputRef={refDefaultDiscountUnit} variant='outlined' size='small' label='/ H' />
                 </TextFieldGroupContainer>
@@ -135,6 +148,27 @@ const AddAssignment = () => {
 
             </div>
 
+            <Box sx={{
+                display: 'flex',
+                gap: '1rem'
+            }}>
+                <Button variant='outlined'
+                >
+                    Reset Fields
+
+                </Button>
+                <Button variant='contained'
+                    onClick={handleSubmitClick}
+
+                >
+                    Submit
+
+                </Button>
+
+
+            </Box>
+
+
 
 
         </div>
@@ -142,3 +176,4 @@ const AddAssignment = () => {
 }
 
 export default AddAssignment
+

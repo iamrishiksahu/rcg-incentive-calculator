@@ -8,6 +8,8 @@ const DashboardTopBar = ({ title }) => {
         display: 'flex',
         alignItems: 'center',
         paddingLeft: '2rem',
+        justifyContent: 'space-between',
+        marginRight: '1.5rem',
         minHeight: '5rem',
       }}
     >
