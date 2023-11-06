@@ -247,11 +247,16 @@ const AddAssignment = () => {
                         </TextFieldGroupContainer>
 
 
+                        <TextFieldGroupContainer cols='1fr 1fr 1fr'>
+
+                            <TextField required inputRef={refDays} variant='outlined' size='small' label='Days' />
+                            <TextField required inputRef={refPassThrough} variant='outlined' size='small' label='Pass Through' />
+                            <TextField required inputRef={refPassDiscount} variant='outlined' size='small' label='Discount' />
+                        </TextFieldGroupContainer>
                         <TextFieldGroupContainer cols='1fr'>
 
                             <TextField required inputRef={refTimeSheetEntryFormat} variant='outlined' size='small' label='Timesheet Entry Format' />
-
-
+                            <TextField required inputRef={refPaymentTerms} variant='outlined' size='small' label='Payment Terms' />
                         </TextFieldGroupContainer>
                     </div>
 
