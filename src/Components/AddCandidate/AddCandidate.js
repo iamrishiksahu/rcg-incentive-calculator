@@ -100,7 +100,7 @@ const AddCandidate = () => {
             per_diem: refPerDiem.current.value,
             per_diem_choices: refPerDiemUnit.current.value,
             other_expenses: refOtherExpenses.current.value,
-            other_expenses: refOtherExpensesUnit.current.value,
+            other_expenses_choices: refOtherExpensesUnit.current.value,
             outside_commission: refOutsideCommissions.current.value,
             outside_commission_choices: refOutsideCommissionsUnit.current.value,
             
@@ -245,8 +245,8 @@ const AddCandidate = () => {
                 <h3>Pay Details</h3>
 
                 <TextFieldGroupContainer cols='1fr 1fr 1fr'>
-                    <DatePicker inputRef={refStartDate} slotProps={{ textField: { size: 'small' } }} label="Start Date" />
-                    <DatePicker inputRef={refEndDate} slotProps={{ textField: { size: 'small' } }} label="End Date" />
+                    <DatePicker inputRef={refStartDate} format='YYYY-MM-DD' slotProps={{ textField: { size: 'small' } }} label="Start Date" />
+                    <DatePicker inputRef={refEndDate} format='YYYY-MM-DD' slotProps={{ textField: { size: 'small' } }} label="End Date" />
                     <TextField required inputRef={refJobDivaID} variant='outlined' size='small' type='text' label='JobDiva ID' />
                 </TextFieldGroupContainer>
 

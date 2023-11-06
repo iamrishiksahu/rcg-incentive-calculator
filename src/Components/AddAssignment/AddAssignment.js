@@ -47,7 +47,6 @@ const AddAssignment = () => {
     const refTimeSheetEntryFormat = useRef();
     const refWeekEnding = useRef();
     const refHoursDay = useRef();
-    const refhoursHalfDay = useRef();
     const refWorkingLocation = useRef();
     const refWorkingAddressLine1 = useRef();
     const refWorkingAddressLine2 = useRef();
@@ -65,6 +64,7 @@ const AddAssignment = () => {
     const refPrimaryRecruiterPercent = useRef();
     const refSecondaryRecruiterPercent = useRef();
     const refTertiaryRecruterPecent = useRef();
+    const refhoursHalfDay = useRef();
     const refPrimarySales = useRef();
     const refSecondarySales = useRef();
     const refTertiarySales = useRef();
@@ -157,8 +157,8 @@ const AddAssignment = () => {
 
 
                         <TextFieldGroupContainer cols='1fr 1fr 1fr'>
-                            <DatePicker inputRef={refStartDate} slotProps={{ textField: { size: 'small' } }} label="Start Date" />
-                            <DatePicker inputRef={refEndDate} slotProps={{ textField: { size: 'small' } }} label="End Date" />
+                            <DatePicker inputRef={refStartDate} format='YYYY-MM-DD' slotProps={{ textField: { size: 'small' } }} label="Start Date" />
+                            <DatePicker inputRef={refEndDate} format='YYYY-MM-DD' slotProps={{ textField: { size: 'small' } }} label="End Date" />
                             <TextField inputRef={refJobdivaID} variant='outlined' size='small' type='text' label='JobDiva ID' />
                         </TextFieldGroupContainer>
 
@@ -195,6 +195,7 @@ const AddAssignment = () => {
 
                         <TextFieldGroupContainer cols='1fr'>
                             <TextField inputRef={refBillingCompanyName} variant='outlined' size='small' label='Billing Company Name' />
+                            <TextField inputRef={refBillingCompanyAddress} variant='outlined' size='small' label='Billing Company Name' />
                         </TextFieldGroupContainer>
 
                     </div>
@@ -221,7 +222,7 @@ const AddAssignment = () => {
                                 renderInput={(params) => <TextField {...params} ariant='outlined' size='small' inputRef={refCurrency} label="Currency" />}
                             />
 
-                            <TextField inputRef={refBillingCompanyName} variant='outlined' size='small' label='Billing Units' />
+                            <TextField inputRef={refBillingUnit} variant='outlined' size='small' label='Billing Units' />
                         </TextFieldGroupContainer>
 
 
@@ -285,13 +286,13 @@ const AddAssignment = () => {
 
 
                         <TextFieldGroupContainer cols='1fr 1fr'>
-                            <TextField inputRef={refAddressLine1} variant='outlined' size='small' label='Address Line 1' />
-                            <TextField inputRef={refAddressLine2} variant='outlined' size='small' label='Address Line 2' />
+                            <TextField inputRef={refWorkingAddressLine1} variant='outlined' size='small' label='Address Line 1' />
+                            <TextField inputRef={refWorkingAddressLine2} variant='outlined' size='small' label='Address Line 2' />
                         </TextFieldGroupContainer>
 
                         <TextFieldGroupContainer cols='1fr 1fr 1fr'>
                             <TextField inputRef={refWorkingCity} variant='outlined' size='small' label='City' />
-                            <TextField inputRef={refWorkingCity} variant='outlined' size='small' label='State' />
+                            <TextField inputRef={refWorkingState} variant='outlined' size='small' label='State' />
                             <TextField inputRef={refPinCode} type='number' variant='outlined' size='small' label='Pin Code' />
 
                         </TextFieldGroupContainer>

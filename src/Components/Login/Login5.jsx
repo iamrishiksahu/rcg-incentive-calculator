@@ -34,12 +34,8 @@ const Login5 = () => {
         try {
 
             const res = await axiosp.post('/login_user/', {
-                email: refEmail.current``.value,
+                email: refEmail.current.value,
                 password: refPassword.current.value
-            },
-            {
-                withCredentials: true // Need to pass it here as well to set the cookies in ress
-    
             })
 
             const accessToken = res?.data?.access_token
@@ -47,7 +43,7 @@ const Login5 = () => {
             console.log(res.data)
             if(accessToken){
                 dispatch(setAuthData(res.data));
-                // navigate('/dashboard')
+                navigate('/dashboard')
             // navigate(from, { replace: true });
             }
             
