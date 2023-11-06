@@ -15,5 +15,10 @@ const CurrencyList = [
     { label: '£ (Pound)', value: 3},
 ]
 
+const WorkLocationList =[
+    'Remote',
+    'Onsite'
+]
 
-export {DivisionsList, AmountUnitList, CurrencyList}
+
+export {DivisionsList, AmountUnitList, CurrencyList, WorkLocationList}
