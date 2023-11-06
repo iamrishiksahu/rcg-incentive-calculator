@@ -198,8 +198,8 @@ const AddCandidate = () => {
                 </TextFieldGroupContainer>
 
                 <TextFieldGroupContainer cols='1fr 1fr'>
-                    <TextField required inputRef={refPrimaryEmail} variant='outlined' size='small' label='Primary Email' />
-                    <TextField required inputRef={refSecondaryEmail} variant='outlined' size='small' label='Secondary Email' />
+                    <TextField required type='email' inputRef={refPrimaryEmail} variant='outlined' size='small' label='Primary Email' />
+                    <TextField required type='email' inputRef={refSecondaryEmail} variant='outlined' size='small' label='Secondary Email' />
                 </TextFieldGroupContainer>
 
 
@@ -211,13 +211,13 @@ const AddCandidate = () => {
 
                     <TextField required inputRef={refState} variant='outlined' size='small' label='State' />
                     <TextField required inputRef={refCity} variant='outlined' size='small' label='City' />
-                    <TextField required inputRef={refZipCode} variant='outlined' size='small' label='Zip Code' />
+                    <TextField required type='number' inputRef={refZipCode} variant='outlined' size='small' label='Zip Code' />
                     <TextField required inputRef={refCountry} variant='outlined' size='small' label='Country' />
                 </TextFieldGroupContainer>
                 <TextFieldGroupContainer cols='1fr 1fr 1fr'>
-                    <TextField required inputRef={refPhonePersonal} variant='outlined' size='small' label='Phone (Personal)' />
-                    <TextField required inputRef={refPhoneHome} variant='outlined' size='small' label='Phone (Home)' />
-                    <TextField required inputRef={refPhoneWork} variant='outlined' size='small' label='Phone (Work)' />
+                    <TextField required type='number' inputRef={refPhonePersonal} variant='outlined' size='small' label='Phone (Personal)' />
+                    <TextField required type='number' inputRef={refPhoneHome} variant='outlined' size='small' label='Phone (Home)' />
+                    <TextField required type='number' inputRef={refPhoneWork} variant='outlined' size='small' label='Phone (Work)' />
 
                 </TextFieldGroupContainer>
                 <TextFieldGroupContainer cols='3fr 1fr 3fr 1fr'>
@@ -284,16 +284,16 @@ const AddCandidate = () => {
                 </TextFieldGroupContainer>
 
                 <TextFieldGroupContainer cols='3.15fr 1fr 3fr 1fr'>
-                    <TextField  required inputRef={refPerDiem} variant='outlined' size='small' label='Per Diem' />
+                    <TextField type='number'  required inputRef={refPerDiem} variant='outlined' size='small' label='Per Diem' />
                     <TextField  required inputRef={refPerDiemUnit} variant='outlined' size='small' label='H' />
-                    <TextField required inputRef={refOtherExpenses} variant='outlined' size='small' label='Other Expenses' />
+                    <TextField required inputRef={refOtherExpenses} variant='outlined' size='small' label='Other Expenses' type='number'  />
                     <TextField  required inputRef={refOtherExpensesUnit} variant='outlined' size='small' label='H' />
                 </TextFieldGroupContainer>
 
                 <TextFieldGroupContainer cols='3fr 1fr 4fr'>
-                    <TextField required inputRef={refOutsideCommissions} variant='outlined' size='small' label='Outside Comissions' />
+                    <TextField type='number' required inputRef={refOutsideCommissions} variant='outlined' size='small' label='Outside Comissions' />
                     <TextField required inputRef={refOutsideCommissionsUnit} variant='outlined' size='small' label='H' />
-                    <TextField required inputRef={refPayRollID} variant='outlined' size='small' label='Pay Roll ID' />
+                    <TextField type='number' required inputRef={refPayRollID} variant='outlined' size='small' label='Pay Roll ID' />
                 </TextFieldGroupContainer>
 
 
