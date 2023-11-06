@@ -298,16 +298,16 @@ const AddAssignment = () => {
                         </TextFieldGroupContainer>
 
                         <TextFieldGroupContainer cols='3fr 1fr 3fr 1fr'>
-                            <TextField inputRef={refPerDiem} variant='outlined' size='small' label='Per Diem' />
+                            <TextField type='number' inputRef={refPerDiem} variant='outlined' size='small' label='Per Diem' />
                             <TextField inputRef={refPerDiemUnit} variant='outlined' size='small' label='H' />
-                            <TextField inputRef={refOtherExpenses} variant='outlined' size='small' label='Other Expenses' />
+                            <TextField type='number' inputRef={refOtherExpenses} variant='outlined' size='small' label='Other Expenses' />
                             <TextField inputRef={refOtherExpensesUnit} variant='outlined' size='small' label='H' />
                         </TextFieldGroupContainer>
 
                         <TextFieldGroupContainer cols='3fr 1fr 4fr'>
-                            <TextField inputRef={refOutsideCommissions} variant='outlined' size='small' label='Outside Comissions' />
+                            <TextField type='number' inputRef={refOutsideCommissions} variant='outlined' size='small' label='Outside Comissions' />
                             <TextField inputRef={refOutsideCommissionsUnit} variant='outlined' size='small' label='H' />
-                            <TextField inputRef={refPayRollID} variant='outlined' size='small' label='Pay Roll ID' />
+                            <TextField type='number' inputRef={refPayRollID} variant='outlined' size='small' label='Pay Roll ID' />
                         </TextFieldGroupContainer>
 
                     </div>
@@ -321,7 +321,7 @@ const AddAssignment = () => {
                         <TextFieldGroupContainer cols='5fr 2fr'>
 
                             <TextField inputRef={refPrimarySales} variant='outlined' size='small' label='Primary Sales' />
-                            <TextField inputRef={refPrimarySalesPercent} variant='outlined' size='small' label='%' />
+                            <TextField  type='number' inputRef={refPrimarySalesPercent} variant='outlined' size='small' label='%' />
 
                         </TextFieldGroupContainer>
 
@@ -329,7 +329,7 @@ const AddAssignment = () => {
                         <TextFieldGroupContainer cols='5fr 2fr'>
 
                             <TextField inputRef={refSecondarySales} variant='outlined' size='small' label='Secondary Sales' />
-                            <TextField inputRef={refPrimarySalesPercent} variant='outlined' size='small' label='%' />
+                            <TextField  type='number' inputRef={refSecondarySalesPercent} variant='outlined' size='small' label='%' />
 
                         </TextFieldGroupContainer>
 
@@ -337,7 +337,7 @@ const AddAssignment = () => {
                         <TextFieldGroupContainer cols='5fr 2fr'>
 
                             <TextField inputRef={refTertiarySales} variant='outlined' size='small' label='Tertiary Sales' />
-                            <TextField inputRef={refTertialSalesPercent} variant='outlined' size='small' label='%' />
+                            <TextField type='number' inputRef={refTertialSalesPercent} variant='outlined' size='small' label='%' />
 
                         </TextFieldGroupContainer>
 
@@ -345,15 +345,15 @@ const AddAssignment = () => {
                         <TextFieldGroupContainer cols='5fr 2fr'>
 
                             <TextField inputRef={refPrimaryRecruiter} variant='outlined' size='small' label='Primary Recruiter Sales' />
-                            <TextField inputRef={refPrimaryRecruiterPercent} variant='outlined' size='small' label='%' />
+                            <TextField type='number' inputRef={refPrimaryRecruiterPercent} variant='outlined' size='small' label='%' />
 
                         </TextFieldGroupContainer>
 
 
                         <TextFieldGroupContainer cols='5fr 2fr'>
 
-                            <TextField inputRef={refSecondaryRecruiterPercent} variant='outlined' size='small' label='Secondary Recruiter Sales' />
-                            <TextField inputRef={refSecondaryRecruiterPercent} variant='outlined' size='small' label='%' />
+                            <TextField inputRef={refSecondaryRecruiter} variant='outlined' size='small' label='Secondary Recruiter Sales' />
+                            <TextField type='number'  inputRef={refSecondaryRecruiterPercent} variant='outlined' size='small' label='%' />
 
                         </TextFieldGroupContainer>
 
@@ -361,7 +361,7 @@ const AddAssignment = () => {
                         <TextFieldGroupContainer cols='5fr 2fr'>
 
                             <TextField inputRef={refTertiaryRecruterPecent} variant='outlined' size='small' label='Tertiary Recruiter Sales' />
-                            <TextField inputRef={refTertiaryRecruiter} variant='outlined' size='small' label='%' />
+                            <TextField  type='number'  inputRef={refTertiaryRecruiter} variant='outlined' size='small' label='%' />
 
                         </TextFieldGroupContainer>
 
