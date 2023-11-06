@@ -3,7 +3,7 @@ import { Button, TextField, Autocomplete, Box, FormControlLabel, Checkbox, FormC
 import './AddAssignment.css'
 import { TextFieldGroupContainer } from '../../CustomElements/Containers/TexFieldGroupContainer'
 import { DatePicker } from '@mui/x-date-pickers'
-import { AmountUnitList, CurrencyList } from '../../Utils/constants'
+import { AmountUnitList, CurrencyList, DivisionsList, WorkLocationList } from '../../Utils/constants'
 import axiosp from '../../Utils/axiosConfig'
 
 
@@ -106,8 +106,8 @@ const AddAssignment = () => {
             working_country: refWorkingCountry.current.value,
             payment_terms: refPaymentTerms.current.value,
             days: refDays.current.value,
-            pass_through: refPassThrough.current.value,
-            pass_discount: refPassDiscount.current.value,
+            pass_through: refPassThrough.current.checked,
+            pass_discount: refPassDiscount.current.checked,
             primary_sales_percentage: refPrimarySalesPercent.current.value,
             secondary_sales_percentage: refSecondarySalesPercent.current.value,
             tertiary_sales_percentage: refTertialSalesPercent.current.value,
@@ -125,7 +125,7 @@ const AddAssignment = () => {
 
         try{
 
-            const res = await axiosp.post('/assignment_add_job_details', extractData);
+            const res = await axiosp.post('/Assignment_add_job_details/', extractData);
             console.log(res.data)
             alert('Successfully Saved!')
 
@@ -174,7 +174,7 @@ const AddAssignment = () => {
 
                             <Autocomplete
                                 disablePortal
-                                options={AmountUnitList}
+                                options={DivisionsList}
                                 renderInput={(params) => <TextField {...params} ariant='outlined' size='small' inputRef={refDivision} label="Division" />}
                             />
                             <Autocomplete
@@ -251,8 +251,8 @@ const AddAssignment = () => {
                         <TextFieldGroupContainer cols='1fr 1fr 1fr'>
 
                             <TextField required inputRef={refDays} variant='outlined' size='small' label='Days' />
-                            <TextField required inputRef={refPassThrough} variant='outlined' size='small' label='Pass Through' />
-                            <TextField required inputRef={refPassDiscount} variant='outlined' size='small' label='Discount' />
+                            <FormControlLabel control={<Checkbox inputRef={refPassThrough} defaultChecked />} label="Pass Through" />
+                        <FormControlLabel  control={<Checkbox inputRef={refPassDiscount} defaultChecked />} label="Pass Discount" />
                         </TextFieldGroupContainer>
                         <TextFieldGroupContainer cols='1fr'>
 
@@ -279,7 +279,12 @@ const AddAssignment = () => {
                         </TextFieldGroupContainer>
 
                         <TextFieldGroupContainer cols='1fr 1fr'>
-                            <TextField inputRef={refWorkingLocation} variant='outlined' size='small' label='Working Location' />
+                            
+                        <Autocomplete
+                                disablePortal
+                                options={WorkLocationList}
+                                renderInput={(params) => <TextField {...params} ariant='outlined' size='small' inputRef={refWorkingLocation} label="Work Location" />}
+                            />
                             <TextField inputRef={refWorkingCountry} variant='outlined' size='small' label='Country' />
                         </TextFieldGroupContainer>
 
