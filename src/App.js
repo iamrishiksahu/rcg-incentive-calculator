@@ -9,6 +9,10 @@ import Dashboard from './Components/Dashboard/Dashboard';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LightTheme } from './Utils/LightTheme';
+import NoInternetConnection from './Wrappers/NoInternet';
+import { Provider } from 'react-redux';
+import store from './app/store';
+
 
 function App() {
 
@@ -17,22 +21,27 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <NoInternetConnection>
 
-        <BrowserRouter>
+          <Provider store={store}>
 
-          <Routes>
+            <BrowserRouter>
 
-            <Route path='/'>
-              <Route index element={<Login5 />} />
-              <Route path='second' element={<Window2 />} />
-              <Route path='/dashboard/*' element={<Dashboard />} />
-              {/* <Route path='add-candidate' element={<Dashboard />} /> */}
-            </Route>
+              <Routes>
 
-            <Route path='*' element={<Page404 />} />
+                <Route path='/'>
+                  <Route index element={<Login5 />} />
+                  <Route path='second' element={<Window2 />} />
+                  <Route path='/dashboard/*' element={<Dashboard />} />
+                  {/* <Route path='add-candidate' element={<Dashboard />} /> */}
+                </Route>
+                <Route path='*' element={<Page404 />} />
+              </Routes>
+            </BrowserRouter>
+          </Provider>
 
-          </Routes>
-        </BrowserRouter>
+        </NoInternetConnection>
+
       </LocalizationProvider>
     </ThemeProvider>
   );

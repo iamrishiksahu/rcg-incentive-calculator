@@ -1,17 +1,18 @@
-import { Button, TextField, Box } from '@mui/material'
+import { Button, TextField, Box, FormControlLabel, Checkbox, Autocomplete } from '@mui/material'
 import './AddCandidate.css'
 import { TextFieldGroupContainer } from '../../CustomElements/Containers/TexFieldGroupContainer'
 import { DatePicker } from '@mui/x-date-pickers'
 import { useRef, useState } from 'react'
 import axiosp from '../../Utils/axiosConfig'
 import PurchaseOrderPopup from '../PurchaseOrderPopup/PurchaseOrderPopup'
+import { AmountUnitList } from '../../Utils/constants'
 const AddCandidate = () => {
 
 
     const [purchaseOrderData, setPurchaseOrderData] = useState({})
 
-    const refCandidateSalutation = useRef()
     const refFirstName = useRef()
+    const refOvertimeExempt = useRef()
     const refLastName = useRef()
     const refLegalFirst = useRef()
     const refLegalMiddle = useRef()
@@ -50,6 +51,8 @@ const AddCandidate = () => {
     const refOutsideCommissionsUnit = useRef();
     const refPayRollID = useRef();
     const refCurrentSalary = useRef()
+    const refCurrentSalaryUnit = useRef()
+    const refPreferredSalaryUnit = useRef()
     const refPreferredSalary = useRef()
 
     const [open, setOpen] = useState(false)
@@ -76,10 +79,12 @@ const AddCandidate = () => {
             mobile: refPhonePersonal.current.value,
             home: refPhoneHome.current.value,
             work: refPhoneWork.current.value,
+            preferred_duration: refPreferredSalaryUnit.current.value,
             preferred: refPreferredSalary.current.value,
+            current_duration: refCurrentSalaryUnit.current.value,
             current: refCurrentSalary.current.value,
-
-
+            home_fax: '',
+            ext: '',
             start_date: refStartDate.current.value,
             end_date: refEndDate.current.value,
             job_diva_job: refJobDivaID.current.value,
@@ -89,28 +94,17 @@ const AddCandidate = () => {
             currency: refCurrency.current.value,
             employment_category: refEmploymentCategory.current.value,
             payment_frequency: refPaymentFrequency.current.value,
-            // payable_rates: refPayRate.current.value,
-            // hire_history: .current.value,
-            // currency: .current.value,
-            // job_company: .current.value,
-            // manage_stipends: .current.value,
-            // overtime_exempt: .current.value,
-            // fixed_costs: .current.value,
-
-            // per_diem: refPerDiem.current.value,
-            // other_expenses: refOtherExpenses.current.value,
-            // outside_commission: refOutsideCommissions.current.value,
-            payroll_profile_id: refPayRollID.current.value,
             pay_rate: refPayRate.current.value,
-
-            // payable_rates: 100000,
-            overtime_exempt: true,
-            manage_stipends: 123,
-            per_diem: 123,
-            other_expenses: 123123,
-            outside_commission: 898,
-            "fixed_costs": 23463,
-            "pay_rate": 23456,
+            pay_rate_choices: refPayRateUnit.current.value, 
+            overtime_exempt: refOvertimeExempt.current.checked,
+            per_diem: refPerDiem.current.value,
+            per_diem_choices: refPerDiemUnit.current.value,
+            other_expenses: refOtherExpenses.current.value,
+            other_expenses: refOtherExpensesUnit.current.value,
+            outside_commission: refOutsideCommissions.current.value,
+            outside_commission_choices: refOutsideCommissionsUnit.current.value,
+            
+            payroll_profile_id: refPayRollID.current.value,
 
 
         }
@@ -122,7 +116,6 @@ const AddCandidate = () => {
                 alert('Successfully Added Candidate!')
             } else {
                 alert('Failed!')
-
             }
         } catch (err) {
             console.log(err)
@@ -229,9 +222,18 @@ const AddCandidate = () => {
                 </TextFieldGroupContainer>
                 <TextFieldGroupContainer cols='3fr 1fr 3fr 1fr'>
                     <TextField required inputRef={refCurrentSalary} variant='outlined' size='small' label='Current Salary' />
-                    <TextField required inputRef={refPreferredSalary} variant='outlined' size='small' label='Rs/Yr' />
-                    <TextField required variant='outlined' size='small' label='Preferred Salary' />
-                    <TextField required variant='outlined' size='small' label='Rs/Yr' />
+                    <Autocomplete
+                        disablePortal
+                        options={AmountUnitList}
+                        renderInput={(params) => <TextField  {...params} ariant='outlined' size='small' inputRef={refCurrentSalaryUnit} label="Unit" />}
+                    />
+                    {/* <TextField required inputRef={refCurrentSalaryUnit} variant='outlined' size='small' label='Rs/Yr' /> */}
+                    <TextField ref={refPreferredSalary} required variant='outlined' size='small' label='Preferred Salary' />
+                    <Autocomplete
+                        disablePortal
+                        options={AmountUnitList}
+                        renderInput={(params) => <TextField  {...params} ariant='outlined' size='small' inputRef={refPreferredSalaryUnit} label="Unit" />}
+                    />
                 </TextFieldGroupContainer>
 
 
@@ -263,26 +265,29 @@ const AddCandidate = () => {
                     <TextField required inputRef={refEmploymentCategory} variant='outlined' size='small' label='Employment Cateogry' />
                 </TextFieldGroupContainer>
 
-                <TextFieldGroupContainer cols='1fr 1fr'>
+                <TextFieldGroupContainer cols='1fr'>
                     <TextField required inputRef={refJobCompany} variant='outlined' size='small' label='Job Company' />
-                    <TextField required inputRef={refCurrency} variant='outlined' size='small' label='Currecny' />
+                </TextFieldGroupContainer>
+                <TextFieldGroupContainer cols='1fr 1fr'>
+                    <TextField required inputRef={refCurrency} variant='outlined' size='small' label='Currency' />
+                    <FormControlLabel sx={{color: 'var(--color-info-dark)'}} control={<Checkbox  inputRef={refOvertimeExempt} />}  label="Overtime Exempt" />
+
                 </TextFieldGroupContainer>
                 <TextFieldGroupContainer cols='1fr'>
                     <TextField required inputRef={refHireHistory} variant='outlined' size='small' label='Hire History' />
                 </TextFieldGroupContainer>
 
-                <TextFieldGroupContainer cols='3fr 1fr 3fr 1fr'>
+                <TextFieldGroupContainer cols='3fr 1fr 4fr'>
                     <TextField required inputRef={refPayRate} variant='outlined' size='small' label='Pay Rate' />
                     <TextField required inputRef={refPayRateUnit} variant='outlined' size='small' label='H' />
                     <TextField required inputRef={refPaymentFrequency} variant='outlined' size='small' label='Payment Frequency' />
-                    <TextField required inputRef={refPaymentFrequencyUnit} variant='outlined' size='small' label='H' />
                 </TextFieldGroupContainer>
 
-                <TextFieldGroupContainer cols='3fr 1fr 3fr 1fr'>
-                    <TextField required inputRef={refPerDiem} variant='outlined' size='small' label='Per Diem' />
-                    <TextField required inputRef={refPerDiemUnit} variant='outlined' size='small' label='H' />
+                <TextFieldGroupContainer cols='3.15fr 1fr 3fr 1fr'>
+                    <TextField  required inputRef={refPerDiem} variant='outlined' size='small' label='Per Diem' />
+                    <TextField  required inputRef={refPerDiemUnit} variant='outlined' size='small' label='H' />
                     <TextField required inputRef={refOtherExpenses} variant='outlined' size='small' label='Other Expenses' />
-                    <TextField required inputRef={refOtherExpensesUnit} variant='outlined' size='small' label='H' />
+                    <TextField  required inputRef={refOtherExpensesUnit} variant='outlined' size='small' label='H' />
                 </TextFieldGroupContainer>
 
                 <TextFieldGroupContainer cols='3fr 1fr 4fr'>
@@ -307,7 +312,7 @@ const AddCandidate = () => {
                 </Button>
                 <Button variant='contained'
                     onClick={handleSubmitClick}
-
+                    // onClick={() => console.log(refCurrentSalaryUnit.current.value)} 
                 >
                     Submit
 

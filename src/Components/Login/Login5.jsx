@@ -1,5 +1,5 @@
 import { Box, Container, Card, Checkbox, Typography } from '@mui/material'
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { Box50 } from '../../CustomElements/Containers/Box50'
 import { VGap } from '../../CustomElements/Gaps/Gap'
 import { H3, PText, Small } from '../../CustomElements/Typography/Typgraphy'
@@ -9,6 +9,9 @@ import { H2 } from '../../CustomElements/Typography/Typgraphy'
 import { FlexBoxH } from '../../CustomElements/Containers/FlexBoxH'
 import './Login.css'
 import axiosp from '../../Utils/axiosConfig'
+import { useSelector, useDispatch } from 'react-redux';
+import { setAuthData } from '../../features/auth/authState';
+
 import { useNavigate } from 'react-router'
 
 const Login5 = () => {
@@ -16,23 +19,36 @@ const Login5 = () => {
     const navigate = useNavigate();
     const refEmail = useRef()
     const refPassword = useRef()
+    const from = window.location.state?.from?.pathname || '/dashboard';
+
+    const dispatch = useDispatch();
+    const authData = useSelector((state) => state.authData);
+
+    useEffect(() => {
+        console.log('authData: ', authData)
+    }, [authData])
 
     const loginHandler = async (e) =>{
         e.preventDefault()
 
         try {
 
-            const res = await axiosp.post('login_user/', {
-                email: refEmail.current.value,
+            const res = await axiosp.post('/login_user/', {
+                email: refEmail.current``.value,
                 password: refPassword.current.value
+            },
+            {
+                withCredentials: true // Need to pass it here as well to set the cookies in ress
+    
             })
 
             const accessToken = res?.data?.access_token
 
-            console.log(accessToken)
+            console.log(res.data)
             if(accessToken){
-                navigate('/dashboard')
-
+                dispatch(setAuthData(res.data));
+                // navigate('/dashboard')
+            // navigate(from, { replace: true });
             }
             
 

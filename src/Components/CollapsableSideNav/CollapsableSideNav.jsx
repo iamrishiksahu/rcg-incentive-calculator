@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './CollapsableSideNav.css'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 const menuItems = [
     {
@@ -69,13 +69,20 @@ const CollapsableSideNav = ({ setTitle }) => {
 
                 {menuItems.map((item, idx) => {
                     return (
-                        <li key={idx} onClick={() => {
-                            navigate(`${item.endpoint}`)
-                            setTitle(item.nav_item_name)
-                        }}>
-                            <img width='21px' src={item.icon_url} alt="circle_1" />
-                            {!isCollapsed && <span>{item.nav_item_name}</span>}
-                        </li>
+                        <NavLink
+                            key={idx} 
+                            to={item.endpoint}
+                            onClick={() => {
+                                setTitle(item.nav_item_name)
+                            }}
+                            // className={({isActive}) => {console.log(isActive); 
+                            //     return('' + (isActive? 'activated' : 'nav-item'))}}
+                        >
+
+
+                                <img width='21px' src={item.icon_url} alt="circle_1" />
+                                {!isCollapsed && <span>{item.nav_item_name}</span>}
+                        </NavLink>
                     )
                 })}
 

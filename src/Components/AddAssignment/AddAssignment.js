@@ -1,13 +1,14 @@
 import React, { useRef } from 'react'
-import { Button, TextField, Autocomplete, Box } from '@mui/material'
+import { Button, TextField, Autocomplete, Box, FormControlLabel, Checkbox, FormControl, Switch } from '@mui/material'
 import './AddAssignment.css'
 import { TextFieldGroupContainer } from '../../CustomElements/Containers/TexFieldGroupContainer'
 import { DatePicker } from '@mui/x-date-pickers'
-import { DivisionsList } from '../../Utils/constants'
+import { AmountUnitList, CurrencyList } from '../../Utils/constants'
+import axiosp from '../../Utils/axiosConfig'
 
 
 const AddAssignment = () => {
-    
+
 
     const refStartDate = useRef();
     const refEndDate = useRef();
@@ -38,119 +39,340 @@ const AddAssignment = () => {
     const refDefaultDiscount = useRef();
     const refDefaultDiscountUnit = useRef();
     const refOverTime = useRef();
+    const refBillingAddressSameAsWorkingAddress = useRef();
     const refDoubleTime = useRef();
+    const refCurrency = useRef();
+    const refNetBill = useRef();
+    const refBillingUnit = useRef();
+    const refTimeSheetEntryFormat = useRef();
+    const refWeekEnding = useRef();
+    const refHoursDay = useRef();
+    const refhoursHalfDay = useRef();
+    const refWorkingLocation = useRef();
+    const refWorkingAddressLine1 = useRef();
+    const refWorkingAddressLine2 = useRef();
+    const refWorkingCity = useRef();
+    const refPinCode = useRef();
+    const refWorkingState = useRef();
+    const refWorkingCountry = useRef();
+    const refPaymentTerms = useRef();
+    const refDays = useRef();
+    const refPassThrough = useRef();
+    const refPassDiscount = useRef();
+    const refPrimarySalesPercent = useRef();
+    const refSecondarySalesPercent = useRef();
+    const refTertialSalesPercent = useRef();
+    const refPrimaryRecruiterPercent = useRef();
+    const refSecondaryRecruiterPercent = useRef();
+    const refTertiaryRecruterPecent = useRef();
+    const refPrimarySales = useRef();
+    const refSecondarySales = useRef();
+    const refTertiarySales = useRef();
+    const refPrimaryRecruiter = useRef();
+    const refSecondaryRecruiter = useRef();
+    const refMargin = useRef();
+    const refTertiaryRecruiter = useRef();
 
-    const handleSubmitClick = (e) => {
+    const handleSubmitClick = async (e) => {
         e.preventDefault()
+
+        const extractData = {
+            startdate: refStartDate.current.value,
+            enddate: refEndDate.current.value,
+            customer_ref: refCustomerReferenceNo.current.value,
+            jobdiva_job: refJobdivaID.current.value,
+            job_title: refJobTitle.current.value,
+            client_contact: refClientContact.current.value,
+            billing_contact: refBillingContact.current.value,
+            billing_company: refBillingCompanyAddress.current.value,
+            Billing_Address_same_as_working_address: refBillingAddressSameAsWorkingAddress.current.checked,
+            division: refDivision.current.value,
+            currency: refCurrency.current.value,
+            bill_rate: refBillRate.current.value,
+            net_bill: refNetBill.current.value,
+            margin: refMargin.current.value,
+            timesheet_entry_formate: refTimeSheetEntryFormat.current.value,
+            frequency: refPaymentFrequency.current.value,
+            billing_units: refBillingUnit.current.value,
+            week_ending: refWeekEnding.current.value,
+            hours_day: refHoursDay.current.value,
+            hours_half_day: refhoursHalfDay.current.value,
+            working_locaton: refWorkingLocation.current.value,
+            working_address_1: refWorkingAddressLine1.current.value,
+            working_address_2: refWorkingAddressLine2.current.value,
+            working_city: refWorkingCity.current.value,
+            pin_code: refPinCode.current.value,
+            working_state: refWorkingState.current.value,
+            working_country: refWorkingCountry.current.value,
+            payment_terms: refPaymentTerms.current.value,
+            days: refDays.current.value,
+            pass_through: refPassThrough.current.value,
+            pass_discount: refPassDiscount.current.value,
+            primary_sales_percentage: refPrimarySalesPercent.current.value,
+            secondary_sales_percentage: refSecondarySalesPercent.current.value,
+            tertiary_sales_percentage: refTertialSalesPercent.current.value,
+            primary_recruiter_percentage: refPrimaryRecruiterPercent.current.value,
+            secondary_recruiter_percentage: refSecondaryRecruiterPercent.current.value,
+            tertiary_recruiter_percentage: refTertiaryRecruterPecent.current.value,
+            primary_sales: refPrimarySales.current.value,
+            secondary_sales: refSecondarySales.current.value,
+            tertiary_sales: refTertiarySales.current.value,
+            primary_recruiter: refPrimaryRecruiter.current.value,
+            secondary_recruiter: refSecondaryRecruiter.current.value,
+            tertiary_recruiter: refTertiaryRecruiter.current.value,
+
+        }
+
+        try{
+
+            const res = await axiosp.post('/', extractData);
+            console.log(res.data)
+            alert('Successfully Saved!')
+
+        }catch(err){
+            console.log(err);
+            alert('Error occurred!')
+        }
+
 
     }
 
     return (
-        <div className='parent'>
 
-            <div className='card'>
+        <>
 
-                <h3>Billing Details</h3>
-
-
-                <TextFieldGroupContainer cols='1fr 1fr 1fr'>
-                    <DatePicker inputRef={refStartDate} slotProps={{ textField: { size: 'small' } }} label="Start Date" />
-                    <DatePicker inputRef={refEndDate} slotProps={{ textField: { size: 'small' } }} label="End Date" />
-                    <TextField inputRef={refJobdivaID} variant='outlined' size='small' type='text' label='JobDiva ID' />
-                </TextFieldGroupContainer>
-
-                <TextFieldGroupContainer cols='1fr 2fr'>
-
-                    <TextField inputRef={refCustomerReferenceNo} variant='outlined' size='small' label='Customer Ref No' />
-                    <TextField inputRef={refPurchaseOrderNo} variant='outlined' size='small' label='Purchase Order No' />
-
-                </TextFieldGroupContainer>
-
-                <TextFieldGroupContainer cols='1fr 1fr'>
-                    <TextField inputRef={refJobTitle} variant='outlined' size='small' label='Job Title' />
-
-                    <Autocomplete
-                        disablePortal
-                        options={DivisionsList}
-                        renderInput={(params) => <TextField {...params} ariant='outlined' size='small' inputRef={refDivision} label="Division" />}
-                    />
-
-                </TextFieldGroupContainer>
+            <div className='parent'>
 
 
-                <TextFieldGroupContainer cols='1fr 1fr'>
-
-                    <TextField inputRef={refBillingContact} variant='outlined' size='small' label='Billing Contact' />
-                    <TextField inputRef={refClientContact} variant='outlined' size='small' label='Client Contact' />
-
-                </TextFieldGroupContainer>
-
-                <TextFieldGroupContainer cols='1fr'>
-                    <TextField inputRef={refBillingCompanyName} variant='outlined' size='small' label='Billing Company Name' />
-                    <TextField inputRef={refBillingCompanyAddress} variant='outlined' size='small' label='Billing Company Address' />
-                </TextFieldGroupContainer>
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: '1fr',
+                    gap: '2rem'
+                }}>
 
 
-                <TextFieldGroupContainer cols='1fr 1fr'>
-                    <TextField inputRef={refAddressLine1} variant='outlined' size='small' label='Address Line 1' />
-                    <TextField inputRef={refAddressLine2} variant='outlined' size='small' label='Address Line 2' />
-                </TextFieldGroupContainer>
+                    <div className='card'>
 
-                <TextFieldGroupContainer cols='3fr 1fr 3fr 1fr'>
-                    <TextField inputRef={refPayRate} variant='outlined' size='small' label='Pay Rate' />
-                    <TextField inputRef={refPayRateUnit} variant='outlined' size='small' label='H' />
-                    <TextField inputRef={refPaymentFrequency} variant='outlined' size='small' label='Payment Frequency' />
-                    <TextField inputRef={refPaymentFrequencyUnit} variant='outlined' size='small' label='H' />
-                </TextFieldGroupContainer>
-
-                <TextFieldGroupContainer cols='3fr 1fr 3fr 1fr'>
-                    <TextField inputRef={refPerDiem} variant='outlined' size='small' label='Per Diem' />
-                    <TextField inputRef={refPerDiemUnit} variant='outlined' size='small' label='H' />
-                    <TextField inputRef={refOtherExpenses} variant='outlined' size='small' label='Other Expenses' />
-                    <TextField inputRef={refOtherExpensesUnit} variant='outlined' size='small' label='H' />
-                </TextFieldGroupContainer>
-
-                <TextFieldGroupContainer cols='3fr 1fr 4fr'>
-                    <TextField inputRef={refOutsideCommissions} variant='outlined' size='small' label='Outside Comissions' />
-                    <TextField inputRef={refOutsideCommissionsUnit} variant='outlined' size='small' label='H' />
-                    <TextField inputRef={refPayRollID} variant='outlined' size='small' label='Pay Roll ID' />
-                </TextFieldGroupContainer>
-
-            </div>
+                        <h3>Candidate Details</h3>
 
 
+                        <TextFieldGroupContainer cols='1fr 1fr 1fr'>
+                            <DatePicker inputRef={refStartDate} slotProps={{ textField: { size: 'small' } }} label="Start Date" />
+                            <DatePicker inputRef={refEndDate} slotProps={{ textField: { size: 'small' } }} label="End Date" />
+                            <TextField inputRef={refJobdivaID} variant='outlined' size='small' type='text' label='JobDiva ID' />
+                        </TextFieldGroupContainer>
 
-            <div className='card'>
+                        <TextFieldGroupContainer cols='1fr 2.1fr'>
 
-                <h3>Additional Details</h3>
+                            <TextField inputRef={refCustomerReferenceNo} variant='outlined' size='small' label='Customer Ref No' />
 
 
-                <TextFieldGroupContainer cols='5fr 2fr'>
+                            <TextField inputRef={refJobTitle} variant='outlined' size='small' label='Job Title' />
+                        </TextFieldGroupContainer>
 
-                    <TextField inputRef={refBillRate} variant='outlined' size='small' label='Bill Rate' />
-                    <TextField inputRef={refBillRateCurrency} variant='outlined' size='small' label='Currency' />
+                        <TextFieldGroupContainer cols='1fr 1fr'>
 
-                </TextFieldGroupContainer>
+                            <Autocomplete
+                                disablePortal
+                                options={AmountUnitList}
+                                renderInput={(params) => <TextField {...params} ariant='outlined' size='small' inputRef={refDivision} label="Division" />}
+                            />
+                            <Autocomplete
+                                disablePortal
+                                options={CurrencyList}
+                                renderInput={(params) => <TextField {...params} ariant='outlined' size='small' inputRef={refDivision} label="Currency" />}
+                            />
 
-                <TextFieldGroupContainer cols='3fr 1fr 3fr 1fr'>
-                    <TextField variant='outlined' size='small' label='Bill Rate' />
-                    <TextField variant='outlined' size='small' label='/ H' />
-                    <TextField inputRef={refDefaultDiscount} variant='outlined' size='small' label='Default Discount' />
-                    <TextField inputRef={refDefaultDiscountUnit} variant='outlined' size='small' label='/ H' />
-                </TextFieldGroupContainer>
+                        </TextFieldGroupContainer>
 
-                <TextFieldGroupContainer cols='1fr 1fr'>
-                    <TextField inputRef={refOverTime} variant='outlined' size='small' label='Over Time' />
-                    <TextField inputRef={refDoubleTime} variant='outlined' size='small' label='Double Time' />
-                </TextFieldGroupContainer>
 
+                        <TextFieldGroupContainer cols='1fr 1fr'>
+
+                            <TextField inputRef={refBillingContact} variant='outlined' size='small' label='Billing Contact' />
+                            <TextField inputRef={refClientContact} variant='outlined' size='small' label='Client Contact' />
+
+                        </TextFieldGroupContainer>
+
+                        <TextFieldGroupContainer cols='1fr'>
+                            <TextField inputRef={refBillingCompanyName} variant='outlined' size='small' label='Billing Company Name' />
+                        </TextFieldGroupContainer>
+
+                    </div>
+                    <div className='card'>
+
+
+                        <Box sx={{
+                            display: 'flex',
+                            gap: '2rem',
+                        }}>
+
+                        <h3>Billing Details</h3>
+                        <FormControlLabel sx={{
+                            mt: '-1rem'
+                        }} control={<Switch defaultChecked />} label="Aprove" />
+                        </Box>
+
+
+                        <TextFieldGroupContainer cols='1fr 1fr'>
+
+                            <Autocomplete
+                                disablePortal
+                                options={CurrencyList}
+                                renderInput={(params) => <TextField {...params} ariant='outlined' size='small' inputRef={refCurrency} label="Currency" />}
+                            />
+
+                            <TextField inputRef={refBillingCompanyName} variant='outlined' size='small' label='Billing Units' />
+                        </TextFieldGroupContainer>
+
+
+
+
+                        <TextFieldGroupContainer cols='1fr 1fr 1fr'>
+                            <TextField inputRef={refWeekEnding} variant='outlined' size='small' label='Week Ending' />
+                            <TextField required inputRef={refHoursDay} variant='outlined' size='small' label='Hours / Day' />
+                            <TextField required inputRef={refhoursHalfDay} variant='outlined' size='small' label='Hours / Half Day' />
+                        </TextFieldGroupContainer>
+
+                        <TextFieldGroupContainer cols='1fr 1fr'>
+
+                            <TextField required inputRef={refBillRate} variant='outlined' size='small' label='Bill Rate' />
+                            <TextField required inputRef={refNetBill} variant='outlined' size='small' label='Net Bill' />
+
+                        </TextFieldGroupContainer>
+                        <TextFieldGroupContainer cols='1fr 1fr'>
+
+                            <TextField required inputRef={refPaymentFrequency} variant='outlined' size='small' label='Frequency' />
+                            <TextField required inputRef={refMargin} variant='outlined' size='small' label='Margin' />
+
+                        </TextFieldGroupContainer>
+
+
+                        <TextFieldGroupContainer cols='1fr'>
+
+                            <TextField required inputRef={refTimeSheetEntryFormat} variant='outlined' size='small' label='Timesheet Entry Format' />
+
+
+                        </TextFieldGroupContainer>
+                    </div>
+
+                </div>
+
+
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: '1fr',
+                    gap: '2rem'
+                }}>
+
+                    <div className='card'>
+
+                        <h3>Working Address</h3>
+                        <TextFieldGroupContainer cols='1fr'>
+                            <FormControlLabel sx={{ color: 'var(--color-info-dark)' }} control={<Checkbox defaultChecked inputRef={refBillingAddressSameAsWorkingAddress} />} label="Billing Address Same as Working Address" />
+
+                        </TextFieldGroupContainer>
+
+                        <TextFieldGroupContainer cols='1fr 1fr'>
+                            <TextField inputRef={refWorkingLocation} variant='outlined' size='small' label='Working Location' />
+                            <TextField inputRef={refWorkingCountry} variant='outlined' size='small' label='Country' />
+                        </TextFieldGroupContainer>
+
+
+
+                        <TextFieldGroupContainer cols='1fr 1fr'>
+                            <TextField inputRef={refAddressLine1} variant='outlined' size='small' label='Address Line 1' />
+                            <TextField inputRef={refAddressLine2} variant='outlined' size='small' label='Address Line 2' />
+                        </TextFieldGroupContainer>
+
+                        <TextFieldGroupContainer cols='1fr 1fr 1fr'>
+                            <TextField inputRef={refWorkingCity} variant='outlined' size='small' label='City' />
+                            <TextField inputRef={refWorkingCity} variant='outlined' size='small' label='State' />
+                            <TextField inputRef={refPinCode} type='number' variant='outlined' size='small' label='Pin Code' />
+
+                        </TextFieldGroupContainer>
+
+                        <TextFieldGroupContainer cols='3fr 1fr 3fr 1fr'>
+                            <TextField inputRef={refPerDiem} variant='outlined' size='small' label='Per Diem' />
+                            <TextField inputRef={refPerDiemUnit} variant='outlined' size='small' label='H' />
+                            <TextField inputRef={refOtherExpenses} variant='outlined' size='small' label='Other Expenses' />
+                            <TextField inputRef={refOtherExpensesUnit} variant='outlined' size='small' label='H' />
+                        </TextFieldGroupContainer>
+
+                        <TextFieldGroupContainer cols='3fr 1fr 4fr'>
+                            <TextField inputRef={refOutsideCommissions} variant='outlined' size='small' label='Outside Comissions' />
+                            <TextField inputRef={refOutsideCommissionsUnit} variant='outlined' size='small' label='H' />
+                            <TextField inputRef={refPayRollID} variant='outlined' size='small' label='Pay Roll ID' />
+                        </TextFieldGroupContainer>
+
+                    </div>
+
+
+                    <div className='card'>
+
+                        <h3>Commission Details</h3>
+
+
+                        <TextFieldGroupContainer cols='5fr 2fr'>
+
+                            <TextField inputRef={refPrimarySales} variant='outlined' size='small' label='Primary Sales' />
+                            <TextField inputRef={refPrimarySalesPercent} variant='outlined' size='small' label='%' />
+
+                        </TextFieldGroupContainer>
+
+
+                        <TextFieldGroupContainer cols='5fr 2fr'>
+
+                            <TextField inputRef={refSecondarySales} variant='outlined' size='small' label='Secondary Sales' />
+                            <TextField inputRef={refPrimarySalesPercent} variant='outlined' size='small' label='%' />
+
+                        </TextFieldGroupContainer>
+
+
+                        <TextFieldGroupContainer cols='5fr 2fr'>
+
+                            <TextField inputRef={refTertiarySales} variant='outlined' size='small' label='Tertiary Sales' />
+                            <TextField inputRef={refTertialSalesPercent} variant='outlined' size='small' label='%' />
+
+                        </TextFieldGroupContainer>
+
+
+                        <TextFieldGroupContainer cols='5fr 2fr'>
+
+                            <TextField inputRef={refPrimaryRecruiter} variant='outlined' size='small' label='Primary Recruiter Sales' />
+                            <TextField inputRef={refPrimaryRecruiterPercent} variant='outlined' size='small' label='%' />
+
+                        </TextFieldGroupContainer>
+
+
+                        <TextFieldGroupContainer cols='5fr 2fr'>
+
+                            <TextField inputRef={refSecondaryRecruiterPercent} variant='outlined' size='small' label='Secondary Recruiter Sales' />
+                            <TextField inputRef={refSecondaryRecruiterPercent} variant='outlined' size='small' label='%' />
+
+                        </TextFieldGroupContainer>
+
+
+                        <TextFieldGroupContainer cols='5fr 2fr'>
+
+                            <TextField inputRef={refTertiaryRecruterPecent} variant='outlined' size='small' label='Tertiary Recruiter Sales' />
+                            <TextField inputRef={refTertiaryRecruiter} variant='outlined' size='small' label='%' />
+
+                        </TextFieldGroupContainer>
+
+
+
+                    </div>
+                </div>
 
 
             </div>
 
             <Box sx={{
                 display: 'flex',
-                gap: '1rem'
+                gap: '1rem',
+                mt: '2rem',
+                pb: '4rem',
+                justifyContent: 'center '
             }}>
                 <Button variant='outlined'
                 >
@@ -158,6 +380,7 @@ const AddAssignment = () => {
 
                 </Button>
                 <Button variant='contained'
+                    type='submit'
                     onClick={handleSubmitClick}
 
                 >
@@ -166,12 +389,9 @@ const AddAssignment = () => {
                 </Button>
 
 
+
             </Box>
-
-
-
-
-        </div>
+        </>
     )
 }
 
