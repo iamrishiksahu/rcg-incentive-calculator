@@ -125,7 +125,7 @@ const AddAssignment = () => {
 
         try{
 
-            const res = await axiosp.post('/', extractData);
+            const res = await axiosp.post('/assignment_add_job_details', extractData);
             console.log(res.data)
             alert('Successfully Saved!')
 
