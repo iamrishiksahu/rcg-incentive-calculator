@@ -297,8 +297,6 @@ const AddCandidate = () => {
                 </TextFieldGroupContainer>
 
 
-
-
             </div>
 
             <Box sx={{
