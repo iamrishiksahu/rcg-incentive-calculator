@@ -5,11 +5,8 @@ import { DatePicker } from '@mui/x-date-pickers'
 import { useRef, useState } from 'react'
 import axiosp from '../../Utils/axiosConfig'
 import PurchaseOrderPopup from '../PurchaseOrderPopup/PurchaseOrderPopup'
-import { AmountUnitList } from '../../Utils/constants'
+import { AmountUnitList, PayUnit } from '../../Utils/constants'
 const AddCandidate = () => {
-
-
-    const [purchaseOrderData, setPurchaseOrderData] = useState({})
 
     const refFirstName = useRef()
     const refOvertimeExempt = useRef()
@@ -27,12 +24,12 @@ const AddCandidate = () => {
     const refZipCode = useRef()
     const refCountry = useRef()
     const refPhonePersonal = useRef()
-    const refPhoneHome = useRef()
+    const refEmergencyPhone = useRef()
     const refPhoneWork = useRef()
     const refStartDate = useRef()
     const refEndDate = useRef()
     const refJobDivaID = useRef()
-    const refCustomerReferenceNo = useRef()
+    const refCustomerName = useRef()
     const refPurchaseOrderNo = useRef()
     const refJobTitle = useRef()
     const refEmploymentCategory = useRef()
@@ -42,6 +39,7 @@ const AddCandidate = () => {
     const refPaymentFrequencyUnit = useRef();
     const refPerDiem = useRef();
     const refJobCompany = useRef();
+    const refLinkedInURL = useRef();
     const refCurrency = useRef();
     const refHireHistory = useRef();
     const refPerDiemUnit = useRef();
@@ -55,7 +53,6 @@ const AddCandidate = () => {
     const refPreferredSalaryUnit = useRef()
     const refPreferredSalary = useRef()
 
-    const [open, setOpen] = useState(false)
 
     const handleSubmitClick = async (e) => {
         e.preventDefault()
@@ -77,15 +74,17 @@ const AddCandidate = () => {
             pin_code: refZipCode.current.value,
             country: refCountry.current.value,
             mobile: refPhonePersonal.current.value,
-            home: refPhoneHome.current.value,
+            home: refEmergencyPhone.current.value,
             work: refPhoneWork.current.value,
             preferred_duration: refPreferredSalaryUnit.current.value,
             preferred: refPreferredSalary.current.value,
             current_duration: refCurrentSalaryUnit.current.value,
             current: refCurrentSalary.current.value,
+            linkedin_url: refLinkedInURL.current.value,
             home_fax: '',
             ext: '',
             start_date: refStartDate.current.value,
+            customer_name: refCustomerName.current.value,
             end_date: refEndDate.current.value,
             job_diva_job: refJobDivaID.current.value,
             job_title: refJobTitle.current.value,
@@ -95,7 +94,7 @@ const AddCandidate = () => {
             employment_category: refEmploymentCategory.current.value,
             payment_frequency: refPaymentFrequency.current.value,
             pay_rate: refPayRate.current.value,
-            pay_rate_choices: refPayRateUnit.current.value, 
+            pay_rate_choices: refPayRateUnit.current.value,
             overtime_exempt: refOvertimeExempt.current.checked,
             per_diem: refPerDiem.current.value,
             per_diem_choices: refPerDiemUnit.current.value,
@@ -103,7 +102,7 @@ const AddCandidate = () => {
             other_expenses_choices: refOtherExpensesUnit.current.value,
             outside_commission: refOutsideCommissions.current.value,
             outside_commission_choices: refOutsideCommissionsUnit.current.value,
-            
+
             payroll_profile_id: refPayRollID.current.value,
 
 
@@ -183,23 +182,16 @@ const AddCandidate = () => {
 
                 <h3>Add Candidate Details</h3>
 
-                <TextFieldGroupContainer cols='1fr 3fr 3fr'>
-                    <TextField required inputRef={refSuffix} variant='outlined' size='small' label='Mr.' />
-                    <TextField required inputRef={refFirstName} variant='outlined' size='small' label='First Name' />
-                    <TextField required inputRef={refLastName} variant='outlined' size='small' label='Last Name' />
-                </TextFieldGroupContainer>
-
-
                 <TextFieldGroupContainer cols='1fr 1fr 1fr'>
 
-                    <TextField required inputRef={refLegalFirst} variant='outlined' size='small' label='Legal First Name' />
-                    <TextField required inputRef={refLegalMiddle} variant='outlined' size='small' label='Legal Middle Name' />
-                    <TextField required inputRef={refLegalLast} variant='outlined' size='small' label='Legal Last Name' />
+                    <TextField required inputRef={refLegalFirst} variant='outlined' size='small' label='First Name' />
+                    <TextField inputRef={refLegalMiddle} variant='outlined' size='small' label='Middle Name' />
+                    <TextField required inputRef={refLegalLast} variant='outlined' size='small' label='Last Name' />
                 </TextFieldGroupContainer>
 
                 <TextFieldGroupContainer cols='1fr 1fr'>
-                    <TextField required type='email' inputRef={refPrimaryEmail} variant='outlined' size='small' label='Primary Email' />
-                    <TextField required type='email' inputRef={refSecondaryEmail} variant='outlined' size='small' label='Secondary Email' />
+                    <TextField required type='email' inputRef={refPrimaryEmail} variant='outlined' size='small' label='Official Email' />
+                    <TextField required type='email' inputRef={refSecondaryEmail} variant='outlined' size='small' label='Personal Email' />
                 </TextFieldGroupContainer>
 
 
@@ -214,52 +206,31 @@ const AddCandidate = () => {
                     <TextField required type='number' inputRef={refZipCode} variant='outlined' size='small' label='Zip Code' />
                     <TextField required inputRef={refCountry} variant='outlined' size='small' label='Country' />
                 </TextFieldGroupContainer>
-                <TextFieldGroupContainer cols='1fr 1fr 1fr'>
-                    <TextField required type='number' inputRef={refPhonePersonal} variant='outlined' size='small' label='Phone (Personal)' />
-                    <TextField required type='number' inputRef={refPhoneHome} variant='outlined' size='small' label='Phone (Home)' />
-                    <TextField required type='number' inputRef={refPhoneWork} variant='outlined' size='small' label='Phone (Work)' />
-
+                <TextFieldGroupContainer cols='1fr 1fr'>
+                    <TextField required type='number' inputRef={refPhonePersonal} variant='outlined' size='small' label='Personal Phone' />
+                    <TextField required type='number' inputRef={refEmergencyPhone} variant='outlined' size='small' label='Emergency Phone' />
                 </TextFieldGroupContainer>
-                <TextFieldGroupContainer cols='3fr 1fr 3fr 1fr'>
-                    <TextField required inputRef={refCurrentSalary} variant='outlined' size='small' label='Current Salary' />
-                    <Autocomplete
-                        disablePortal
-                        options={AmountUnitList}
-                        renderInput={(params) => <TextField  {...params} ariant='outlined' size='small' inputRef={refCurrentSalaryUnit} label="Unit" />}
-                    />
-                    {/* <TextField required inputRef={refCurrentSalaryUnit} variant='outlined' size='small' label='Rs/Yr' /> */}
-                    <TextField ref={refPreferredSalary} required variant='outlined' size='small' label='Preferred Salary' />
-                    <Autocomplete
-                        disablePortal
-                        options={AmountUnitList}
-                        renderInput={(params) => <TextField  {...params} ariant='outlined' size='small' inputRef={refPreferredSalaryUnit} label="Unit" />}
-                    />
+                <TextFieldGroupContainer cols='1fr'>
+                    <TextField required type='number' inputRef={refLinkedInURL} variant='outlined' size='small' label='LinkedIn Profile' />
                 </TextFieldGroupContainer>
-
 
             </div>
 
 
             <div className='card'>
 
-                <h3>Pay Details</h3>
+                <h3>Job Details</h3>
 
-                <TextFieldGroupContainer cols='1fr 1fr 1fr'>
+                <TextFieldGroupContainer cols='1fr 1fr'>
                     <DatePicker inputRef={refStartDate} format='YYYY-MM-DD' slotProps={{ textField: { size: 'small' } }} label="Start Date" />
-                    <DatePicker inputRef={refEndDate} format='YYYY-MM-DD' slotProps={{ textField: { size: 'small' } }} label="End Date" />
                     <TextField required inputRef={refJobDivaID} variant='outlined' size='small' type='text' label='JobDiva ID' />
                 </TextFieldGroupContainer>
 
-
-                <TextFieldGroupContainer cols='4fr 8fr 1fr'>
-
-                    <TextField required inputRef={refCustomerReferenceNo} variant='outlined' size='small' label='Customer Ref No' />
-                    <TextField required inputRef={refPurchaseOrderNo} variant='outlined' size='small' label='Purchase Order No' />
-                    <Button variant='outlined'
-                        onClick={() => setOpen(true)}>+</Button>
-
+                <TextFieldGroupContainer cols='1fr'>
+                <TextField required inputRef={refCustomerName} variant='outlined' size='small' label='Customer Name' />
                 </TextFieldGroupContainer>
 
+                
                 <TextFieldGroupContainer cols='1fr 1fr'>
                     <TextField required inputRef={refJobTitle} variant='outlined' size='small' label='Job Title' />
                     <TextField required inputRef={refEmploymentCategory} variant='outlined' size='small' label='Employment Cateogry' />
@@ -270,31 +241,33 @@ const AddCandidate = () => {
                 </TextFieldGroupContainer>
                 <TextFieldGroupContainer cols='1fr 1fr'>
                     <TextField required inputRef={refCurrency} variant='outlined' size='small' label='Currency' />
-                    <FormControlLabel sx={{color: 'var(--color-info-dark)'}} control={<Checkbox  inputRef={refOvertimeExempt} />}  label="Overtime Exempt" />
+                    {/* <FormControlLabel sx={{ color: 'var(--color-info-dark)' }} control={<Checkbox inputRef={refOvertimeExempt} />} label="Overtime Exempt" /> */}
 
                 </TextFieldGroupContainer>
-                <TextFieldGroupContainer cols='1fr'>
+                {/* <TextFieldGroupContainer cols='1fr'>
                     <TextField required inputRef={refHireHistory} variant='outlined' size='small' label='Hire History' />
-                </TextFieldGroupContainer>
+                </TextFieldGroupContainer> */}
 
-                <TextFieldGroupContainer cols='3fr 1fr 4fr'>
+                <TextFieldGroupContainer cols='3fr 1fr'>
                     <TextField required inputRef={refPayRate} variant='outlined' size='small' label='Pay Rate' />
-                    <TextField required inputRef={refPayRateUnit} variant='outlined' size='small' label='H' />
-                    <TextField required inputRef={refPaymentFrequency} variant='outlined' size='small' label='Payment Frequency' />
+                    <Autocomplete
+                        disablePortal
+                        options={PayUnit}
+                        renderInput={(params) => <TextField {...params} ariant='outlined' size='small' inputRef={refPayRateUnit} label="Unit" />}
+                    />
+                    {/* <TextField required inputRef={refPaymentFrequency} variant='outlined' size='small' label='Payment Frequency' /> */}
                 </TextFieldGroupContainer>
-
+{/* 
                 <TextFieldGroupContainer cols='3.15fr 1fr 3fr 1fr'>
-                    <TextField type='number'  required inputRef={refPerDiem} variant='outlined' size='small' label='Per Diem' />
-                    <TextField  required inputRef={refPerDiemUnit} variant='outlined' size='small' label='H' />
-                    <TextField required inputRef={refOtherExpenses} variant='outlined' size='small' label='Other Expenses' type='number'  />
-                    <TextField  required inputRef={refOtherExpensesUnit} variant='outlined' size='small' label='H' />
-                </TextFieldGroupContainer>
+                    <TextField required inputRef={refOtherExpenses} variant='outlined' size='small' label='Other Expenses' type='number' />
+                    <TextField required inputRef={refOtherExpensesUnit} variant='outlined' size='small' label='H' />
+                </TextFieldGroupContainer> */}
 
-                <TextFieldGroupContainer cols='3fr 1fr 4fr'>
+                {/* <TextFieldGroupContainer cols='3fr 1fr 4fr'>
                     <TextField type='number' required inputRef={refOutsideCommissions} variant='outlined' size='small' label='Outside Comissions' />
                     <TextField required inputRef={refOutsideCommissionsUnit} variant='outlined' size='small' label='H' />
                     <TextField type='number' required inputRef={refPayRollID} variant='outlined' size='small' label='Pay Roll ID' />
-                </TextFieldGroupContainer>
+                </TextFieldGroupContainer> */}
 
 
             </div>
@@ -310,7 +283,7 @@ const AddCandidate = () => {
                 </Button>
                 <Button variant='contained'
                     onClick={handleSubmitClick}
-                    // onClick={() => console.log(refCurrentSalaryUnit.current.value)} 
+                // onClick={() => console.log(refCurrentSalaryUnit.current.value)} 
                 >
                     Submit
 
@@ -319,8 +292,7 @@ const AddCandidate = () => {
 
             </Box>
 
-            <PurchaseOrderPopup open={open} setOpen={setOpen} setPurchaseOrderData={setPurchaseOrderData} />
-
+         
         </div>
     )
 }

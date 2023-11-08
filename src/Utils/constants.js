@@ -14,6 +14,12 @@ const CurrencyList = [
     { label: '$ (US Dollars)', value: 2},
     { label: '£ (Pound)', value: 3},
 ]
+const PayUnit = [
+    { label: '/ Hr', value: 1},
+    { label: '/ Dy', value: 2},
+    { label: '/ Mo', value: 2},
+    { label: '/ Yr', value: 3},
+]
 
 const WorkLocationList =[
     'Remote',
@@ -21,4 +27,4 @@ const WorkLocationList =[
 ]
 
 
-export {DivisionsList, AmountUnitList, CurrencyList, WorkLocationList}
+export {DivisionsList, AmountUnitList, CurrencyList, WorkLocationList, PayUnit}

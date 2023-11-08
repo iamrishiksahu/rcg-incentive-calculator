@@ -1,5 +1,6 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { Button, TextField, Autocomplete, Box, FormControlLabel, Checkbox, FormControl, Switch } from '@mui/material'
+import PurchaseOrderPopup from '../PurchaseOrderPopup/PurchaseOrderPopup'
 import './AddAssignment.css'
 import { TextFieldGroupContainer } from '../../CustomElements/Containers/TexFieldGroupContainer'
 import { DatePicker } from '@mui/x-date-pickers'
@@ -73,6 +74,10 @@ const AddAssignment = () => {
     const refMargin = useRef();
     const refTertiaryRecruiter = useRef();
 
+    const [open, setOpen] = useState(false)
+    const [purchaseOrderData, setPurchaseOrderData] = useState({})
+
+
     const handleSubmitClick = async (e) => {
         e.preventDefault()
 
@@ -123,13 +128,13 @@ const AddAssignment = () => {
 
         }
 
-        try{
+        try {
 
             const res = await axiosp.post('/Assignment_add_job_details/', extractData);
             console.log(res.data)
             alert('Successfully Saved!')
 
-        }catch(err){
+        } catch (err) {
             console.log(err);
             alert('Error occurred!')
         }
@@ -198,6 +203,15 @@ const AddAssignment = () => {
                             <TextField inputRef={refBillingCompanyAddress} variant='outlined' size='small' label='Billing Company Name' />
                         </TextFieldGroupContainer>
 
+                        <TextFieldGroupContainer cols='8fr 1fr'>
+
+
+                            <TextField required inputRef={refPurchaseOrderNo} variant='outlined' size='small' label='Purchase Order No' />
+                            <Button variant='outlined'
+                                onClick={() => setOpen(true)}>+</Button>
+
+                        </TextFieldGroupContainer>
+
                     </div>
                     <div className='card'>
 
@@ -207,11 +221,14 @@ const AddAssignment = () => {
                             gap: '2rem',
                         }}>
 
-                        <h3>Billing Details</h3>
-                        <FormControlLabel sx={{
-                            mt: '-1rem'
-                        }} control={<Switch defaultChecked />} label="Aprove" />
+                            <h3>Billing Details</h3>
+                            <FormControlLabel sx={{
+                                mt: '-1rem'
+                            }} control={<Switch defaultChecked />} label="Aprove" />
                         </Box>
+
+
+
 
 
                         <TextFieldGroupContainer cols='1fr 1fr'>
@@ -252,7 +269,7 @@ const AddAssignment = () => {
 
                             <TextField required inputRef={refDays} variant='outlined' size='small' label='Days' />
                             <FormControlLabel control={<Checkbox inputRef={refPassThrough} defaultChecked />} label="Pass Through" />
-                        <FormControlLabel  control={<Checkbox inputRef={refPassDiscount} defaultChecked />} label="Pass Discount" />
+                            <FormControlLabel control={<Checkbox inputRef={refPassDiscount} defaultChecked />} label="Pass Discount" />
                         </TextFieldGroupContainer>
                         <TextFieldGroupContainer cols='1fr'>
 
@@ -279,8 +296,8 @@ const AddAssignment = () => {
                         </TextFieldGroupContainer>
 
                         <TextFieldGroupContainer cols='1fr 1fr'>
-                            
-                        <Autocomplete
+
+                            <Autocomplete
                                 disablePortal
                                 options={WorkLocationList}
                                 renderInput={(params) => <TextField {...params} ariant='outlined' size='small' inputRef={refWorkingLocation} label="Work Location" />}
@@ -326,7 +343,7 @@ const AddAssignment = () => {
                         <TextFieldGroupContainer cols='5fr 2fr'>
 
                             <TextField inputRef={refPrimarySales} variant='outlined' size='small' label='Primary Sales' />
-                            <TextField  type='number' inputRef={refPrimarySalesPercent} variant='outlined' size='small' label='%' />
+                            <TextField type='number' inputRef={refPrimarySalesPercent} variant='outlined' size='small' label='%' />
 
                         </TextFieldGroupContainer>
 
@@ -334,7 +351,7 @@ const AddAssignment = () => {
                         <TextFieldGroupContainer cols='5fr 2fr'>
 
                             <TextField inputRef={refSecondarySales} variant='outlined' size='small' label='Secondary Sales' />
-                            <TextField  type='number' inputRef={refSecondarySalesPercent} variant='outlined' size='small' label='%' />
+                            <TextField type='number' inputRef={refSecondarySalesPercent} variant='outlined' size='small' label='%' />
 
                         </TextFieldGroupContainer>
 
@@ -358,7 +375,7 @@ const AddAssignment = () => {
                         <TextFieldGroupContainer cols='5fr 2fr'>
 
                             <TextField inputRef={refSecondaryRecruiter} variant='outlined' size='small' label='Secondary Recruiter Sales' />
-                            <TextField type='number'  inputRef={refSecondaryRecruiterPercent} variant='outlined' size='small' label='%' />
+                            <TextField type='number' inputRef={refSecondaryRecruiterPercent} variant='outlined' size='small' label='%' />
 
                         </TextFieldGroupContainer>
 
@@ -366,7 +383,7 @@ const AddAssignment = () => {
                         <TextFieldGroupContainer cols='5fr 2fr'>
 
                             <TextField inputRef={refTertiaryRecruterPecent} variant='outlined' size='small' label='Tertiary Recruiter Sales' />
-                            <TextField  type='number'  inputRef={refTertiaryRecruiter} variant='outlined' size='small' label='%' />
+                            <TextField type='number' inputRef={refTertiaryRecruiter} variant='outlined' size='small' label='%' />
 
                         </TextFieldGroupContainer>
 
@@ -398,6 +415,9 @@ const AddAssignment = () => {
                     Submit
 
                 </Button>
+
+                <PurchaseOrderPopup open={open} setOpen={setOpen} setPurchaseOrderData={setPurchaseOrderData} />
+
 
 
 
