@@ -1,11 +1,10 @@
-import { Button, TextField, Box, FormControlLabel, Checkbox, Autocomplete, FormControl, FormGroup } from '@mui/material'
+import { Button, TextField, Box, Autocomplete, } from '@mui/material'
 import './AddCandidate.css'
 import { TextFieldGroupContainer } from '../../CustomElements/Containers/TexFieldGroupContainer'
 import { DatePicker } from '@mui/x-date-pickers'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import axiosp from '../../Utils/axiosConfig'
-import PurchaseOrderPopup from '../PurchaseOrderPopup/PurchaseOrderPopup'
-import { AmountUnitList, PayUnit } from '../../Utils/constants'
+import {  PayUnit } from '../../Utils/constants'
 const AddCandidate = () => {
 
 
