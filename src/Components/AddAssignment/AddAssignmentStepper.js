@@ -35,7 +35,7 @@ export default function AddAssignmentStepper() {
 
   const steps = [
     {
-      label: 'Enter Candidate Details',
+      label: 'Candidate Details',
       layout: <AACandidateDetails
         setFormData={setFormData}
         handleNext={handleNext}
@@ -50,14 +50,14 @@ export default function AddAssignmentStepper() {
         handleBack={handleBack} />
     },
     {
-      label: 'Create an ad',
+      label: 'Working Address',
       layout: <AAWorkingAddress
         setFormData={setFormData}
         handleNext={handleNext}
         handleBack={handleBack} />
     },
     {
-      label: 'Commission Details',
+      label: 'Commissions',
       layout: <AACommissionDetails
         setFormData={setFormData}
         handleNext={handleNext}
@@ -72,36 +72,32 @@ export default function AddAssignmentStepper() {
 
   return (
     <Box>
-      <Stepper activeStep={activeStep} orientation="vertical">
+      <Stepper activeStep={activeStep} alternativeLabel sx={{mb: '2rem'}}>
         {steps.map((step, index) => (
           <Step key={step.label}>
 
             <StepLabel
               sx={{
                 fontSize: 'rem'
-              }}
-            // optional={
-            //   index === 2 ? (
-            //     <Typography variant="caption">Last step</Typography>
-            //   ) : null
-            // }
-            >
+              }}>
               <Typography variant='h6'>{step.label}</Typography>
             </StepLabel>
-            <StepContent>
-              {step.layout}
-            </StepContent>
+
           </Step>
         ))}
       </Stepper>
-      {activeStep === steps.length && (
+
+      {steps[activeStep].layout}
+
+
+      {/* {activeStep === steps.length && (
         <Paper square elevation={0} sx={{ p: 3 }}>
           <Typography>All steps completed - you&apos;re finished</Typography>
           <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
             Reset
           </Button>
         </Paper>
-      )}
+      )} */}
     </Box>
   );
 }

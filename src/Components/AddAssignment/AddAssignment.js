@@ -152,7 +152,8 @@ const AddAssignment = () => {
                 width: '60%',
                 padding: '2rem',
                 gridTemplateColumns: '1fr',
-                ml: '10rem',
+                ml: 'auto',
+                mr: 'auto',
                 pb: '8rem',
             }}>
 

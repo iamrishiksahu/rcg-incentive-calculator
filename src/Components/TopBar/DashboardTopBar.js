@@ -1,7 +1,22 @@
 import React from 'react'
 import { H2, H3, PText, Small } from '../../CustomElements/Typography/Typgraphy'
 import { Box, IconButton } from '@mui/material'
+import { getHours } from 'date-fns'
 const DashboardTopBar = ({ title }) => {
+
+  const getGreetingText = () => {
+    let hrs = new Date()
+    hrs = hrs.getHours()
+    if (hrs >= 0 && hrs < 12) {
+      return 'Good Morning'
+    } else if (hrs >= 12 && hrs < 18) {
+      return 'Good Afternoon'
+    } else if (hrs >= 18) {
+      return 'Good Evening'
+    } else {
+      return ''
+    }
+  }
   return (
     <Box
       sx={{
@@ -19,34 +34,37 @@ const DashboardTopBar = ({ title }) => {
       <Box sx={{
         display: 'flex',
         alignItems: 'center',
-        
+        width: '20rem',
+        justifyContent: 'space-between'
+
       }}>
 
-        <IconButton sx={{
-          
-        }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
 
-          <img src='/images/side-nav/circle-1.svg' width='28px' alt='s'/>
+          <IconButton sx={{ background: 'white', boxShadow: 'var(--box-shadow)' }}>
+
+            <img src='/images/top-bar/user.png' width='17.5px' alt='s' />
+
+          </IconButton>
+
+          <Box sx={{
+            display: 'flex',
+            flexDirection: 'column',
+          }}>
+
+            <Small>{getGreetingText()}</Small>
+            <PText>Rishik Sahu</PText>
+
+          </Box>
+
+        </Box>
 
 
 
-        </IconButton>
+        <IconButton sx={{ background: 'white', boxShadow: 'var(--box-shadow)' }}>
 
-      <Box sx={{
-        display: 'flex',
-        flexDirection: 'column',
-      }}>
 
-        <Small>Good Morning</Small>
-        <PText>Rishik Sahu</PText>
-
-      </Box>
-
-      <IconButton sx={{
-          
-        }}>
-
-          <img src='/images/side-nav/circle-1.svg' width='28px' alt='s'/>
+          <img src='/images/top-bar/notification.svg' alt='s' />
 
 
 
