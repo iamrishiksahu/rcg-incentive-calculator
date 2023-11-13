@@ -25,6 +25,12 @@ const WorkLocationList =[
     'Remote',
     'Onsite'
 ]
+const DummyCandidateList =[
+    'Rishik Sahu',
+    'Jayamurali Krishna',
+    'Suma Chapa',
+    'Avinash M.'
+]
 
 
-export {DivisionsList, AmountUnitList, CurrencyList, WorkLocationList, PayUnit}
+export {DivisionsList, AmountUnitList, CurrencyList, WorkLocationList, PayUnit, DummyCandidateList}
