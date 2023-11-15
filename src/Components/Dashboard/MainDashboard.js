@@ -1,13 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Button, Autocomplete, TextField } from '@mui/material'
 import DashboardFinanceCard from './DashboardFinanceCards/DashboardFinanceCard'
 import DashboardCounterBox from './DashboardCounterBoxes/DashboardCounterBox'
 import { DummyCandidateList } from '../../Utils/constants'
 import { useNavigate } from 'react-router-dom'
+import axiosp from '../../Utils/axiosConfig'
+
 
 const MainDashboard = () => {
 
     const navigate = useNavigate()
+
+    const [candidateList, setCandidateList] = useState([])
+
+    const loadCandidates = async () => {
+        try {
+            const res = await axiosp.get('/candidate_details')
+            console.log(res.data)
+            setCandidateList(res.data)
+        } catch (err) {
+            console.log(err)
+        } finally {
+            // setIsLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        loadCandidates()
+    }, [])
 
     return (
         <Box sx={{
@@ -76,7 +96,7 @@ const MainDashboard = () => {
                         disablePortal
                         fullWidth
                         options={DummyCandidateList}
-                        renderInput={(params) => <TextField {...params} ariant='outlined' size='small'  label="Select Candidate" />}
+                        renderInput={(params) => <TextField {...params} ariant='outlined' size='small' label="Select Candidate" />}
                     />
 
                     <Button

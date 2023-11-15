@@ -54,6 +54,7 @@ const PText = (props) => {
     return (
         <Typography
             variant='body'
+            onClick={props.onClick}
             sx={{
                 fontWeight: props.bold? '600' : '400',
                 ...props.sx,

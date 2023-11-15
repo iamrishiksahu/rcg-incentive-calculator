@@ -1,17 +1,13 @@
 import React, { useState } from 'react'
 import './CollapsableSideNav.css'
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Accordion, AccordionSummary, AccordionDetails, Typography, Box } from '@mui/material';
 
 const menuItems = [
     {
         icon_url: '/images/side-nav/dashboard.png',
         nav_item_name: 'Dashboard',
         endpoint: ''
-    },
-    {
-        icon_url: '/images/side-nav/approve-timesheet.png',
-        nav_item_name: 'Approve Timesheet',
-        endpoint: 'approve-timesheet'
     },
     {
         icon_url: '/images/side-nav/add-candidate.png',
@@ -28,16 +24,21 @@ const menuItems = [
         nav_item_name: 'Add Assignment',
         endpoint: 'add-assignment'
     },
-    {
-        icon_url: '/images/side-nav/generate-invoice.png',
-        nav_item_name: 'Generate Invoice',
-        endpoint: 'generate-invoice'
-    },
+    // {
+    //     icon_url: '/images/side-nav/generate-invoice.png',
+    //     nav_item_name: 'Generate Invoice',
+    //     endpoint: 'generate-invoice'
+    // },
     {
         icon_url: '/images/side-nav/submit-timesheet.png',
         nav_item_name: 'Submit Timesheet',
         endpoint: 'submit-timesheet'
     },
+    // {
+    //     icon_url: '/images/side-nav/approve-timesheet.png',
+    //     nav_item_name: 'Approve Timesheet',
+    //     endpoint: 'approve-timesheet'
+    // },
     {
         icon_url: '/images/side-nav/login-hrms.png',
         nav_item_name: 'Login to HRMS',
@@ -67,30 +68,55 @@ const CollapsableSideNav = ({ setTitle }) => {
 
             <ul className="menu">
 
-                {menuItems.map((item, idx) => {
-                    return (
-                        <NavLink
-                            key={idx} 
-                            to={item.endpoint}
-                            onClick={() => {
-                                setTitle(item.nav_item_name)
-                            }}
-                            // className={({isActive}) => {console.log(isActive); 
-                            //     return('' + (isActive? 'activated' : 'nav-item'))}}
-                        >
+                <NavLink to={menuItems[0].endpoint} >
+                    <img width='21px' src={menuItems[0].icon_url} alt="circle_1" />
+                    {!isCollapsed && <span>{menuItems[0].nav_item_name}</span>}
+                </NavLink>
+
+                <NavLink to={menuItems[1].endpoint} >
+                    <img width='21px' src={menuItems[1].icon_url} alt="circle_1" />
+                    {!isCollapsed && <span>{menuItems[1].nav_item_name}</span>}
+                </NavLink>
+
+                <NavLink to={menuItems[2].endpoint} >
+                    <img width='21px' src={menuItems[2].icon_url} alt="circle_1" />
+                    {!isCollapsed && <span>{menuItems[2].nav_item_name}</span>}
+                </NavLink>
+
+                <NavLink to={menuItems[3].endpoint} >
+                    <img width='21px' src={menuItems[3].icon_url} alt="circle_1" />
+                    {!isCollapsed && <span>{menuItems[3].nav_item_name}</span>}
+                </NavLink>
 
 
-                                <img width='21px' src={item.icon_url} alt="circle_1" />
-                                {!isCollapsed && <span>{item.nav_item_name}</span>}
-                        </NavLink>
-                    )
-                })}
 
-                {/* Mumtaz */}
+                <NavLink to={menuItems[4].endpoint} >
+                    <img width='21px' src={menuItems[4].icon_url} alt="circle_1" />
+                    {!isCollapsed && <span>{menuItems[4].nav_item_name}</span>}
+                </NavLink>
+
+                <NavLink to={menuItems[5].endpoint} >
+                    <img width='21px' src={menuItems[5].icon_url} alt="circle_1" />
+                    {!isCollapsed && <span>{menuItems[5].nav_item_name}</span>}
+                </NavLink>
+
+                <NavLink to={menuItems[6].endpoint} >
+                    <img width='21px' src={menuItems[6].icon_url} alt="circle_1" />
+                    {!isCollapsed && <span>{menuItems[6].nav_item_name}</span>}
+                </NavLink>
+
+                <NavLink to={menuItems[6].endpoint} >
+                    <img width='21px' src={menuItems[6].icon_url} alt="circle_1" />
+                    {!isCollapsed && <span>{menuItems[6].nav_item_name}</span>}
+                </NavLink>
+
+
+          
+
 
             </ul>
 
-        </aside>
+        </aside >
     )
 }
 

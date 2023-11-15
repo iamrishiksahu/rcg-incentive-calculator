@@ -1,24 +1,26 @@
 import { Box, Container, Card, Checkbox, Typography } from '@mui/material'
 import React, { useRef, useEffect } from 'react'
-import { Box50 } from '../../CustomElements/Containers/Box50'
-import { VGap } from '../../CustomElements/Gaps/Gap'
-import { H3, PText, Small } from '../../CustomElements/Typography/Typgraphy'
-import { LoginButton } from '../../CustomElements/Buttons/Buttons'
-import { LoginTextField } from '../../CustomElements/TextFields/TextFields'
-import { H2 } from '../../CustomElements/Typography/Typgraphy'
-import { FlexBoxH } from '../../CustomElements/Containers/FlexBoxH'
+import { Box50 } from '../../../CustomElements/Containers/Box50'
+import { VGap } from '../../../CustomElements/Gaps/Gap'
+import { H3, PText, Small } from '../../../CustomElements/Typography/Typgraphy'
+import { LoginButton } from '../../../CustomElements/Buttons/Buttons'
+import { LoginTextField } from '../../../CustomElements/TextFields/TextFields'
+import { H2 } from '../../../CustomElements/Typography/Typgraphy'
+import { FlexBoxH } from '../../../CustomElements/Containers/FlexBoxH'
 import './Login.css'
-import axiosp from '../../Utils/axiosConfig'
+import axiosp from '../../../Utils/axiosConfig'
 import { useSelector, useDispatch } from 'react-redux';
-import { setAuthData } from '../../features/auth/authState';
+import { setAuthData } from '../../../features/auth/authState';
 
 import { useNavigate } from 'react-router'
+import useAuth from '../../../customHooks/useAuth'
 
 const Login5 = () => {
 
     const navigate = useNavigate();
     const refEmail = useRef()
     const refPassword = useRef()
+    const {setAuth} = useAuth()
     const from = window.location.state?.from?.pathname || '/dashboard';
 
     const dispatch = useDispatch();
@@ -28,7 +30,7 @@ const Login5 = () => {
         console.log('authData: ', authData)
     }, [authData])
 
-    const loginHandler = async (e) =>{
+    const loginHandler = async (e) => {
         e.preventDefault()
 
         try {
@@ -41,14 +43,16 @@ const Login5 = () => {
             const accessToken = res?.data?.access_token
 
             console.log(res.data)
-            if(accessToken){
+            if (accessToken) {
                 dispatch(setAuthData(res.data));
-                navigate('/dashboard')
-            // navigate(from, { replace: true });
-            }
-            
+                setAuth(res.data)
+                // navigate('/dashboard')
 
-        }catch(err){
+                navigate(from, { replace: true });
+            }
+
+
+        } catch (err) {
             console.log(err)
         }
     }
@@ -69,13 +73,13 @@ const Login5 = () => {
                     {/* Contains the left image */}
                     <img className='img-logo' src='/images/rapid-consulting-logo.png' />
 
-                    <img src='/images/login-page-hero-vector.svg' style={{marginTop: '-4rem'}} />
+                    <img src='/images/login-page-hero-vector.svg' style={{ marginTop: '-4rem' }} />
 
                     <PText bold >Redefining HR Management</PText >
                     <PText sx={{ textAlign: 'center' }}>
                         The best Human Resource Management Platform<br />
                         Powering Over 500+ Businesses.</PText>
-                    <Small sx={{ color: 'var(--color-info-dark)'}}>© 2023 - Rapid Consulting Services</Small>
+                    <Small sx={{ color: 'var(--color-info-dark)' }}>© 2023 - Rapid Consulting Services</Small>
 
                 </div>
                 {/* Contains the login system */}
@@ -132,7 +136,9 @@ const Login5 = () => {
                                 <Checkbox />
                                 <PText>Remember Me</PText>
                             </FlexBoxH>
-                            <PText sx={{ cursor: 'pointer' }} >Forgot Password</PText>
+                            <PText sx={{ cursor: 'pointer' }}
+                            onClick={()=>{navigate('/forgot-password')}}
+                             >Forgot Password</PText>
                         </FlexBoxH>
 
 

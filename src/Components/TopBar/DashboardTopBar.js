@@ -4,6 +4,31 @@ import { Box, IconButton } from '@mui/material'
 import { getHours } from 'date-fns'
 const DashboardTopBar = ({ title }) => {
 
+
+
+  const getTitle = () => {
+    const url = window.location.href
+    if (url.endsWith('dashboard')) {
+      return 'Dashboard'
+    } else if (url.endsWith('add-assignment')) {
+      return 'Add Assignment'
+    } else if (url.endsWith('add-candidate')) {
+      return 'Add Candidate'
+    } else if (url.endsWith('assignments')) {
+      return 'Assignment Dashboard'
+    } else if (url.endsWith('add-assignment')) {
+      return 'Add Assignment'
+    } else if (url.endsWith('add-assignment')) {
+      return 'Add Assignment'
+    } else if (url.endsWith('add-assignment')) {
+      return 'Add Assignment'
+    }
+    else {
+      return ''
+    }
+  }
+
+
   const getGreetingText = () => {
     let hrs = new Date()
     hrs = hrs.getHours()
@@ -17,6 +42,7 @@ const DashboardTopBar = ({ title }) => {
       return ''
     }
   }
+
   return (
     <Box
       sx={{
@@ -28,7 +54,7 @@ const DashboardTopBar = ({ title }) => {
         minHeight: '5rem',
       }}
     >
-      <H3>{title}</H3>
+      <H3>{getTitle()}</H3>
 
       {/* Acount Actions Bar */}
       <Box sx={{

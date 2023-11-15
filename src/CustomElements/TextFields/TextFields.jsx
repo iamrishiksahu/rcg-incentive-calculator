@@ -10,7 +10,7 @@ const LoginTextField = (props) => {
         borderRadius: "0.75rem",
         backgroundColor: "var(--color-primary-light-2)",
         padding: "0rem 1.5rem",
-        // width: '100%'
+        ...props.sx
       }}
     >
       <span
@@ -23,6 +23,7 @@ const LoginTextField = (props) => {
         {props.icon}
       </span>
       <input
+        name={props.name}
         ref={props.inputRef}
         style={{
           outline: "none",

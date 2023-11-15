@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Button, TextField, Autocomplete, Box, FormControlLabel, Checkbox, FormControl, Switch } from '@mui/material'
 import PurchaseOrderPopup from '../PurchaseOrderPopup/PurchaseOrderPopup'
 import './AddAssignment.css'
@@ -7,10 +7,17 @@ import { DatePicker } from '@mui/x-date-pickers'
 import { AmountUnitList, CurrencyList, DivisionsList, WorkLocationList } from '../../Utils/constants'
 import axiosp from '../../Utils/axiosConfig'
 import AddAssignmentStepper from './AddAssignmentStepper'
+import { useParams } from 'react-router-dom'
 
 
 const AddAssignment = () => {
 
+    const { id } = useParams()
+
+    if (!id) {
+        alert('ID not available!')
+        // TODO: navigate back 
+    }
 
     const refStartDate = useRef();
     const refEndDate = useRef();
@@ -78,6 +85,24 @@ const AddAssignment = () => {
     const [open, setOpen] = useState(false)
     const [purchaseOrderData, setPurchaseOrderData] = useState({})
 
+
+    const [candidateDetails, setCandidateDetails] = useState(null)
+
+    const getCandidateDetails = async () => {
+
+        try {
+            const res = axiosp.get(`/candidate_details/${id}`)
+            console.log(res.data)
+            setCandidateDetails(res.data)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
+        // getCandidateDetails()
+
+    }, [])
 
     const handleSubmitClick = async (e) => {
         e.preventDefault()

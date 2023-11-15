@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import CollapsableSideNav from '../CollapsableSideNav/CollapsableSideNav'
 import { Routes, Route } from 'react-router-dom'
-import Login from '../Login/Login'
-import Login2 from '../Login/Login2'
 import Test from '../Test'
 import AddCandidate from '../AddCandidate/AddCandidate'
 import DashboardTopBar from '../TopBar/DashboardTopBar'
 import MainDashboard from './MainDashboard'
 import AddAssignment from '../AddAssignment/AddAssignment'
 import AssignmentDashboard from '../Assignments/AssignmentDashboard'
+import Login5 from '../Auth/Login/Login5'
 const Dashboard = () => {
 
-  const [title, setTitle] = useState('Dashboard');
+  const [title, setTitle] = useState('Dashboard')
+  
   return (
     <div>
 
@@ -31,10 +31,10 @@ const Dashboard = () => {
           <Route path='/approve-timesheete' element={<Test />} />
           <Route path='/add-candidate' element={<AddCandidate />} />
           <Route path='/assignments' element={<AssignmentDashboard />} />
-          <Route path='/add-assignment' element={<AddAssignment />} />
-          <Route path='/generate-invoice' element={<Login />} />
-          <Route path='/submit-timesheet' element={<Login />} />
-          <Route path='/hrms' element={<Login />} />
+          <Route path='/add-assignment/:id' element={<AddAssignment />} />
+          <Route path='/generate-invoice' element={<Login5 />} />
+          <Route path='/submit-timesheet' element={<Login5 />} />
+          <Route path='/hrms' element={<Login5 />} />
         </Routes>
 
       </main>
