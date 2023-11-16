@@ -36,7 +36,7 @@ const MainDashboard = () => {
             gap: '4rem',
             gridTemplateColumns: '7fr 3fr',
             width: '100%',
-            padding: '0 2rem',
+            padding: '2rem',
         }}>
 
             <Box sx={{
