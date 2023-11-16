@@ -118,7 +118,7 @@ const Login5 = () => {
 
                         <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                             <PText>Email</PText>
-                            <LoginTextField inputRef={refEmail} icon='alternate_email' type='email' placeholder='youremail@gmail.com' />
+                            <LoginTextField inputRef={refEmail} icon='alternate_email' type='email' placeholder='yourmail@email.com' />
                         </Box>
                         <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                             <PText>Password</PText>

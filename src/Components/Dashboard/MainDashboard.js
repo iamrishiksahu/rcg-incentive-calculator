@@ -81,7 +81,7 @@ const MainDashboard = () => {
                     count={144}
                     gradient={'#799FFF -141.93%, rgba(255, 255, 255, 0.50) 81.35%'} />
 
-                <Box sx={{
+                {/* <Box sx={{
                     gridColumn: 'span 2',
                     display: 'flex',
                     justifyContent: 'space-between',
@@ -107,7 +107,7 @@ const MainDashboard = () => {
                         onClick={() => navigate('/dashboard/add-candidate')}
                     >
                         Add New Candidate
-                    </Button>
+                    </Button> */}
 
 
                     {/* <DashboardAction icon={'/images/side-nav/add-candidate.png'} title={'Add Candidate'} />
@@ -117,7 +117,7 @@ const MainDashboard = () => {
                     <DashboardAction icon={'/images/side-nav/add-assignment.png'} title={'Add Assignment'} />
                     <DashboardAction icon={'/images/side-nav/submit-timesheet.png'} title={'Submit Timesheet'} />*/}
 
-                </Box>
+                {/* </Box> */}
 
 
             </Box>
