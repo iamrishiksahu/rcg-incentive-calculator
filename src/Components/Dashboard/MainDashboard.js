@@ -5,6 +5,7 @@ import DashboardCounterBox from './DashboardCounterBoxes/DashboardCounterBox'
 import { DummyCandidateList } from '../../Utils/constants'
 import { useNavigate } from 'react-router-dom'
 import axiosp from '../../Utils/axiosConfig'
+import NewsFeed from './NewsFeed/NewsFeed'
 
 
 const MainDashboard = () => {
@@ -35,7 +36,7 @@ const MainDashboard = () => {
             gap: '4rem',
             gridTemplateColumns: '7fr 3fr',
             width: '100%',
-            padding: '0 2rem'
+            padding: '0 2rem',
         }}>
 
             <Box sx={{
@@ -121,6 +122,8 @@ const MainDashboard = () => {
 
 
             </Box>
+
+            <NewsFeed/>
 
         </Box>
     )
