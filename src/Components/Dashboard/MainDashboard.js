@@ -111,7 +111,7 @@ const MainDashboard = () => {
                     </Button> */}
 
 
-                    {/* <DashboardAction icon={'/images/side-nav/add-candidate.png'} title={'Add Candidate'} />
+                {/* <DashboardAction icon={'/images/side-nav/add-candidate.png'} title={'Add Candidate'} />
                     <DashboardAction icon={'/images/side-nav/approve-timesheet.png'} title={'Approve Timesheet'} />
                     <DashboardAction icon={'/images/side-nav/add-assignment.png'} title={'Add Assignment'} />
                     <DashboardAction icon={'/images/side-nav/generate-invoice.png'} title={'Generate Invoice'} />
@@ -123,7 +123,7 @@ const MainDashboard = () => {
 
             </Box>
 
-            <NewsFeed/>
+            <NewsFeed />
 
         </Box>
     )

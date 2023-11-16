@@ -11,8 +11,13 @@ const NewsFeedItem = ({ title, sender, date }) => {
             display: 'flex',
             flexDirection: 'column',
             gap: '0.25rem',
+            transition: 'all 100ms ease',
             '&:last-child': {
                 borderBottom: 'none'
+            },
+            '&:hover':{
+                scale: '1.03',
+                backgroundColor: '#ffeeee20'
             }
         }}>
 
