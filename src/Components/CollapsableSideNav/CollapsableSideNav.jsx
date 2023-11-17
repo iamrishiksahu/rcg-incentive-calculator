@@ -62,7 +62,7 @@ const CollapsableSideNav = ({ setTitle }) => {
             <header>
 
                 <img width='120px' src="/images/rapid-consulting-logo.png" alt="company_logo" />
-                <img onClick={() => setIsCollapsed(prev => !prev)} width='21px' src='/images/side-nav/circle-1.svg' alt="circle_1" />
+                {/* <img onClick={() => setIsCollapsed(prev => !prev)} width='21px' src='/images/side-nav/circle-1.svg' alt="circle_1" /> */}
 
             </header>
 
