@@ -50,7 +50,7 @@ const MainDashboard = () => {
 
 
                 <DashboardCounterBox
-                    title={'Divisions'}
+                    title={'Division'}
                     count={4}
                     gradient={'#FF7979 -231.96%, rgba(255, 255, 255, 0.50) 111.72%'} />
                 <DashboardCounterBox
@@ -58,27 +58,27 @@ const MainDashboard = () => {
                     count={5}
                     gradient={'#8C79FF -179.52%, rgba(255, 255, 255, 0.00) 88.1%'} />
                 <DashboardCounterBox
-                    title={'Employees'}
+                    title={'Full Time Employees'}
                     count={144}
                     gradient={'#FFD979 -141.93%, rgba(255, 255, 255, 0.50) 81.35%'} />
                 <DashboardCounterBox
-                    title={'Employees'}
+                    title={'Part Time Employees'}
                     count={144}
                     gradient={' #79FFDF -141.93%, rgba(255, 255, 255, 0.50) 81.35%'} />
                 <DashboardCounterBox
-                    title={'Divisions'}
+                    title={'Contractors'}
                     count={15}
                     gradient={'#9CFF79 -231.96%, rgba(255, 255, 255, 0.50) 111.72%'} />
                 <DashboardCounterBox
-                    title={'Departments'}
+                    title={'Interns'}
                     count={5}
                     gradient={'#79F7FF -179.52%, rgba(255, 255, 255, 0.00) 88.1%'} />
                 <DashboardCounterBox
-                    title={'Employees'}
+                    title={'Remote Workers'}
                     count={144}
                     gradient={'#79DFFF -141.93%, rgba(255, 255, 255, 0.50) 81.35%'} />
                 <DashboardCounterBox
-                    title={'Employees'}
+                    title={'Staffing Clients'}
                     count={144}
                     gradient={'#799FFF -141.93%, rgba(255, 255, 255, 0.50) 81.35%'} />
 
