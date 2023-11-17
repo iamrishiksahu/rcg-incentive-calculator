@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { H2, H3, PText, Small } from '../../CustomElements/Typography/Typgraphy'
 import { Box, IconButton } from '@mui/material'
 import { getHours } from 'date-fns'
-const DashboardTopBar = ({ title }) => {
+import PageTitleContext from '../../context/PageTitleProvider'
+import usePageTitle from '../../hooks/usePageTitle'
+const DashboardTopBar = () => {
 
-
+  const { title, setTitle } = usePageTitle()
 
   const getTitle = () => {
     const url = window.location.href
@@ -28,6 +30,9 @@ const DashboardTopBar = ({ title }) => {
     }
   }
 
+  useEffect(() => {
+    // setTitle(getTitle())
+  }, [title])
 
   const getGreetingText = () => {
     let hrs = new Date()
@@ -54,7 +59,7 @@ const DashboardTopBar = ({ title }) => {
         minHeight: '5rem',
       }}
     >
-      <H3>{getTitle()}</H3>
+      <H3>{title}</H3>
 
       {/* Acount Actions Bar */}
       <Box sx={{

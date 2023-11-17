@@ -6,11 +6,16 @@ import { DummyCandidateList } from '../../Utils/constants'
 import { useNavigate } from 'react-router-dom'
 import axiosp from '../../Utils/axiosConfig'
 import NewsFeed from './NewsFeed/NewsFeed'
+import usePageTitle from '../../hooks/usePageTitle'
+
 
 
 const MainDashboard = () => {
 
     const navigate = useNavigate()
+
+    const { setTitle } = usePageTitle()
+
 
     const [candidateList, setCandidateList] = useState([])
 
@@ -28,7 +33,12 @@ const MainDashboard = () => {
 
     useEffect(() => {
         loadCandidates()
+        setTitle('Dashboard')
     }, [])
+
+
+
+
 
     return (
         <Box sx={{

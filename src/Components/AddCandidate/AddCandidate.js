@@ -1,22 +1,25 @@
 import { Button, TextField, Box, Autocomplete, } from '@mui/material'
 import './AddCandidate.css'
+import { useEffect } from 'react'
 import { TextFieldGroupContainer } from '../../CustomElements/Containers/TexFieldGroupContainer'
 import { DatePicker } from '@mui/x-date-pickers'
 import { useRef } from 'react'
 import axiosp from '../../Utils/axiosConfig'
-import {  PayUnit } from '../../Utils/constants'
+import { PayUnit } from '../../Utils/constants'
+import usePageTitle from '../../hooks/usePageTitle'
 const AddCandidate = () => {
 
 
     const refStartDate = useRef()
 
+    
     const performFormValidations = (e) => {
-
+        
         try {
-
-
+            
+            
             const data = {
-
+                
                 suffix: '',
                 first_name: e.target.first_name.value,
                 middle_name: e.target.middle_name.value,
@@ -49,7 +52,7 @@ const AddCandidate = () => {
 
             console.log(data)
             return data
-            
+
         } catch (err) {
             console.log(err)
         }
@@ -78,6 +81,11 @@ const AddCandidate = () => {
 
     }
 
+    const {setTitle} = usePageTitle()
+
+    useEffect(() => {
+        setTitle('Add Candidate')
+    }, [])
     return (
 
         <form className='parent' onSubmit={handleSubmitClick} >
@@ -133,7 +141,7 @@ const AddCandidate = () => {
 
                     <TextField name='employment_category' variant='outlined' size='small' label='Employment Cateogry' />
 
-                  
+
                 </TextFieldGroupContainer>
 
 
@@ -150,9 +158,9 @@ const AddCandidate = () => {
                         options={PayUnit}
                         renderInput={(params) => <TextField {...params} ariant='outlined' size='small' name='pay_unit' label="Unit" />}
                     />
-                   
+
                 </TextFieldGroupContainer>
-              
+
 
             </div>
 

@@ -19,11 +19,11 @@ const menuItems = [
         nav_item_name: 'Assignment Dashboard',
         endpoint: 'assignments'
     },
-    {
-        icon_url: '/images/side-nav/add-assignment.png',
-        nav_item_name: 'Add Assignment',
-        endpoint: 'add-assignment'
-    },
+    // {
+    //     icon_url: '/images/side-nav/add-assignment.png',
+    //     nav_item_name: 'Add Assignment',
+    //     endpoint: 'add-assignment'
+    // },
     // {
     //     icon_url: '/images/side-nav/generate-invoice.png',
     //     nav_item_name: 'Generate Invoice',
@@ -39,11 +39,11 @@ const menuItems = [
     //     nav_item_name: 'Approve Timesheet',
     //     endpoint: 'approve-timesheet'
     // },
-    {
-        icon_url: '/images/side-nav/login-hrms.png',
-        nav_item_name: 'Login to HRMS',
-        endpoint: 'hrms'
-    },
+    // {
+    //     icon_url: '/images/side-nav/login-hrms.png',
+    //     nav_item_name: 'Login to HRMS',
+    //     endpoint: 'hrms'
+    // },
     {
         icon_url: '/images/side-nav/log-out.png',
         nav_item_name: 'Sign Out',
@@ -95,20 +95,20 @@ const CollapsableSideNav = ({ setTitle }) => {
                     {!isCollapsed && <span>{menuItems[4].nav_item_name}</span>}
                 </NavLink>
 
-                <NavLink to={menuItems[5].endpoint} >
+                {/* <NavLink to={menuItems[5].endpoint} >
                     <img width='21px' src={menuItems[5].icon_url} alt="circle_1" />
                     {!isCollapsed && <span>{menuItems[5].nav_item_name}</span>}
-                </NavLink>
-
+                </NavLink> */}
+{/* 
                 <NavLink to={menuItems[6].endpoint} >
                     <img width='21px' src={menuItems[6].icon_url} alt="circle_1" />
                     {!isCollapsed && <span>{menuItems[6].nav_item_name}</span>}
-                </NavLink>
-
+                </NavLink> */}
+{/* 
                 <NavLink to={menuItems[6].endpoint} >
                     <img width='21px' src={menuItems[6].icon_url} alt="circle_1" />
                     {!isCollapsed && <span>{menuItems[6].nav_item_name}</span>}
-                </NavLink>
+                </NavLink> */}
 
 
           

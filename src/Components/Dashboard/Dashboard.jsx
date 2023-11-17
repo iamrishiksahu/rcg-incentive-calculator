@@ -9,10 +9,12 @@ import AddAssignment from '../AddAssignment/AddAssignment'
 import AssignmentDashboard from '../Assignments/AssignmentDashboard'
 import Login5 from '../Auth/Login/Login5'
 import MyTimeSheet from '../Timesheets/MyTimesheet/MyTimeSheet'
+import { PageTitleProvider } from '../../context/PageTitleProvider'
+import { Navigate } from 'react-router-dom'
 const Dashboard = () => {
 
   const [title, setTitle] = useState('Dashboard')
-  
+
   return (
     <div>
 
@@ -25,19 +27,24 @@ const Dashboard = () => {
         minHeight: '100vh',
       }}>
 
-        <DashboardTopBar title={title}/>
+        <PageTitleProvider>
 
-        <Routes>
-          <Route path='/' element={<MainDashboard />} />
-          <Route path='/approve-timesheete' element={<Test />} />
-          <Route path='/add-candidate' element={<AddCandidate />} />
-          <Route path='/assignments' element={<AssignmentDashboard />} />
-          <Route path='/add-assignment/:id' element={<AddAssignment />} />
-          <Route path='/generate-invoice' element={<Login5 />} />
-          <Route path='/submit-timesheet' element={<Login5 />} />
-          <Route path='/my-timesheet' element={<MyTimeSheet />} />
-          <Route path='/hrms' element={<Login5 />} />
-        </Routes>
+          <DashboardTopBar />
+
+          <Routes>
+            <Route path='/' element={<MainDashboard />} />
+            <Route path='/approve-timesheete' element={<Test />} />
+            <Route path='/add-candidate' element={<AddCandidate />} />
+            <Route path='/assignments' element={<AssignmentDashboard />} />
+            <Route path='/add-assignment/:id' element={<AddAssignment />} />
+            <Route path='/generate-invoice' element={<Login5 />} />
+            <Route path='/submit-timesheet' element={<Login5 />} />
+            <Route path='/my-timesheet' element={<MyTimeSheet />} />
+            <Route path='/sign-out' element={<Navigate to='/' />} />
+            <Route path='/hrms' element={<></>} />
+          </Routes>
+
+        </PageTitleProvider>
 
       </main>
 

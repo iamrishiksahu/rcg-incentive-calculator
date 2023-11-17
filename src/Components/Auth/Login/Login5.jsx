@@ -1,8 +1,7 @@
 import { Box, Container, Card, Checkbox, Typography } from '@mui/material'
 import React, { useRef, useEffect } from 'react'
-import { Box50 } from '../../../CustomElements/Containers/Box50'
 import { VGap } from '../../../CustomElements/Gaps/Gap'
-import { H3, PText, Small } from '../../../CustomElements/Typography/Typgraphy'
+import { PText, Small } from '../../../CustomElements/Typography/Typgraphy'
 import { LoginButton } from '../../../CustomElements/Buttons/Buttons'
 import { LoginTextField } from '../../../CustomElements/TextFields/TextFields'
 import { H2 } from '../../../CustomElements/Typography/Typgraphy'
@@ -34,7 +33,6 @@ const Login5 = () => {
         e.preventDefault()
 
         try {
-
             const res = await axiosp.post('/login_user/', {
                 email: refEmail.current.value,
                 password: refPassword.current.value
@@ -54,6 +52,7 @@ const Login5 = () => {
 
         } catch (err) {
             console.log(err)
+            alert('Something went wrong!')
         }
     }
     return (
@@ -99,7 +98,7 @@ const Login5 = () => {
                                 fontWeight: '500',
                                 color: 'white',
                                 fontSize: '2.5rem'
-                            }}>HR</H2>
+                            }}>YUKTA</H2>
                             <H2 sx={{
                                 fontWeight: '300',
                                 color: 'white',

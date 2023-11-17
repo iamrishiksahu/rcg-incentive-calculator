@@ -2,6 +2,7 @@ import { Box, Button, CircularProgress, TextField, Typography } from '@mui/mater
 import React, { useEffect, useState } from 'react'
 import axiosp from '../../Utils/axiosConfig'
 import { useNavigate } from 'react-router-dom'
+import usePageTitle from '../../hooks/usePageTitle'
 
 const AssignmentDashboard = () => {
 
@@ -32,6 +33,9 @@ const AssignmentDashboard = () => {
     division: 'IT'
   },])
 
+  const {setTitle} = usePageTitle()
+
+
   const [isLoading, setIsLoading] = useState(false)
 
 
@@ -58,6 +62,7 @@ const AssignmentDashboard = () => {
   }
 
 
+
   const loadCandidates = async () => {
     try {
       const res = await axiosp.get('/candidate_details')
@@ -72,6 +77,8 @@ const AssignmentDashboard = () => {
 
   useEffect(() => {
     loadCandidates()
+    setTitle('Assignment Dashboard')
+
   }, [])
 
 
