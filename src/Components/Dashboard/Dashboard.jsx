@@ -8,6 +8,7 @@ import MainDashboard from './MainDashboard'
 import AddAssignment from '../AddAssignment/AddAssignment'
 import AssignmentDashboard from '../Assignments/AssignmentDashboard'
 import Login5 from '../Auth/Login/Login5'
+import MyTimeSheet from '../Timesheets/MyTimesheet/MyTimeSheet'
 const Dashboard = () => {
 
   const [title, setTitle] = useState('Dashboard')
@@ -34,6 +35,7 @@ const Dashboard = () => {
           <Route path='/add-assignment/:id' element={<AddAssignment />} />
           <Route path='/generate-invoice' element={<Login5 />} />
           <Route path='/submit-timesheet' element={<Login5 />} />
+          <Route path='/my-timesheet' element={<MyTimeSheet />} />
           <Route path='/hrms' element={<Login5 />} />
         </Routes>
 

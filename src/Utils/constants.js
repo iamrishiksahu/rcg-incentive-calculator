@@ -32,5 +32,10 @@ const DummyCandidateList =[
     'Avinash M.'
 ]
 
+const DummyWorkList = [
+    'IC App Project',
+    'Project JIRA',
+    'Main Project'
+]
 
-export {DivisionsList, AmountUnitList, CurrencyList, WorkLocationList, PayUnit, DummyCandidateList}
+export {DivisionsList, AmountUnitList, CurrencyList, WorkLocationList, PayUnit, DummyCandidateList, DummyWorkList}

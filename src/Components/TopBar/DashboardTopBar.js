@@ -18,8 +18,8 @@ const DashboardTopBar = ({ title }) => {
       return 'Assignment Dashboard'
     } else if (url.endsWith('add-assignment')) {
       return 'Add Assignment'
-    } else if (url.endsWith('add-assignment')) {
-      return 'Add Assignment'
+    } else if (url.endsWith('my-timesheet')) {
+      return 'My Timesheet'
     } else if (url.endsWith('add-assignment')) {
       return 'Add Assignment'
     }

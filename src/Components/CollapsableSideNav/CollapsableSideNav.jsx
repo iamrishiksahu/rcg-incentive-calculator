@@ -31,8 +31,8 @@ const menuItems = [
     // },
     {
         icon_url: '/images/side-nav/submit-timesheet.png',
-        nav_item_name: 'Submit Timesheet',
-        endpoint: 'submit-timesheet'
+        nav_item_name: 'My Timesheet',
+        endpoint: 'my-timesheet'
     },
     // {
     //     icon_url: '/images/side-nav/approve-timesheet.png',

@@ -1,8 +1,16 @@
+import { Box } from '@mui/material'
 import React from 'react'
+import TimeSheetTable from './TimeSheetTable'
 
 const MyTimeSheet = () => {
   return (
-    <div>MyTimeSheet</div>
+    <Box sx={{
+      padding: '2rem'
+    }}>
+
+      <TimeSheetTable />
+
+    </Box>
   )
 }
 
