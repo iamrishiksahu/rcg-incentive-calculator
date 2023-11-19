@@ -74,6 +74,8 @@ const CollapsableSideNav = ({ setTitle }) => {
                             <img width='21px' src={item.icon_url} alt="circle_1" />
                             {!isCollapsed && <span>{item.nav_item_name}</span>}
                         </NavLink>
+
+                        
                     )
                 })}
             </ul>
