@@ -34,16 +34,16 @@ const menuItems = [
         nav_item_name: 'My Timesheet',
         endpoint: 'my-timesheet'
     },
-    // {
-    //     icon_url: '/images/side-nav/approve-timesheet.png',
-    //     nav_item_name: 'Approve Timesheet',
-    //     endpoint: 'approve-timesheet'
-    // },
-    // {
-    //     icon_url: '/images/side-nav/login-hrms.png',
-    //     nav_item_name: 'Login to HRMS',
-    //     endpoint: 'hrms'
-    // },
+    {
+        icon_url: '/images/side-nav/approve-timesheet.png',
+        nav_item_name: 'Approve Timesheet',
+        endpoint: 'approve-timesheet'
+    },
+    {
+        icon_url: '/images/side-nav/login-hrms.png',
+        nav_item_name: 'Login to HRMS',
+        endpoint: 'https://rapidtech.keka.com/#/home/dashboard'
+    },
     {
         icon_url: '/images/side-nav/log-out.png',
         nav_item_name: 'Sign Out',
@@ -68,52 +68,14 @@ const CollapsableSideNav = ({ setTitle }) => {
 
             <ul className="menu">
 
-                <NavLink to={menuItems[0].endpoint} >
-                    <img width='21px' src={menuItems[0].icon_url} alt="circle_1" />
-                    {!isCollapsed && <span>{menuItems[0].nav_item_name}</span>}
-                </NavLink>
-
-                <NavLink to={menuItems[1].endpoint} >
-                    <img width='21px' src={menuItems[1].icon_url} alt="circle_1" />
-                    {!isCollapsed && <span>{menuItems[1].nav_item_name}</span>}
-                </NavLink>
-
-                <NavLink to={menuItems[2].endpoint} >
-                    <img width='21px' src={menuItems[2].icon_url} alt="circle_1" />
-                    {!isCollapsed && <span>{menuItems[2].nav_item_name}</span>}
-                </NavLink>
-
-                <NavLink to={menuItems[3].endpoint} >
-                    <img width='21px' src={menuItems[3].icon_url} alt="circle_1" />
-                    {!isCollapsed && <span>{menuItems[3].nav_item_name}</span>}
-                </NavLink>
-
-
-
-                <NavLink to={menuItems[4].endpoint} >
-                    <img width='21px' src={menuItems[4].icon_url} alt="circle_1" />
-                    {!isCollapsed && <span>{menuItems[4].nav_item_name}</span>}
-                </NavLink>
-
-                {/* <NavLink to={menuItems[5].endpoint} >
-                    <img width='21px' src={menuItems[5].icon_url} alt="circle_1" />
-                    {!isCollapsed && <span>{menuItems[5].nav_item_name}</span>}
-                </NavLink> */}
-{/* 
-                <NavLink to={menuItems[6].endpoint} >
-                    <img width='21px' src={menuItems[6].icon_url} alt="circle_1" />
-                    {!isCollapsed && <span>{menuItems[6].nav_item_name}</span>}
-                </NavLink> */}
-{/* 
-                <NavLink to={menuItems[6].endpoint} >
-                    <img width='21px' src={menuItems[6].icon_url} alt="circle_1" />
-                    {!isCollapsed && <span>{menuItems[6].nav_item_name}</span>}
-                </NavLink> */}
-
-
-          
-
-
+                {menuItems.map((item, idx) => {
+                    return (
+                        <NavLink to={item.endpoint}>
+                            <img width='21px' src={item.icon_url} alt="circle_1" />
+                            {!isCollapsed && <span>{item.nav_item_name}</span>}
+                        </NavLink>
+                    )
+                })}
             </ul>
 
         </aside >

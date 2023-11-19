@@ -11,6 +11,7 @@ import Login5 from '../Auth/Login/Login5'
 import MyTimeSheet from '../Timesheets/MyTimesheet/MyTimeSheet'
 import { PageTitleProvider } from '../../context/PageTitleProvider'
 import { Navigate } from 'react-router-dom'
+import ApproveTimesheet from '../Timesheets/ApproveTimesheet/ApproveTimesheet'
 const Dashboard = () => {
 
   const [title, setTitle] = useState('Dashboard')
@@ -39,9 +40,10 @@ const Dashboard = () => {
             <Route path='/add-assignment/:id' element={<AddAssignment />} />
             <Route path='/generate-invoice' element={<Login5 />} />
             <Route path='/submit-timesheet' element={<Login5 />} />
+            <Route path='/approve-timesheet' element={<ApproveTimesheet />} />
             <Route path='/my-timesheet' element={<MyTimeSheet />} />
             <Route path='/sign-out' element={<Navigate to='/' />} />
-            <Route path='/hrms' element={<></>} />
+           
           </Routes>
 
         </PageTitleProvider>

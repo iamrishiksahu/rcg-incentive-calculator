@@ -165,7 +165,6 @@ const AddAssignment = () => {
     return (
 
         <>
-
             <Box sx={{
                 display: 'grid',
                 width: '60%',
@@ -179,10 +178,6 @@ const AddAssignment = () => {
                 <AddAssignmentStepper />
 
             </Box>
-
-
-
-
         </>
     )
 }
