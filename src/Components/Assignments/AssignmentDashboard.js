@@ -6,41 +6,12 @@ import usePageTitle from '../../hooks/usePageTitle'
 
 const AssignmentDashboard = () => {
 
-  const [candidateList, setCandidateList] = useState([{
-    id: 1,
-    name: 'Rishik Sahu',
-    designation: 'Web Developer',
-    division: 'IT'
-  }, {
-    id: 2,
-    name: 'Suma Chapa',
-    designation: 'Backend Developer Developer',
-    division: 'IT'
-  }, {
-    id: 3,
-    name: 'Bhavya Boddeti',
-    designation: 'Senior',
-    division: 'Overseas'
-  }, {
-    id: 1,
-    name: 'Avinash Mukundan',
-    designation: 'Cheif',
-    division: 'Tech Services'
-  }, {
-    id: 1,
-    name: 'Rishik Sahu',
-    designation: 'Web Developer',
-    division: 'IT'
-  },])
-
   const {setTitle} = usePageTitle()
-
-
   const [isLoading, setIsLoading] = useState(false)
 
+  const [candidateList, setCandidateList] = useState([])
 
   const navigate = useNavigate()
-
 
   const handleSearch = async (e) => {
     e.preventDefault()
