@@ -7,17 +7,76 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+const data = [{
+  candidate_first_name: 'Rishik',
+  candidate_last_name: 'Sahu',
+  bill_start: '22-10-2023',
+  bill_end: '22-10-2023',
+  assignment_status: 'Assigned',
+  job_title: 'Web Developer',
+  working_state: 'Jharkhand',
+  assignment_division: 'IT',
+  client_contact: 'Bhavya B.',
+
+},{
+  candidate_first_name: 'Rishik',
+  candidate_last_name: 'Sahu',
+  bill_start: '22-10-2023',
+  pay_start: '22-10-2023',
+  bill_end: '22-10-2023',
+  pay_end: '22-10-2023',
+  assignment_status: 'Assigned',
+  job_title: 'Web Developer',
+  working_state: 'Jharkhand',
+  assignment_division: 'IT',
+  client_contact: 'Bhavya B.',
+
+},{
+  candidate_first_name: 'Rishik',
+  candidate_last_name: 'Sahu',
+  bill_start: '22-10-2023',
+  pay_start: '22-10-2023',
+  bill_end: '22-10-2023',
+  pay_end: '22-10-2023',
+  assignment_status: 'Assigned',
+  job_title: 'Web Developer',
+  working_state: 'Jharkhand',
+  assignment_division: 'IT',
+  client_contact: 'Bhavya B.',
+
+},{
+  candidate_first_name: 'Rishik',
+  candidate_last_name: 'Sahu',
+  bill_start: '22-10-2023',
+  pay_start: '22-10-2023',
+  bill_end: '22-10-2023',
+  pay_end: '22-10-2023',
+  assignment_status: 'Assigned',
+  job_title: 'Web Developer',
+  working_state: 'Jharkhand',
+  assignment_division: 'IT',
+  client_contact: 'Bhavya B.',
+
+},{
+  candidate_first_name: 'Rishik',
+  candidate_last_name: 'Sahu',
+  bill_start: '22-10-2023',
+  pay_start: '22-10-2023',
+  bill_end: '22-10-2023',
+  pay_end: '22-10-2023',
+  assignment_status: 'Assigned',
+  job_title: 'Web Developer',
+  working_state: 'Jharkhand',
+  assignment_division: 'IT',
+  client_contact: 'Bhavya B.',
+  
+},
+]
+
+const rows = data.map((item) => {
+  return {...item, name: item.candidate_first_name + " " + item.candidate_last_name}
+})
 
 const AssignmentDashboardTable = () => {
   return (
@@ -28,16 +87,23 @@ const AssignmentDashboardTable = () => {
             <TableCell sx={{
                 position: 'sticky',
                 left: 0,
-                background: 'white',
-            }}>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                background: '#f0f0f0',
+                minWidth: '200px',
+            }}>Candidate Name</TableCell>
+            <TableCell align="center" sx={{minWidth: '130px'}}>Bill Start</TableCell>
+            <TableCell align="center" sx={{minWidth: '130px'}}>Bill End</TableCell>
+            <TableCell align="center" sx={{minWidth: '100px'}}>Pay Start</TableCell>
+            <TableCell align="center" sx={{minWidth: '100px'}}>Pay End</TableCell>
+            <TableCell align="center" sx={{minWidth: '150px'}}>Assignment Status</TableCell>
+            <TableCell align="center" sx={{minWidth: '100px'}}>Job Title</TableCell>
+            <TableCell align="center" sx={{minWidth: '100px'}}>Division</TableCell>
+            <TableCell align="center" sx={{minWidth: '150px'}}>Working State</TableCell>
+            <TableCell align="center" sx={{minWidth: '150px'}}>Client Contact</TableCell>
+            <TableCell align="center" sx={{minWidth: '150px'}}>Primary Recruiter</TableCell>
+            <TableCell align="center" sx={{minWidth: '150px'}}>Primary Sales</TableCell>
+            <TableCell align="center" sx={{minWidth: '150px'}}>Start Entered</TableCell>
+            <TableCell align="center" sx={{minWidth: '100px'}}>Reference</TableCell>
+center
           </TableRow>
         </TableHead>
         <TableBody>
@@ -49,14 +115,20 @@ const AssignmentDashboardTable = () => {
               <TableCell component="th" scope="row" sx={{
                 position: 'sticky',
                 left: 0,
-                background: 'white',
+                background: '#f0f0f0',
+                
               }}>
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="center">{row.bill_start}</TableCell>
+              <TableCell align="center">{row.bill_end}</TableCell>
+              <TableCell align="center">{row.pay_start}</TableCell>
+              <TableCell align="center">{row.pay_end}</TableCell>
+              <TableCell align="center">{row.assignment_status}</TableCell>
+              <TableCell align="center">{row.job_title}</TableCell>
+              <TableCell align="center">{row.assignment_division}</TableCell>
+              <TableCell align="center">{row.working_state}</TableCell>
+              <TableCell align="center">{row.client_contact}</TableCell>
             </TableRow>
           ))}
         </TableBody>
