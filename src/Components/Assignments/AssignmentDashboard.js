@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import axiosp from '../../Utils/axiosConfig'
 import { useNavigate } from 'react-router-dom'
 import usePageTitle from '../../hooks/usePageTitle'
+import AssignmentDashboardTable from './AssignmentDashboardTable'
 
 const AssignmentDashboard = () => {
 
@@ -96,6 +97,8 @@ const AssignmentDashboard = () => {
       </form>
 
       <Box sx={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+
+        <AssignmentDashboardTable/>
 
         {isLoading
           ? <CircularProgress />
