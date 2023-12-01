@@ -96,7 +96,6 @@ const AddAssignment = () => {
         }
     }
 
-
     const handleSubmitClick = async (e) => {
         e.preventDefault()
 
@@ -161,7 +160,6 @@ const AddAssignment = () => {
 
     }
     const {setTitle} = usePageTitle()
-
 
     useEffect(() => {
         setTitle('Add Assignment')
