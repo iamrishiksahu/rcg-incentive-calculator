@@ -148,37 +148,54 @@ const MyTimeSheet = () => {
       paddingX: '2rem',
     }}>
 
+
+
+
       <Box sx={{
         display: 'flex',
-        justifyContent: 'flex-end',
+        justifyContent: 'space-between',
         gap: '1rem',
         marginBottom: '1rem'
       }}>
 
-        <Button
-          onClick={() => window.print()}
+        <Box
           sx={{
-            textTransform: 'none',
-            display: 'flex',
-            gap: '0.5rem'
+            display: 'center',
+            alignItems: 'center'
           }}>
-          <span class="material-symbols-outlined">
-            print
-          </span>
 
-          Print</Button>
+          Current Week: Nov 20, 2023 to Nov 26, 2023
+        </Box>
 
-        <Button
-          sx={{
-            textTransform: 'none',
-            display: 'flex',
-            gap: '0.5rem'
-          }}>
-          <span class="material-symbols-outlined">
-            forward_to_inbox
-          </span>
+        <Box sx={{display: 'flex', gap: '1rem'}}>
+          <Button
+            onClick={() => window.print()}
+            sx={{
+              textTransform: 'none',
+              display: 'flex',
+              gap: '0.5rem'
+            }}>
+            <span class="material-symbols-outlined">
+              print
+            </span>
 
-          Email  </Button>
+            Print</Button>
+
+          <Button
+            sx={{
+              textTransform: 'none',
+              display: 'flex',
+              gap: '0.5rem'
+            }}>
+            <span class="material-symbols-outlined">
+              forward_to_inbox
+            </span>
+
+            Email  </Button>
+
+        </Box>
+
+
 
       </Box>
 

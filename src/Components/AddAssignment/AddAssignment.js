@@ -160,7 +160,12 @@ const AddAssignment = () => {
 
 
     }
+    const {setTitle} = usePageTitle()
 
+
+    useEffect(() => {
+        setTitle('Add Assignment')
+    }, [])
 
     return (
 
