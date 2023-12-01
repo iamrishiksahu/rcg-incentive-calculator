@@ -11,65 +11,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Typography } from '@mui/material';
 
 
-const data = [{
-  id: '1',
-  candidate_first_name: 'Rishik',
-  candidate_last_name: 'Sahu',
-  bill_start: '22-10-2023',
-  pay_start: '22-10-2023',
-  bill_end: '22-10-2023',
-  pay_end: '22-10-2023',
-  assignment_status: 'Assigned',
-  job_title: 'Web Developer',
-  working_state: 'Jharkhand',
-  assignment_division: 'IT',
-  client_contact: 'Bhavya B.',
-  primary_recruiter: 'Ravi K V',
-  primary_sales: '34',
-  start_entered: '24-11-2000',
-  optional_ref: '124582'
-}, {
-  id: '1',
-  candidate_first_name: 'Rishik',
-  candidate_last_name: 'Sahu',
-  bill_start: '22-10-2023',
-  pay_start: '22-10-2023',
-  bill_end: '22-10-2023',
-  pay_end: '22-10-2023',
-  assignment_status: 'Assigned',
-  job_title: 'Web Developer',
-  working_state: 'Jharkhand',
-  assignment_division: 'IT',
-  client_contact: 'Bhavya B.',
-  primary_recruiter: 'Ravi K V',
-  primary_sales: '34',
-  start_entered: '24-11-2000',
-  optional_ref: '124582'
-}, {
-  id: '1',
-  candidate_first_name: 'Rishik',
-  candidate_last_name: 'Sahu',
-  bill_start: '22-10-2023',
-  pay_start: '22-10-2023',
-  bill_end: '22-10-2023',
-  pay_end: '22-10-2023',
-  assignment_status: 'Assigned',
-  job_title: 'Web Developer',
-  working_state: 'Jharkhand',
-  assignment_division: 'IT',
-  client_contact: 'Bhavya B.',
-  primary_recruiter: 'Ravi K V',
-  primary_sales: '34',
-  start_entered: '24-11-2000',
-  optional_ref: '124582'
-},
-]
 
-const rows = data.map((item) => {
-  return { ...item, name: item.candidate_first_name + " " + item.candidate_last_name }
-})
 
-const AssignmentDashboardTable = () => {
+const AssignmentDashboardTable = ({data}) => {
+  
+  
+  const rows = data.map((item) => {
+    return { ...item, name: item.candidate_first_name + " " + item.candidate_last_name }
+  })
 
   return (
     <TableContainer component={Paper} className='table-container'>
@@ -93,6 +42,7 @@ const AssignmentDashboardTable = () => {
             <TableCell align="center" sx={{ minWidth: '150px' }}>Client Contact</TableCell>
             <TableCell align="center" sx={{ minWidth: '150px' }}>Primary Recruiter</TableCell>
             <TableCell align="center" sx={{ minWidth: '150px' }}>Primary Sales</TableCell>
+            <TableCell align="center" sx={{ minWidth: '100px' }}>Spread</TableCell>
             <TableCell align="center" sx={{ minWidth: '150px' }}>Start Entered</TableCell>
             <TableCell align="center" sx={{ minWidth: '120px' }}>Optional Ref #</TableCell>
           </TableRow>
@@ -125,6 +75,7 @@ const AssignmentDashboardTable = () => {
               <TableCell align="center">{row.client_contact}</TableCell>
               <TableCell align="center">{row.primary_recruiter}</TableCell>
               <TableCell align="center">{row.primary_sales}</TableCell>
+              <TableCell align="center">{row.spread}</TableCell>
               <TableCell align="center">{row.start_entered}</TableCell>
               <TableCell align="center">{row.optional_ref}</TableCell>
             </TableRow>

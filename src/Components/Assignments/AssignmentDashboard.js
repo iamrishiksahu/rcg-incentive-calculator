@@ -7,10 +7,101 @@ import AssignmentDashboardTable from './AssignmentDashboardTable'
 
 const AssignmentDashboard = () => {
 
-  const {setTitle} = usePageTitle()
+  const { setTitle } = usePageTitle()
   const [isLoading, setIsLoading] = useState(false)
 
-  const [candidateList, setCandidateList] = useState([])
+  const [data, setData] = useState([{
+    id: '1',
+    candidate_first_name: 'Rishik',
+    candidate_last_name: 'Sahu',
+    bill_start: '22-10-2023',
+    pay_start: '22-10-2023',
+    bill_end: '22-10-2023',
+    pay_end: '22-10-2023',
+    assignment_status: 'Assigned',
+    job_title: 'Web Developer',
+    working_state: 'Jharkhand',
+    assignment_division: 'IT',
+    client_contact: 'Bhavya B.',
+    primary_recruiter: 'Ravi K V',
+    primary_sales: '34',
+    start_entered: '24-11-2000',
+    optional_ref: '124582',
+    spread: '$10'
+  },{
+    id: '1',
+    candidate_first_name: 'Rishik',
+    candidate_last_name: 'Sahu',
+    bill_start: '22-10-2023',
+    pay_start: '22-10-2023',
+    bill_end: '22-10-2023',
+    pay_end: '22-10-2023',
+    assignment_status: 'Assigned',
+    job_title: 'Web Developer',
+    working_state: 'Jharkhand',
+    assignment_division: 'IT',
+    client_contact: 'Bhavya B.',
+    primary_recruiter: 'Ravi K V',
+    primary_sales: '34',
+    start_entered: '24-11-2000',
+    optional_ref: '124582',
+    spread: '$10'
+  },{
+    id: '1',
+    candidate_first_name: 'Rishik',
+    candidate_last_name: 'Sahu',
+    bill_start: '22-10-2023',
+    pay_start: '22-10-2023',
+    bill_end: '22-10-2023',
+    pay_end: '22-10-2023',
+    assignment_status: 'Assigned',
+    job_title: 'Web Developer',
+    working_state: 'Jharkhand',
+    assignment_division: 'IT',
+    client_contact: 'Bhavya B.',
+    primary_recruiter: 'Ravi K V',
+    primary_sales: '34',
+    start_entered: '24-11-2000',
+    optional_ref: '124582',
+    spread: '$10'
+  }, {
+    id: '1',
+    candidate_first_name: 'Rishik',
+    candidate_last_name: 'Sahu',
+    bill_start: '22-10-2023',
+    pay_start: '22-10-2023',
+    bill_end: '22-10-2023',
+    pay_end: '22-10-2023',
+    assignment_status: 'Assigned',
+    job_title: 'Web Developer',
+    working_state: 'Jharkhand',
+    assignment_division: 'IT',
+    client_contact: 'Bhavya B.',
+    primary_recruiter: 'Ravi K V',
+    primary_sales: '34',
+    start_entered: '24-11-2000',
+    optional_ref: '124582',
+    spread: '$10'
+  }, {
+    id: '1',
+    candidate_first_name: 'Rishik',
+    candidate_last_name: 'Sahu',
+    bill_start: '22-10-2023',
+    pay_start: '22-10-2023',
+    bill_end: '22-10-2023',
+    pay_end: '22-10-2023',
+    assignment_status: 'Assigned',
+    job_title: 'Web Developer',
+    working_state: 'Jharkhand',
+    assignment_division: 'IT',
+    client_contact: 'Bhavya B.',
+    primary_recruiter: 'Ravi K V',
+    primary_sales: '34',
+    start_entered: '24-11-2000',
+    optional_ref: '124582',
+    spread: '$10'
+  },
+  ])
 
   const navigate = useNavigate()
 
@@ -25,7 +116,7 @@ const AssignmentDashboard = () => {
 
       alert(searchTxt)
       console.log(res.data)
-      setCandidateList(res.data)
+      setData(res.data)
     } catch (err) {
       console.log(err)
     } finally {
@@ -39,7 +130,7 @@ const AssignmentDashboard = () => {
     try {
       const res = await axiosp.get('/candidate_details')
       console.log(res.data)
-      setCandidateList(res.data)
+      setData(res.data)
     } catch (err) {
       console.log(err)
     } finally {
@@ -96,40 +187,18 @@ const AssignmentDashboard = () => {
 
       </form>
 
-      <Box sx={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+      <Box sx={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center'}}>
 
-        <AssignmentDashboardTable/>
 
-        {isLoading
+
+        {isLoading || !data
           ? <CircularProgress />
-          : candidateList?.map((item, idx) => {
-            return (
-              <Box
-                onClick={() => navigate(`/dashboard/add-assignment/${item.id}`)}
-                sx={{
-                  "&:hover": {
-                    transform: 'scale(1.02)'
-                  },
-                  cursor: 'pointer',
-                  borderRadius: '1rem',
-                  backgroundColor: 'var(--white)',
-                  padding: '1.5rem',
-                  boxSizing: 'border-box',
-                  width: '24%',
-                  minWidth: 'max-content',
-                  transition: 'all 200ms ease'
+          : data?
 
-                }}>
+            <AssignmentDashboardTable data={data} />
+            :<></>
 
-                <Typography fontWeight={500} variant='body1'>{item.name}</Typography>
-                <Typography variant='body2'>{item.designation}</Typography>
-                <Typography fontWeight={200} variant='body2'>{item.division}</Typography>
-
-
-              </Box>
-
-            )
-          })}
+        }
 
       </Box>
 
