@@ -35,6 +35,7 @@ const AddCandidate = () => {
                 country: e.target.country.value,
                 personal_mobile_number: e.target.personal_phone.value,
                 Emergency_mobile_number: e.target.secondary_phone.value,
+                user_role: e.target.user_role.value,
 
                 start_date: refStartDate.current.value,
                 job_title: e.target.job_title.value,
