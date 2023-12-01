@@ -20,6 +20,14 @@ const PayUnit = [
     { label: '/ Mo', value: 2},
     { label: '/ Yr', value: 3},
 ]
+const UserRoles = [
+    { label: 'Employee', value: 1983},
+    { label: 'HR', value: 8961},
+    { label: 'Finance', value: 8924},
+    { label: 'Manager', value: 7893},
+    { label: 'Supervisor', value: 9578},
+    { label: 'Admin', value: 3892},
+]
 
 const WorkLocationList =[
     'Remote',
@@ -38,4 +46,4 @@ const DummyWorkList = [
     'Main Project'
 ]
 
-export {DivisionsList, AmountUnitList, CurrencyList, WorkLocationList, PayUnit, DummyCandidateList, DummyWorkList}
+export {DivisionsList, AmountUnitList, CurrencyList, WorkLocationList, PayUnit, DummyCandidateList, DummyWorkList, UserRoles}

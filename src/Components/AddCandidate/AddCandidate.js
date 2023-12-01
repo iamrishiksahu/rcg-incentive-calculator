@@ -5,7 +5,7 @@ import { TextFieldGroupContainer } from '../../CustomElements/Containers/TexFiel
 import { DatePicker } from '@mui/x-date-pickers'
 import { useRef } from 'react'
 import axiosp from '../../Utils/axiosConfig'
-import { PayUnit } from '../../Utils/constants'
+import { PayUnit, UserRoles } from '../../Utils/constants'
 import usePageTitle from '../../hooks/usePageTitle'
 const AddCandidate = () => {
 
@@ -145,8 +145,15 @@ const AddCandidate = () => {
                 </TextFieldGroupContainer>
 
 
-                <TextFieldGroupContainer cols='1fr'>
+                <TextFieldGroupContainer cols='1fr 1fr'>
                     <TextField name='job_title' variant='outlined' size='small' label='Job Title' />
+
+                    <Autocomplete
+                        disablePortal
+                        options={UserRoles}
+                        renderInput={(params) => <TextField {...params} ariant='outlined' size='small' name='user_role' label="Role" />}
+                    />
+                   
                 </TextFieldGroupContainer>
 
                 <TextFieldGroupContainer cols='1fr 2fr 1fr'>
