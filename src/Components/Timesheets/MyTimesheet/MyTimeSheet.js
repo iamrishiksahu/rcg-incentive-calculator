@@ -1,9 +1,15 @@
-import { Box, Button } from '@mui/material'
-import React, { useEffect } from 'react'
+import { Box, Button, Paper } from '@mui/material'
+import React, { useEffect, useState } from 'react'
 import TimeSheetTable from './TimeSheetTable'
 import usePageTitle from '../../../hooks/usePageTitle'
+import DateWeekPicker from '../../../CustomElements/DateRangePicker/DateRangePicker'
+import { Typography } from '@mui/material'
+import dayjs from 'dayjs';
+import { DateCalendar } from '@mui/x-date-pickers'
+import { getWeekDateRange } from '../../../Utils/dateUtils'
+import { format } from 'date-fns'
 
-const cols = ['Week Start', 'Week End', 'Project', 'Total Hours', 'Status']
+const cols = ['Day', 'Regular', 'Double Time', 'Over Time', 'Expenses', 'Status']
 
 const rows = [
   {
@@ -139,6 +145,14 @@ const MyTimeSheet = () => {
 
   const { setTitle } = usePageTitle()
 
+  const [selectedDate, setSelectedDate] = useState(dayjs(format(Date.now(), 'yyyy-MM-dd')))
+  const [dateRange, setDateRange] = useState(getWeekDateRange(selectedDate, 'mon'))
+
+  useEffect(() => {
+    setDateRange(getWeekDateRange(selectedDate, 'mon'))
+  }, [selectedDate])
+  
+
   useEffect(() => {
     setTitle('My Timesheet')
   }, [])
@@ -146,60 +160,113 @@ const MyTimeSheet = () => {
   return (
     <Box sx={{
       paddingX: '2rem',
+      display: 'flex',
+      gap: '2rem'
     }}>
-
-
-
 
       <Box sx={{
         display: 'flex',
-        justifyContent: 'space-between',
-        gap: '1rem',
-        marginBottom: '1rem'
+        flexDirection: 'column',
+        gap: '2rem'
       }}>
 
-        <Box
-          sx={{
-            display: 'center',
-            alignItems: 'center'
-          }}>
+        <Paper sx={{
+          paddingRight: '1rem',
+        }}>
+          <DateCalendar
+            showDaysOutsideCurrentMonth
+            value={selectedDate} onChange={(val) => setSelectedDate(val)} />
+        </Paper>
 
-          Current Week: Nov 20, 2023 to Nov 26, 2023
-        </Box>
+        <Paper sx={{
+          padding: '1rem'
+        }}>
 
-        <Box sx={{display: 'flex', gap: '1rem'}}>
-          <Button
-            onClick={() => window.print()}
-            sx={{
-              textTransform: 'none',
-              display: 'flex',
-              gap: '0.5rem'
-            }}>
-            <span class="material-symbols-outlined">
-              print
-            </span>
+          <Typography variant='h6' >Holidays</Typography>
+          <Typography variant='body1' >No Holidays This Month!</Typography>
+        </Paper>
 
-            Print</Button>
+        <Paper sx={{
+          padding: '1rem'
+        }}>
 
-          <Button
-            sx={{
-              textTransform: 'none',
-              display: 'flex',
-              gap: '0.5rem'
-            }}>
-            <span class="material-symbols-outlined">
-              forward_to_inbox
-            </span>
-
-            Email  </Button>
-
-        </Box>
+          <Typography variant='h6' >Clarifications</Typography>
+          <Typography variant='body1' >No Clarification Requests!</Typography>
+        </Paper>
 
 
 
       </Box>
 
-      <TimeSheetTable rows={rows} cols={cols} />
+      <Box sx={{ width: '100%' }}>
+
+        <Paper sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          gap: '1rem',
+          marginBottom: '1rem',
+          backgroundColor: 'var(--white)',
+          padding: '.5492rem 1rem',
+          borderRadius: '0.25rem',
+          // marginBottom: '-0rem',
+          // borderRadius: 0
+        }}>
+
+          <Box
+            sx={{
+              display: 'center',
+              alignItems: 'center'
+            }}>
+
+            <Typography variant='body1' sx={{
+              backgroundColor: 'var(--color-primary-light-2)',
+              color: 'var(--color-text-2)',
+              padding: '0.25rem 1rem',
+              borderRadius: '1rem'
+            }}>
+
+              Selected Week: {dateRange?.startOfWeek + ' to ' + dateRange?.endOfWeek}
+            </Typography>
+
+
+
+          </Box>
+
+          <Box sx={{ display: 'flex', gap: '1rem' }}>
+            <Button
+              onClick={() => window.print()}
+              sx={{
+                textTransform: 'none',
+                display: 'flex',
+                gap: '0.5rem'
+              }}>
+              <span class="material-symbols-outlined">
+                print
+              </span>
+
+              Print</Button>
+
+            <Button
+              sx={{
+                textTransform: 'none',
+                display: 'flex',
+                gap: '0.5rem'
+              }}>
+              <span class="material-symbols-outlined">
+                forward_to_inbox
+              </span>
+
+              Email  </Button>
+
+          </Box>
+
+
+
+        </Paper>
+
+        <TimeSheetTable rows={rows} cols={cols} dateRange={dateRange}/>
+      </Box>
+
 
     </Box>
   )

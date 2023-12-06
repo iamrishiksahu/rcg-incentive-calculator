@@ -91,7 +91,9 @@ const AddCandidate = () => {
 
         <form className='parent' onSubmit={handleSubmitClick} >
 
-            <div className='card'>
+            <div className='card' style={{
+                // boxShadow: 'var(--shadow-card-1)',
+            }}>
 
                 <h3>Add Candidate Details</h3>
 

@@ -28,7 +28,7 @@ const AssignmentDashboard = () => {
     start_entered: '24-11-2000',
     optional_ref: '124582',
     spread: '$10'
-  },{
+  }, {
     id: '1',
     candidate_first_name: 'Rishik',
     candidate_last_name: 'Sahu',
@@ -46,7 +46,7 @@ const AssignmentDashboard = () => {
     start_entered: '24-11-2000',
     optional_ref: '124582',
     spread: '$10'
-  },{
+  }, {
     id: '1',
     candidate_first_name: 'Rishik',
     candidate_last_name: 'Sahu',
@@ -187,16 +187,15 @@ const AssignmentDashboard = () => {
 
       </form>
 
-      <Box sx={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center'}}>
+      <Box sx={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
 
 
 
         {isLoading || !data
           ? <CircularProgress />
-          : data?
-
+          : data ?
             <AssignmentDashboardTable data={data} />
-            :<></>
+            : <></>
 
         }
 

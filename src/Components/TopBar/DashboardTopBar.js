@@ -6,6 +6,7 @@ import PageTitleContext from '../../context/PageTitleProvider'
 import usePageTitle from '../../hooks/usePageTitle'
 const DashboardTopBar = () => {
 
+
   const { title, setTitle } = usePageTitle()
 
   const getTitle = () => {
@@ -59,7 +60,7 @@ const DashboardTopBar = () => {
         minHeight: '5rem',
       }}
     >
-      <H3>{title}</H3>
+      <H3 sx={{fontWeight: '500'}}>{title}</H3>
 
       {/* Acount Actions Bar */}
       <Box sx={{

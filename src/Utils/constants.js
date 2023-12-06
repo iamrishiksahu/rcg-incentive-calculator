@@ -14,6 +14,17 @@ const CurrencyList = [
     { label: '$ (US Dollars)', value: 2},
     { label: '£ (Pound)', value: 3},
 ]
+const BillingUnitsList = [
+    { label: 'Hours', value: 1},
+    { label: 'Days', value: 2},
+]
+const PayFrequencyList = [
+    { label: 'Weekly', value: 7},
+    { label: 'Bi-Weekly', value: 14},
+    { label: 'Monthly', value: 30},
+    { label: 'Semi-Monthly', value: 15},
+    { label: 'Monthly', value: 3},
+]
 const PayUnit = [
     { label: '/ Hr', value: 1},
     { label: '/ Dy', value: 2},
@@ -46,4 +57,4 @@ const DummyWorkList = [
     'Main Project'
 ]
 
-export {DivisionsList, AmountUnitList, CurrencyList, WorkLocationList, PayUnit, DummyCandidateList, DummyWorkList, UserRoles}
+export {DivisionsList, AmountUnitList, CurrencyList, WorkLocationList, PayUnit, DummyCandidateList, DummyWorkList, UserRoles, PayFrequencyList, BillingUnitsList}

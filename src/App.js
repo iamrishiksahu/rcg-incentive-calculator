@@ -8,18 +8,19 @@ import Login5 from './Components/Auth/Login/Login5';
 import Dashboard from './Components/Dashboard/Dashboard';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { LightTheme } from './Utils/LightTheme';
 import NoInternetConnection from './Wrappers/NoInternet';
 import { Provider } from 'react-redux';
 import store from './app/store';
 import RequireAuth from './Wrappers/RequireAuth';
 import ForgotPassword from './Components/Auth/ForgotPassword/ForgotPassword';
 import ResetPassword from './Components/Auth/ResetPassword/ResetPassword';
+import { LightThemeBlue } from './Utils/themes/LightThemeBlue';
+import { LightThemeRed } from './Utils/themes/LightThemeRed';
 
 
 function App() {
 
-  const [theme, setTheme] = useState(LightTheme);
+  const [theme, setTheme] = useState(LightThemeRed);
 
   return (
     <ThemeProvider theme={theme}>

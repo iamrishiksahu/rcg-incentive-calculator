@@ -2,9 +2,8 @@ import React, { useRef, useState } from 'react'
 import { Box, Button, TextField, Autocomplete, FormControlLabel, Switch, Checkbox } from '@mui/material'
 // import './AddAssignment.css'
 import { TextFieldGroupContainer } from '../../../CustomElements/Containers/TexFieldGroupContainer';
-
 import { DatePicker } from '@mui/x-date-pickers';
-import { DivisionsList, CurrencyList } from '../../../Utils/constants';
+import { DivisionsList, CurrencyList, PayFrequencyList, BillingUnitsList } from '../../../Utils/constants';
 import PurchaseOrderPopup from '../../PurchaseOrderPopup/PurchaseOrderPopup';
 
 
@@ -85,7 +84,7 @@ const AABillingDetails = ({ setFormData, handleNext, handleBack }) => {
 
                 <FormControlLabel sx={{
                     mt: '-1rem'
-                }} control={<Switch defaultChecked />} label="Aprove" />
+                }} control={<Switch defaultChecked />} label="Approve" />
             </Box>
 
 
@@ -100,7 +99,12 @@ const AABillingDetails = ({ setFormData, handleNext, handleBack }) => {
                     renderInput={(params) => <TextField {...params} ariant='outlined' size='small' inputRef={refCurrency} label="Currency" />}
                 />
 
-                <TextField inputRef={refBillingUnit} variant='outlined' size='small' label='Billing Units' />
+                
+            <Autocomplete
+                    disablePortal
+                    options={BillingUnitsList}
+                    renderInput={(params) => <TextField {...params} ariant='outlined' size='small' inputRef={refBillingUnit} label="Billing Units" />}
+                />
             </TextFieldGroupContainer>
 
 
@@ -120,7 +124,11 @@ const AABillingDetails = ({ setFormData, handleNext, handleBack }) => {
             </TextFieldGroupContainer>
             <TextFieldGroupContainer cols='1fr 1fr'>
 
-                <TextField required inputRef={refPaymentFrequency} variant='outlined' size='small' label='Frequency' />
+            <Autocomplete
+                    disablePortal
+                    options={PayFrequencyList}
+                    renderInput={(params) => <TextField {...params} ariant='outlined' size='small' inputRef={refPaymentFrequency} label="Frequency" />}
+                />
                 <TextField required inputRef={refMargin} variant='outlined' size='small' label='Margin' />
 
             </TextFieldGroupContainer>

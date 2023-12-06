@@ -21,11 +21,18 @@ h2 {
   font-size: 10rem;
 }
 
+
+
+/*  BLUE */
 :root{
-  --color-primary: #b50101;
-  --color-primary-dark: #9e0000;
+  --color-primary: #1a6efc;
+  --color-primary-dark: #185acc;
   --color-primary-light: #ffeeee;
   --color-primary-light-2: #ffffff;
+  --shadow-card-1: 0 0 0.5rem #1a6efc20;
+
+  --color-card-bg: #f7f9fc;
+
 
 
   /* --color-primary: #d11b21;
@@ -43,7 +50,8 @@ h2 {
   --color-success: #41f1b6;
   --color-warning: #ffbb55;
   --color-white: #fff;
-  --color-main-bg: #f8f8f8;
+  /* --color-main-bg: #f8f8f8; */
+  --color-main-bg: #f7f9fc;
   --white: #fff;
   --black: #000;
   --color-info-dark: #7d8da1;
@@ -69,6 +77,61 @@ h2 {
   --box-shadow: 0 2rem 3rem var(--color-light);
 
 }
+
+/* red */
+:root{
+  --color-primary: #b50101;
+  --color-primary-dark: #9e0000;
+  --color-primary-light: #ffeeee;
+  --color-primary-light-2: #FFF9F9;
+  --color-text-1: #444;
+  --color-text-2: #747070;
+  --color-text-3: #7d8da1;
+
+
+  /* --color-primary: #d11b21;
+  --color-primary-dark: #1f1f70;
+  --color-primary-light: #fbcbcb;
+  --color-primary-light-2: #fff3f3; */
+
+  /* --color-primary: #1092de;
+  --color-primary-dark: #009ffa;
+  --color-primary-light: #d2efff;
+  --color-primary-light-2: #eef9ff;  */
+
+  /* --color-primary: #7380ec; */
+  --color-danger:#ff7782;
+  --color-success: #41f1b6;
+  --color-warning: #ffbb55;
+  --color-white: #fff;
+  --color-main-bg: #f8f8f8;
+  /* --color-main-bg: #ffffff; */
+  --color-card-bg: #111314;
+  --white: #fff;
+  --black: #000;
+  --color-info-dark: #7d8da1;
+  --color-info-light: #dce1eb;
+  --color-dark: #363949;
+  --color-light: rgba(132, 139, 200, 0.18);
+  --color-primary-variant: #111e88;
+  --color-dark-variant: #677483;
+  --color-background: #f6f6f9;
+  --white: #ffffff;
+  --card-border-radius: 2rem;
+  --color-text:  #363949;
+
+  --bg-gradient-1: linear-gradient(to top,var(--color-primary-light), var(--white));
+
+  --border-radius-1: 0.4rem;
+  --border-radius-2: 0.8rem;
+  --border-radius-3: 1.2rem;
+
+  --card-padding: 1.8rem;
+  --padding-1: 1.2rem;
+
+  --box-shadow: 0 2rem 3rem var(--color-light);
+
+} 
 
 
 /* Styling Google Material Symbols */

@@ -9,7 +9,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { Button, TableHead, Typography } from '@mui/material';
+import { Button, TableHead, TextField, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
@@ -18,74 +18,93 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import { useNavigate } from 'react-router-dom';
 import SubmitTimesheetPopup from './SubmitTimesheetPopup';
+import dayjs from 'dayjs';
+import { getDayShortName } from '../../../Utils/dateUtils';
+import { useEffect } from 'react';
 
-function TablePaginationActions(props) {
-    const theme = useTheme();
-    const { count, page, rowsPerPage, onPageChange } = props;
 
-    const handleFirstPageButtonClick = (event) => {
-        onPageChange(event, 0);
-    };
+const getNthDay = (currDay, n) => {
 
-    const handleBackButtonClick = (event) => {
-        onPageChange(event, page - 1);
-    };
+    const currentDate = new Date(currDay);
+    const nextDate = new Date(currentDate);
+    nextDate.setDate(currentDate.getDate() + n);
+    return [nextDate, nextDate.getDay()]
 
-    const handleNextButtonClick = (event) => {
-        onPageChange(event, page + 1);
-    };
-
-    const handleLastPageButtonClick = (event) => {
-        onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-    };
-
-    return (
-        <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-            <IconButton
-                onClick={handleFirstPageButtonClick}
-                disabled={page === 0}
-                aria-label="first page"
-            >
-                {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
-            </IconButton>
-            <IconButton
-                onClick={handleBackButtonClick}
-                disabled={page === 0}
-                aria-label="previous page"
-            >
-                {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-            </IconButton>
-            <IconButton
-                onClick={handleNextButtonClick}
-                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                aria-label="next page"
-            >
-                {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-            </IconButton>
-            <IconButton
-                onClick={handleLastPageButtonClick}
-                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                aria-label="last page"
-            >
-                {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
-            </IconButton>
-        </Box>
-    );
 }
 
-TablePaginationActions.propTypes = {
-    count: PropTypes.number.isRequired,
-    onPageChange: PropTypes.func.isRequired,
-    page: PropTypes.number.isRequired,
-    rowsPerPage: PropTypes.number.isRequired,
-};
-
-
-const TimeSheetTable = ({rows, cols}) => {
+const TimeSheetTable = ({ rows, cols, dateRange }) => {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [open, setOpen] = React.useState(false)
     const [rowData, setRowData] = React.useState(null)
+
+    const dateDayArray = []
+    const rowsData = []
+
+
+    for (let i = 0; i < 7; i++) {
+        const nthDay = getNthDay(dateRange.startOfWeek, i)
+        dateDayArray.push({
+
+            date: dayjs(nthDay[0]).format('DD-MM-YYYY'),
+            day: getDayShortName(nthDay[1])
+        }
+        )
+    }
+
+
+    for (let i = 0; i < 7; i++) {
+        rowsData.push({
+            date: dateDayArray[i].date,
+            day: dateDayArray[i].day,
+            regular: <TextField
+                name={`tf_regular_${i}`}
+                variant='outlined'
+                type='number'
+                placeholder={dateDayArray[i].day}
+                size='small'
+
+            />,
+            overtime: <TextField
+                name={`tf_overtime_${i}`}
+                variant='outlined'
+                type='number'
+                placeholder={dateDayArray[i].day}
+                size='small'
+
+            />,
+            doubletime: <TextField
+                name={`tf_doubletime_${i}`}
+                variant='outlined'
+                type='number'
+                placeholder={dateDayArray[i].day}
+                size='small'
+
+            />,
+            expenses: <TextField
+                name={`tf_expenses_${i}`}
+                variant='outlined'
+                type='number'
+                placeholder={dateDayArray[i].day}
+                size='small'
+
+            />,
+            status: 'Submitted'
+        }
+
+        )
+    }
+
+
+
+
+
+
+    console.log(dateDayArray)
+
+
+
+    console.log(rowsData)
 
     const navigate = useNavigate()
 
@@ -115,7 +134,7 @@ const TimeSheetTable = ({rows, cols}) => {
                     maxWidth: 'max-content',
                     margin: 'auto'
                 }}
-    
+
                 >
                     Submitted
                 </Typography>
@@ -132,7 +151,7 @@ const TimeSheetTable = ({rows, cols}) => {
         } else {
             <>Invalid Status</>
         }
-    
+
     }
 
     const handleChangeRowsPerPage = (event) => {
@@ -156,36 +175,36 @@ const TimeSheetTable = ({rows, cols}) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {(rowsPerPage > 0
-                        ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        : rows
-                    ).map((row) => (
-                        <TableRow key={row.week_start}>
-                            <TableCell component="th" scope="row">
-                                {row.week_start}
-                            </TableCell>
-                            <TableCell component="th" scope="row">
-                                {row.week_end}
-                            </TableCell>
-                            <TableCell  >
-                                {row.project_name}
-                            </TableCell>
-                            <TableCell align='center' >
-                                {row.hours_worked}
-                            </TableCell>
-                            <TableCell align='center'>
-                                {renderTimesheetStatus(row)}
+                        {(rowsData).map((row, idx) => (
+                            <TableRow key={idx}>
+                                <TableCell width='120px' component="th" scope="row">
+                                    {row.date}
+                                </TableCell>
+                                <TableCell component="th" scope="row" >
+                                    {row.regular}
+                                </TableCell>
+                                <TableCell   >
+                                    {row.doubletime}
+                                </TableCell>
+                                <TableCell  >
+                                    {row.overtime}
+                                </TableCell>
+                                <TableCell  >
+                                    {row.expenses}
+                                </TableCell>
+                                <TableCell align='center'>
+                                    {renderTimesheetStatus(row)}
 
-                            </TableCell>
-                        </TableRow>
-                    ))}
+                                </TableCell>
+                            </TableRow>
+                        ))}
                     {emptyRows > 0 && (
                         <TableRow style={{ height: 53 * emptyRows }}>
                             <TableCell colSpan={6} />
                         </TableRow>
                     )}
                 </TableBody>
-                <TableFooter>
+                {/* <TableFooter>
                     <TableRow>
                         <TablePagination
                             rowsPerPageOptions={[5, 10, 15, 20, 25, { label: 'All', value: 1 }]}
@@ -204,7 +223,7 @@ const TimeSheetTable = ({rows, cols}) => {
                             ActionsComponent={TablePaginationActions}
                         />
                     </TableRow>
-                </TableFooter>
+                </TableFooter> */}
             </Table>
         </TableContainer>
 
