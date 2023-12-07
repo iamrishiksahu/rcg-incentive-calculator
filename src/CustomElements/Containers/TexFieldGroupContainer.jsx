@@ -8,6 +8,7 @@ const TextFieldGroupContainer = (props) => {
                 gridTemplateColumns: props.cols,
                 minWidth: '100%',
                 maxWidth: '100%',
+                ...props.sx
             }} >
 
             {props.children}

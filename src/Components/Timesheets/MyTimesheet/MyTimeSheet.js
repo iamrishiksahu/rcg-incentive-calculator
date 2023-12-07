@@ -17,7 +17,7 @@ const rows = [
     week_end: '26-11-2023',
     project_name: 'IC App Project',
     hours_worked: 40,
-    status: 'Submitted',
+    status: 'Not Submitted',
   },
   {
     week_start: '20-11-2023',

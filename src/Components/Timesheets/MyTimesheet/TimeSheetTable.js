@@ -1,26 +1,11 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableFooter from '@mui/material/TableFooter';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import { Button, TableHead, TextField, Typography } from '@mui/material';
+import { Button, Stack, TableHead, TextField, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
 import { useNavigate } from 'react-router-dom';
 import SubmitTimesheetPopup from './SubmitTimesheetPopup';
 import dayjs from 'dayjs';
 import { getDayShortName } from '../../../Utils/dateUtils';
-import { useEffect } from 'react';
+import { TextFieldGroupContainer } from '../../../CustomElements/Containers/TexFieldGroupContainer';
 
 
 const getNthDay = (currDay, n) => {
@@ -31,6 +16,10 @@ const getNthDay = (currDay, n) => {
     return [nextDate, nextDate.getDay()]
 
 }
+
+const holidayList = [
+    '23-01-2024'
+]
 
 const TimeSheetTable = ({ rows, cols, dateRange }) => {
     const [page, setPage] = React.useState(0);
@@ -89,22 +78,11 @@ const TimeSheetTable = ({ rows, cols, dateRange }) => {
                 size='small'
 
             />,
-            status: 'Submitted'
+            status: 'Not Submitted'
         }
 
         )
     }
-
-
-
-
-
-
-    console.log(dateDayArray)
-
-
-
-    console.log(rowsData)
 
     const navigate = useNavigate()
 
@@ -161,71 +139,104 @@ const TimeSheetTable = ({ rows, cols, dateRange }) => {
 
     return (<>
 
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-                <TableHead>
-                    <TableRow >
-                        {cols.map((item, idx) => (
-                            <TableCell key={idx} sx={{ fontWeight: '600' }}
-                                align={idx == 3 || idx == 4 ? 'center' : 'inherit'}
-                            >
-                                {item}
-                            </TableCell>
-                        ))}
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                        {(rowsData).map((row, idx) => (
-                            <TableRow key={idx}>
-                                <TableCell width='120px' component="th" scope="row">
-                                    {row.date}
-                                </TableCell>
-                                <TableCell component="th" scope="row" >
-                                    {row.regular}
-                                </TableCell>
-                                <TableCell   >
-                                    {row.doubletime}
-                                </TableCell>
-                                <TableCell  >
-                                    {row.overtime}
-                                </TableCell>
-                                <TableCell  >
-                                    {row.expenses}
-                                </TableCell>
-                                <TableCell align='center'>
-                                    {renderTimesheetStatus(row)}
+        <form>
+            <Paper sx={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
 
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    {emptyRows > 0 && (
-                        <TableRow style={{ height: 53 * emptyRows }}>
-                            <TableCell colSpan={6} />
-                        </TableRow>
-                    )}
-                </TableBody>
-                {/* <TableFooter>
-                    <TableRow>
-                        <TablePagination
-                            rowsPerPageOptions={[5, 10, 15, 20, 25, { label: 'All', value: 1 }]}
-                            colSpan={3}
-                            count={rows.length}
-                            rowsPerPage={rowsPerPage}
-                            page={page}
-                            SelectProps={{
-                                inputProps: {
-                                    'aria-label': 'rows per page',
-                                },
-                                native: true,
-                            }}
-                            onPageChange={handleChangePage}
-                            onRowsPerPageChange={handleChangeRowsPerPage}
-                            ActionsComponent={TablePaginationActions}
-                        />
-                    </TableRow>
-                </TableFooter> */}
-            </Table>
-        </TableContainer>
+                <Typography variant='h6'>Enter timesheet</Typography>
+                <TextFieldGroupContainer cols={'1.2fr repeat(7, 1fr)'} sx={{
+
+                    alignItems: 'center',
+                    gap: '1rem'
+                }} direction='row'>
+                    <Typography></Typography>
+                    {rowsData.map((item, idx) => {
+                        return (
+                            <Typography key={idx} align='center' color={'var(--color-info-dark)'}>{item.date.substring(0, 5)}</Typography>
+                        )
+                    })}
+
+                </TextFieldGroupContainer>
+                <TextFieldGroupContainer cols={'1.2fr repeat(7, 1fr)'} sx={{
+                    borderBottom: '1px solid var(--color-info-light)',
+                    paddingBottom: '1rem',
+                    alignItems: 'center',
+                    gap: '1rem'
+                }} direction='row'>
+                    <Typography>Regular</Typography>
+
+                    {rowsData.map((item, idx) => {
+                        return (
+                            <TextField key={idx} size='small' variant='outlined' name={`tf_regular_${idx}`} placeholder={item.day}  disabled={(item.day == 'Sat' || item.day == 'Sun' || holidayList.includes(item.date))? true : false}/>
+                        )
+                    })}
+
+                </TextFieldGroupContainer>
+
+                <TextFieldGroupContainer cols={'1.2fr repeat(7, 1fr)'} sx={{
+                    borderBottom: '1px solid var(--color-info-light)',
+                    paddingBottom: '1rem',
+                    alignItems: 'center',
+                    gap: '1rem'
+                }} direction='row'>
+                    <Typography>Over Time</Typography>
+                    {rowsData.map((item, idx) => {
+                        return (
+                            <TextField key={idx} size='small' variant='outlined' name={`tf_overtime_${idx}`} placeholder={item.day}  disabled={(item.day == 'Sat' || item.day == 'Sun' || holidayList.includes(item.date))? true : false} />
+                        )
+                    })}
+                </TextFieldGroupContainer>
+                <TextFieldGroupContainer cols={'1.2fr repeat(7, 1fr)'} sx={{
+                    borderBottom: '1px solid var(--color-info-light)',
+                    paddingBottom: '1rem',
+                    alignItems: 'center',
+                    gap: '1rem'
+                }} direction='row'>
+                    <Typography>Double Time</Typography>
+                    {rowsData.map((item, idx) => {
+                        return (
+                            <TextField key={idx} size='small' variant='outlined' name={`tf_doubletime_${idx}`} placeholder={item.day} 
+                            disabled={(item.day == 'Sat' || item.day == 'Sun' || holidayList.includes(item.date))? true : false}/>
+                        )
+                    })}
+                </TextFieldGroupContainer>
+                <TextFieldGroupContainer cols={'1.2fr repeat(7, 1fr)'} sx={{
+
+                    alignItems: 'center',
+                    gap: '1rem'
+                }} direction='row'>
+                    <Typography>Expenses</Typography>
+                    {rowsData.map((item, idx) => {
+                        return (
+                            <TextField key={idx} size='small' variant='outlined' name={`tf_expenses_${idx}`} placeholder={item.day} 
+                            disabled={(item.day == 'Sat' || item.day == 'Sun' || holidayList.includes(item.date))? true : false}
+                            />
+                        )
+                    })}
+
+                </TextFieldGroupContainer>
+
+                <Stack sx={{ marginTop: '2rem' }} direction={'row'} justifyContent={'space-between'}>
+
+
+                    <Typography >Additional Details</Typography>
+                    <Stack
+                    sx={{
+                        color: 'var(--color-primary-dark)'
+                    }}
+                     direction={'row'} spacing={'0.5rem'} alignItems={'center'}>
+                        <span class="material-symbols-outlined">
+                            attachment
+                        </span>
+                        <Typography>Attach</Typography>
+                    </Stack>
+                </Stack>
+                <TextField variant='outlined' size='small' placeholder='Enter details (if any)' minRows={'3'} multiline type='text' />
+
+
+
+            </Paper>
+        </form>
+
 
         <SubmitTimesheetPopup open={open} setOpen={setOpen} rowData={rowData} />
     </>
