@@ -219,13 +219,13 @@ const MyTimeSheet = () => {
             }}>
 
             <Typography variant='body1' sx={{
-              backgroundColor: 'var(--color-primary-light-2)',
-              color: 'var(--color-text-2)',
+              backgroundColor: 'var(--color-primary-light)',
+              color: 'var(--color-text-1)',
               padding: '0.25rem 1rem',
               borderRadius: '1rem'
             }}>
 
-              Selected Week: {dateRange?.startOfWeek + ' to ' + dateRange?.endOfWeek}
+              Selected Week: <span style={{fontWeight: '500'}}>{dateRange?.startOfWeek + ' to ' + dateRange?.endOfWeek}</span>
             </Typography>
 
 

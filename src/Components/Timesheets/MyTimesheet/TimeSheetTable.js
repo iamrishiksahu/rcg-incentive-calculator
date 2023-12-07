@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { Button, Stack, TableHead, TextField, Typography } from '@mui/material';
+import React, {useRef, useState} from 'react';
+import { Button, Fab, Stack, TableHead, TextField, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import { useNavigate } from 'react-router-dom';
 import SubmitTimesheetPopup from './SubmitTimesheetPopup';
@@ -26,7 +26,14 @@ const TimeSheetTable = ({ rows, cols, dateRange }) => {
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [open, setOpen] = React.useState(false)
     const [rowData, setRowData] = React.useState(null)
+    const [fileAttachment, setFileAttachment] = useState(null)
+    
+    const additionalDetailsAttachementRef = useRef()
 
+    const handleFileSelect =(e)=>{
+        const file = e.target.files[0]
+        setFileAttachment(file)
+    }
     const dateDayArray = []
     const rowsData = []
 
@@ -142,16 +149,33 @@ const TimeSheetTable = ({ rows, cols, dateRange }) => {
         <form>
             <Paper sx={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
 
-                <Typography variant='h6'>Enter timesheet</Typography>
-                <TextFieldGroupContainer cols={'1.2fr repeat(7, 1fr)'} sx={{
+                <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} sx={{ marginBottom: '0.5rem', marginTop: '-0.5rem' }} >
+                    <Typography variant='h6'>Enter Timesheet</Typography>
 
+                    <Stack direction={'row'}>
+
+                        <Button variant='text'>Reset</Button>
+                        <Button variant='outlined'>Submit</Button>
+
+                    </Stack>
+
+                </Stack>
+
+                <TextFieldGroupContainer cols={'1.2fr repeat(7, 1fr)'} sx={{
                     alignItems: 'center',
-                    gap: '1rem'
+                    gap: '1rem',
+                    backgroundColor: 'var(--color-main-bg)',
+                    padding: '0.25rem 0rem',
+                    borderRadius: '0.5rem'
                 }} direction='row'>
                     <Typography></Typography>
                     {rowsData.map((item, idx) => {
                         return (
-                            <Typography key={idx} align='center' color={'var(--color-info-dark)'}>{item.date.substring(0, 5)}</Typography>
+                            <Typography key={idx} align='center'
+                                color={'var(--color-info-dark)'}
+                            >
+                                {item.date.substring(0, 5)}
+                            </Typography>
                         )
                     })}
 
@@ -166,7 +190,7 @@ const TimeSheetTable = ({ rows, cols, dateRange }) => {
 
                     {rowsData.map((item, idx) => {
                         return (
-                            <TextField key={idx} size='small' variant='outlined' name={`tf_regular_${idx}`} placeholder={item.day}  disabled={(item.day == 'Sat' || item.day == 'Sun' || holidayList.includes(item.date))? true : false}/>
+                            <TextField key={idx} size='small' variant='outlined' name={`tf_regular_${idx}`} placeholder={item.day} disabled={(item.day == 'Sat' || item.day == 'Sun' || holidayList.includes(item.date)) ? true : false} />
                         )
                     })}
 
@@ -181,7 +205,7 @@ const TimeSheetTable = ({ rows, cols, dateRange }) => {
                     <Typography>Over Time</Typography>
                     {rowsData.map((item, idx) => {
                         return (
-                            <TextField key={idx} size='small' variant='outlined' name={`tf_overtime_${idx}`} placeholder={item.day}  disabled={(item.day == 'Sat' || item.day == 'Sun' || holidayList.includes(item.date))? true : false} />
+                            <TextField key={idx} size='small' variant='outlined' name={`tf_overtime_${idx}`} placeholder={item.day} disabled={(item.day == 'Sat' || item.day == 'Sun' || holidayList.includes(item.date)) ? true : false} />
                         )
                     })}
                 </TextFieldGroupContainer>
@@ -194,8 +218,8 @@ const TimeSheetTable = ({ rows, cols, dateRange }) => {
                     <Typography>Double Time</Typography>
                     {rowsData.map((item, idx) => {
                         return (
-                            <TextField key={idx} size='small' variant='outlined' name={`tf_doubletime_${idx}`} placeholder={item.day} 
-                            disabled={(item.day == 'Sat' || item.day == 'Sun' || holidayList.includes(item.date))? true : false}/>
+                            <TextField key={idx} size='small' variant='outlined' name={`tf_doubletime_${idx}`} placeholder={item.day}
+                                disabled={(item.day == 'Sat' || item.day == 'Sun' || holidayList.includes(item.date)) ? true : false} />
                         )
                     })}
                 </TextFieldGroupContainer>
@@ -207,8 +231,8 @@ const TimeSheetTable = ({ rows, cols, dateRange }) => {
                     <Typography>Expenses</Typography>
                     {rowsData.map((item, idx) => {
                         return (
-                            <TextField key={idx} size='small' variant='outlined' name={`tf_expenses_${idx}`} placeholder={item.day} 
-                            disabled={(item.day == 'Sat' || item.day == 'Sun' || holidayList.includes(item.date))? true : false}
+                            <TextField key={idx} size='small' variant='outlined' name={`tf_expenses_${idx}`} placeholder={item.day}
+                                disabled={(item.day == 'Sat' || item.day == 'Sun' || holidayList.includes(item.date)) ? true : false}
                             />
                         )
                     })}
@@ -219,15 +243,34 @@ const TimeSheetTable = ({ rows, cols, dateRange }) => {
 
 
                     <Typography >Additional Details</Typography>
+
+
                     <Stack
-                    sx={{
-                        color: 'var(--color-primary-dark)'
-                    }}
-                     direction={'row'} spacing={'0.5rem'} alignItems={'center'}>
+                        sx={{
+                            color: 'var(--color-primary-dark)',
+                            cursor: 'pointer',
+                            transition: 'all 100ms ease',
+                            '&:hover': {
+                                transform: 'scale(1.07)'
+                            }
+                        }}
+                        onClick={() => additionalDetailsAttachementRef.current.click()}
+                        direction={'row'} spacing={'0.5rem'} alignItems={'center'}>
+
+                        {fileAttachment? <Typography color={'var(--color-text-2)'} fontSize={'0.9rem'}>{fileAttachment.name}</Typography>: null}
+
                         <span class="material-symbols-outlined">
                             attachment
                         </span>
                         <Typography>Attach</Typography>
+                         {/* Hidden file input */}
+                        <input
+                            type="file"
+                            ref={additionalDetailsAttachementRef}
+                            style={{ display: 'none' }}
+                            onChange={handleFileSelect}
+                        />
+
                     </Stack>
                 </Stack>
                 <TextField variant='outlined' size='small' placeholder='Enter details (if any)' minRows={'3'} multiline type='text' />
