@@ -87,6 +87,9 @@ h2 {
   --color-text-1: #444;
   --color-text-2: #747070;
   --color-text-3: #7d8da1;
+  --blue: #1a6efc;
+  --blue-2: #4585f3;
+  --blue-3: #dde9ff;
 
 
   /* --color-primary: #d11b21;
@@ -100,9 +103,11 @@ h2 {
   --color-primary-light-2: #eef9ff;  */
 
   /* --color-primary: #7380ec; */
-  --color-danger:#ff7782;
+  --color-success-bg:#defff5;
   --color-success: #41f1b6;
   --color-warning: #ffbb55;
+  --color-warning-bg: #fff4e2;
+  --color-danger:#ff7782;
   --color-white: #fff;
   --color-main-bg: #f8f8f8;
   /* --color-main-bg: #ffffff; */

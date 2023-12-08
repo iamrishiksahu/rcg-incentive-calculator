@@ -5,8 +5,17 @@ const CandidateListItem = ({data}) => {
   return (
     <Box sx={{
 
-        borderBottom: '1px solid #00000020',
-        padding: '1rem'
+        // borderBottom: '1px solid #00000020',
+        boxShadow: '0px 0 0.25rem #00000010',
+        backgroundColor: 'var(--color-main-bg)',
+        borderRadius: '1rem',
+        padding: '1rem',
+        margin: '1rem',
+        cursor: 'pointer',
+        transition: 'all 100ms ease',
+        '&:hover': {
+          backgroundColor: '#00000012'
+        }
 
     }}>
 
