@@ -7,7 +7,7 @@ import AssignmentDashboardTable from './AssignmentDashboardTable'
 
 const AssignmentDashboard = () => {
 
-  const { setTitle } = usePageTitle()
+  const { setTitleProps } = usePageTitle()
   const [isLoading, setIsLoading] = useState(false)
 
   const [data, setData] = useState([{
@@ -140,7 +140,7 @@ const AssignmentDashboard = () => {
 
   useEffect(() => {
     loadCandidates()
-    setTitle('Assignment Dashboard')
+    setTitleProps({title: 'Assignment Dashboard'})
 
   }, [])
 

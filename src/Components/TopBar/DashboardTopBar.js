@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { H2, H3, PText, Small } from '../../CustomElements/Typography/Typgraphy'
-import { Box, IconButton } from '@mui/material'
+import { Box, IconButton, Stack } from '@mui/material'
 import { getHours } from 'date-fns'
 import PageTitleContext from '../../context/PageTitleProvider'
 import usePageTitle from '../../hooks/usePageTitle'
+import { useNavigate } from 'react-router-dom'
 const DashboardTopBar = () => {
 
 
-  const { title, setTitle } = usePageTitle()
+  const { titleProps } = usePageTitle()
+  const navigate = useNavigate()
 
   const getTitle = () => {
     const url = window.location.href
@@ -33,7 +35,7 @@ const DashboardTopBar = () => {
 
   useEffect(() => {
     // setTitle(getTitle())
-  }, [title])
+  }, [titleProps])
 
   const getGreetingText = () => {
     let hrs = new Date()
@@ -60,7 +62,16 @@ const DashboardTopBar = () => {
         minHeight: '5rem',
       }}
     >
-      <H3 sx={{fontWeight: '500'}}>{title}</H3>
+      <Stack direction={'row'} alignItems={'center'}>
+
+        {titleProps.goBack? <IconButton onClick={() => navigate(titleProps.goBack)}>
+          <span class="material-symbols-outlined" style={{fontSize: '1.25rem'}}>
+            arrow_back_ios
+          </span>
+        </IconButton> : <></> }
+       
+        <H3 sx={{ fontWeight: '500' }}>{titleProps.title}</H3>
+      </Stack>
 
       {/* Acount Actions Bar */}
       <Box sx={{

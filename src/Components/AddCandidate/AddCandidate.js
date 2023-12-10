@@ -82,10 +82,10 @@ const AddCandidate = () => {
 
     }
 
-    const {setTitle} = usePageTitle()
+    const {setTitleProps} = usePageTitle()
 
     useEffect(() => {
-        setTitle('Add Candidate')
+        setTitleProps({title: 'Add Candidate'})
     }, [])
     return (
 

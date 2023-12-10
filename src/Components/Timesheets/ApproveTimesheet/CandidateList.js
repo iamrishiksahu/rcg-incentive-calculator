@@ -13,6 +13,7 @@ const CandidateList = ({ list, setList }) => {
             "::-webkit-scrollbar": {
                 display: 'none'
             },
+            minWidth: 'max-content',
             // backgroundColor: 'var(--white)',
             // display: 'flex',
             // boxShadow: '0 0 1rem #00000010',,
@@ -31,6 +32,7 @@ const CandidateList = ({ list, setList }) => {
                 placeholder='Search candidate'
                 fullWidth
                 InputProps={{
+                    
                     startAdornment: (
                         <InputAdornment position="start">
 

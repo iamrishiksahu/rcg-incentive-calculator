@@ -143,7 +143,7 @@ const rows = [
 
 const MyTimeSheet = () => {
 
-  const { setTitle } = usePageTitle()
+  const { setTitleProps } = usePageTitle()
 
   const [selectedDate, setSelectedDate] = useState(dayjs(format(Date.now(), 'yyyy-MM-dd')))
   const [dateRange, setDateRange] = useState(getWeekDateRange(selectedDate, 'mon'))
@@ -154,7 +154,7 @@ const MyTimeSheet = () => {
   
 
   useEffect(() => {
-    setTitle('My Timesheet')
+    setTitleProps({title:'My Timesheet'})
   }, [])
 
   return (
@@ -264,7 +264,7 @@ const MyTimeSheet = () => {
 
         </Paper>
 
-        <TimeSheetTable rows={rows} cols={cols} dateRange={dateRange}/>
+        <TimeSheetTable  source={'CANDIDATE'} dateRange={dateRange}/>
       </Box>
 
 

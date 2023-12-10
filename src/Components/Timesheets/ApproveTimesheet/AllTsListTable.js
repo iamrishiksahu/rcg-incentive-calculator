@@ -7,29 +7,39 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import dayjs from 'dayjs';
+import { useNavigate } from 'react-router-dom';
 
 const columns = [
-  { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'department', label: 'Department', minWidth: 100 },
+  { id: 'name', label: 'Name', width: 130 },
+  { id: 'department', label: 'Department',  width: 130 },
+  { id: 'company', label: 'Company',  width: 130  },
   {
     id: 'week_ending',
     label: 'Week Ending',
-    minWidth: 170,
+    width: 170,
     align: 'center',
     format: (value) => value.toLocaleString('en-US'),
   },
   {
     id: 'total_hours',
     label: 'Total Hours',
-    minWidth: 170,
+    width: 170,
+    align: 'center',
+    // format: (value) => value.toLocaleString('en-US'),
+  },
+  {
+    id: 'submitted_at',
+    label: 'Submitted At',
+    width: 180,
     align: 'center',
     // format: (value) => value.toLocaleString('en-US'),
   },
   {
     id: 'status',
     label: 'Status',
-    minWidth: 170,
+    width: 10,
     align: 'center',
     // format: (value) => value.toLocaleString('en-US'),
   },
@@ -42,48 +52,55 @@ function createData(name, code, population, size) {
 }
 
 const rows = [
-  {
+ {
     name: 'Rishik Sahu',
     department: 'IT',
     total_hours: '40',
-    week_ending: '08-Dec-2024',
-    status: 'approved'
+    week_ending: '10-Dec-2023',
+    status: 'pending',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
   }, {
     name: 'Rishik Sahu',
     department: 'IT',
     total_hours: '40',
-    week_ending: '08-Dec-2024',
-    status: 'submitted'
+    week_ending: '10-Dec-2023',
+    status: 'rejected',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
   }, {
     name: 'Rishik Sahu',
     department: 'IT',
     total_hours: '40',
-    week_ending: '08-Dec-2024',
-    status: 'rejected'
+    week_ending: '10-Dec-2023',
+    status: 'pending',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
   }, {
     name: 'Rishik Sahu',
     department: 'IT',
     total_hours: '40',
-    week_ending: '08-Dec-2024',
-    status: 'submitted'
+    week_ending: '10-Dec-2023',
+    status: 'pending',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
   }, {
     name: 'Rishik Sahu',
     department: 'IT',
     total_hours: '40',
-    week_ending: '08-Dec-2024',
-    status: 'submitted'
-  }, {
-    name: 'Rishik Sahu',
-    department: 'IT',
-    total_hours: '40',
-    week_ending: '08-Dec-2024',
-    status: 'submitted'
+    week_ending: '10-Dec-2023',
+    status: 'pending',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
   },
 ];
 
 export default function AllTsListTable() {
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const navigate = useNavigate()
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -94,9 +111,15 @@ export default function AllTsListTable() {
     setPage(0);
   };
 
+  const handleTimesheetItemClick = (row) => {
+
+    navigate(`/dashboard/approve-timesheet/${row.name}/${row.week_ending}`)
+
+  }
+
   const renderStatus = (status) => {
     const bgColor =
-      status == 'submitted' ? 'var(--color-warning-bg)'
+      status == 'pending' ? 'var(--color-warning-bg)'
         : status == 'approved' ? 'var(--color-success-bg)'
           : status == 'clarification' ? 'var(--color-warning-bg)'
             : status == 'rejected' ? 'var(--color-primary-light)'
@@ -119,15 +142,14 @@ export default function AllTsListTable() {
   }
 return (
   <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-    <TableContainer sx={{ maxHeight: 440 }}>
-      <Table stickyHeader aria-label="sticky table">
+    <TableContainer component={Box} sx={{ maxHeight: 440}}>
+      <Table >
         <TableHead>
           <TableRow>
-            {columns.map((column) => (
+          {columns.map((column) => (
               <TableCell
-                key={column.id}
                 align={column.align}
-                style={{ minWidth: column.minWidth }}
+                style={{ width: column.width }}
               >
                 {column.label}
               </TableCell>
@@ -143,14 +165,16 @@ return (
                 sx={{
                   cursor: 'pointer'
                 }}
-                onClick={() => {alert(JSON.stringify(row))}}
+                onClick={() => handleTimesheetItemClick(row)}
                 hover role="checkbox" tabIndex={-1} key={row.code}>
 
                   <TableCell align={columns[0].align}>{row.name}</TableCell>
                   <TableCell align={columns[1].align}>{row.department}</TableCell>
-                  <TableCell align={columns[2].align}>{row.week_ending}</TableCell>
-                  <TableCell align={columns[3].align}>{row.total_hours}</TableCell>
-                  <TableCell align={columns[4].align}>{renderStatus(row.status)}</TableCell>
+                  <TableCell align={columns[2].align}>{row.company}</TableCell>
+                  <TableCell align={columns[3].align}>{row.week_ending}</TableCell>
+                  <TableCell align={columns[4].align}>{row.total_hours}</TableCell>
+                  <TableCell align={columns[5].align}>{row.submitted_at}</TableCell>
+                  <TableCell align={columns[6].align}>{renderStatus(row.status)}</TableCell>
                 </TableRow>
               );
             })}

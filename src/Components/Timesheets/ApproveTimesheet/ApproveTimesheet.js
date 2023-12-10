@@ -9,7 +9,7 @@ import IconContainer from '../../../CustomElements/Containers/IconContainer'
 
 const ApproveTimesheet = () => {
 
-    const { setTitle } = usePageTitle()
+    const { setTitleProps } = usePageTitle()
 
     const [candidateList, setCandidateList] = useState([
         {
@@ -81,7 +81,7 @@ const ApproveTimesheet = () => {
     ])
 
     useEffect(() => {
-        setTitle('Approve Timesheet')
+        setTitleProps({ title: 'Approve Timesheet' })
     }, [])
     return (
 
@@ -105,7 +105,7 @@ const ApproveTimesheet = () => {
                     }}>
 
 
-                        <NumericStatBox sx={{backgroundColor: 'var(--color-primary-light)'}}>
+                        <NumericStatBox >
                             <Typography variant='body2'>Total</Typography>
                             <Typography variant='h6'>64</Typography>
                             <IconContainer
@@ -117,7 +117,7 @@ const ApproveTimesheet = () => {
                                 size={'2rem'}
                             />
                         </NumericStatBox>
-                        <NumericStatBox sx={{backgroundColor: 'var(--color-warning-bg)'}}>
+                        <NumericStatBox >
                             <Typography variant='body2'>Pending</Typography>
                             <Typography variant='h6'>64</Typography>
                             <IconContainer
@@ -129,7 +129,7 @@ const ApproveTimesheet = () => {
                                 size={'2rem'}
                             />
                         </NumericStatBox>
-                        <NumericStatBox  sx={{backgroundColor: 'var(--color-success-bg)'}}>
+                        <NumericStatBox  >
                             <Typography variant='body2'>Approved</Typography>
                             <Typography variant='h6'>64</Typography>
                             <IconContainer
@@ -141,7 +141,7 @@ const ApproveTimesheet = () => {
                                 size={'2rem'}
                             />
                         </NumericStatBox>
-                        <NumericStatBox sx={{backgroundColor: 'var(--blue-3)'}}>
+                        <NumericStatBox >
                             <Typography variant='body2'>Clarification Pending</Typography>
                             <Typography variant='h6'>64</Typography>
                             <IconContainer
@@ -168,6 +168,7 @@ const ApproveTimesheet = () => {
                     paddingBottom: '1rem',
                 }}>
                     <CandidateList list={candidateList} />
+
                     <ApproveDashboard />
 
                 </Box>
@@ -181,7 +182,6 @@ const ApproveTimesheet = () => {
 
 const NumericStatBox = styled(Stack)({
     boxShadow: '2px 2px 0.25rem #00000008',
-    // border: '1px solid #00000006',
     borderRadius: '1rem',
     backgroundColor: 'var(--white)',
     padding: '1rem 2rem',

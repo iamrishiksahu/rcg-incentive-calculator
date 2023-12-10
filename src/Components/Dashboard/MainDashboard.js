@@ -14,7 +14,7 @@ const MainDashboard = () => {
 
     const navigate = useNavigate()
 
-    const { setTitle } = usePageTitle()
+    const { setTitleProps } = usePageTitle()
 
 
     const [candidateList, setCandidateList] = useState([])
@@ -33,7 +33,7 @@ const MainDashboard = () => {
 
     useEffect(() => {
         loadCandidates()
-        setTitle('Dashboard')
+        setTitleProps({title: 'Dashboard'})
     }, [])
 
 

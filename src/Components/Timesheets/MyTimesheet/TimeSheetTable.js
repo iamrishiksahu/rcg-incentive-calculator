@@ -1,11 +1,12 @@
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 import { Button, Fab, Stack, TableHead, TextField, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import { useNavigate } from 'react-router-dom';
-import SubmitTimesheetPopup from './SubmitTimesheetPopup';
+import SubmitTimesheetPopup from '../ApproveTimesheet/TimesheetClarificationPopup';
 import dayjs from 'dayjs';
-import { getDayShortName } from '../../../Utils/dateUtils';
+import { getDayShortName, getMonthShortNameFromNumber } from '../../../Utils/dateUtils';
 import { TextFieldGroupContainer } from '../../../CustomElements/Containers/TexFieldGroupContainer';
+import TimesheetClarificationPopup from '../ApproveTimesheet/TimesheetClarificationPopup';
 
 
 const getNthDay = (currDay, n) => {
@@ -21,16 +22,18 @@ const holidayList = [
     '23-01-2024'
 ]
 
-const TimeSheetTable = ({ rows, cols, dateRange }) => {
+const TimeSheetTable = ({ dateRange, source }) => {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
-    const [open, setOpen] = React.useState(false)
+    const [clarificationDialog, setClarificationDialog] = React.useState(false)
     const [rowData, setRowData] = React.useState(null)
     const [fileAttachment, setFileAttachment] = useState(null)
-    
+
+    const isApprover = source == 'APPROVER'
+
     const additionalDetailsAttachementRef = useRef()
 
-    const handleFileSelect =(e)=>{
+    const handleFileSelect = (e) => {
         const file = e.target.files[0]
         setFileAttachment(file)
     }
@@ -94,8 +97,7 @@ const TimeSheetTable = ({ rows, cols, dateRange }) => {
     const navigate = useNavigate()
 
     // Avoid a layout jump when reaching the last page with empty rows.
-    const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -103,7 +105,7 @@ const TimeSheetTable = ({ rows, cols, dateRange }) => {
 
     const handleSubmitTimeSheet = (row) => {
         // navigate(`/submit-timesheet/${JSON.stringify(row)}`)
-        setOpen(true) // open the submit timesheet dialog
+        // open the submit timesheet dialog
         setRowData(row)
     }
 
@@ -150,14 +152,22 @@ const TimeSheetTable = ({ rows, cols, dateRange }) => {
             <Paper sx={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
 
                 <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} sx={{ marginBottom: '0.5rem', marginTop: '-0.5rem' }} >
-                    <Typography variant='h6'>Enter Timesheet</Typography>
+                    <Typography variant='h6'> {source == 'APPROVER' ? 'Week Ending: ' + dateRange.endOfWeek : 'Enter Timehseet'}</Typography>
 
-                    <Stack direction={'row'}>
+                    {
+                        isApprover
+                            ? <Stack direction={'row'}>
+                                <Button variant='text'>Reject</Button>
+                                <Button variant='text' onClick={() => setClarificationDialog(true)}>Ask Clarifciation</Button>
+                                <Button variant='outlined'>Approve</Button>
+                            </Stack>
+                            : <Stack direction={'row'}>
+                                <Button variant='text'>Reset</Button>
+                                <Button variant='outlined'>Submit</Button>
+                            </Stack>
+                    }
 
-                        <Button variant='text'>Reset</Button>
-                        <Button variant='outlined'>Submit</Button>
 
-                    </Stack>
 
                 </Stack>
 
@@ -168,13 +178,14 @@ const TimeSheetTable = ({ rows, cols, dateRange }) => {
                     padding: '0.25rem 0rem',
                     borderRadius: '0.5rem'
                 }} direction='row'>
+                    {/* Empty Column */}
                     <Typography></Typography>
                     {rowsData.map((item, idx) => {
                         return (
                             <Typography key={idx} align='center'
                                 color={'var(--color-info-dark)'}
                             >
-                                {item.date.substring(0, 5)}
+                                {item.date.toString().substring(0, 3) + getMonthShortNameFromNumber(item.date.toString().substring(3, 5))}
                             </Typography>
                         )
                     })}
@@ -254,16 +265,21 @@ const TimeSheetTable = ({ rows, cols, dateRange }) => {
                                 transform: 'scale(1.07)'
                             }
                         }}
-                        onClick={() => additionalDetailsAttachementRef.current.click()}
+                        
+                        onClick={() => {
+                            !isApprover?
+                            additionalDetailsAttachementRef.current.click()
+                            : console.log()
+                        }}
                         direction={'row'} spacing={'0.5rem'} alignItems={'center'}>
 
-                        {fileAttachment? <Typography color={'var(--color-text-2)'} fontSize={'0.9rem'}>{fileAttachment.name}</Typography>: null}
+                        {fileAttachment ? <Typography color={'var(--color-text-2)'} fontSize={'0.9rem'}>{fileAttachment.name}</Typography> : null}
 
                         <span class="material-symbols-outlined">
                             attachment
                         </span>
                         <Typography>Attach</Typography>
-                         {/* Hidden file input */}
+                        {/* Hidden file input */}
                         <input
                             type="file"
                             ref={additionalDetailsAttachementRef}
@@ -273,15 +289,13 @@ const TimeSheetTable = ({ rows, cols, dateRange }) => {
 
                     </Stack>
                 </Stack>
-                <TextField variant='outlined' size='small' placeholder='Enter details (if any)' minRows={'3'} multiline type='text' />
-
-
+                <TextField disabled={source == 'APPROVER'} variant='outlined' size='small' placeholder='Enter details (if any)' minRows={'3'} multiline type='text' />
 
             </Paper>
         </form>
 
+        <TimesheetClarificationPopup open={clarificationDialog} setOpen={setClarificationDialog} rowData={rowData} />
 
-        <SubmitTimesheetPopup open={open} setOpen={setOpen} rowData={rowData} />
     </>
     );
 }
