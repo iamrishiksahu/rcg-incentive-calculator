@@ -16,6 +16,7 @@
     width: 100%;
     gap: 1rem;
     box-sizing: border-box;
+    box-shadow: var(--box-shadow-2);
     background-color: var(--color-card-bg);
 }
 
