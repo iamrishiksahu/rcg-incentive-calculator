@@ -99,30 +99,30 @@ const AddCandidate = () => {
 
                 <TextFieldGroupContainer cols='1fr 1fr 1fr'>
 
-                    <TextField name='first_name' variant='outlined' size='small' label='First Name' />
+                    <TextField required name='first_name' variant='outlined' size='small' label='First Name' />
                     <TextField name='middle_name' variant='outlined' size='small' label='Middle Name' />
-                    <TextField name='last_name' variant='outlined' size='small' label='Last Name' />
+                    <TextField required name='last_name' variant='outlined' size='small' label='Last Name' />
                 </TextFieldGroupContainer>
 
                 <TextFieldGroupContainer cols='1fr 1fr'>
-                    <TextField name='primary_email' type='email' variant='outlined' size='small' label='Official Email' />
-                    <TextField name='secondary_email' type='email' variant='outlined' size='small' label='Personal Email' />
+                    <TextField required name='primary_email' type='email' variant='outlined' size='small' label='Official Email' />
+                    <TextField required name='secondary_email' type='email' variant='outlined' size='small' label='Personal Email' />
                 </TextFieldGroupContainer>
 
 
                 <TextFieldGroupContainer cols='1fr 1fr'>
-                    <TextField name='add_line_1' variant='outlined' size='small' label='Address Line 1' />
+                    <TextField required name='add_line_1' variant='outlined' size='small' label='Address Line 1' />
                     <TextField name='add_line_2' variant='outlined' size='small' label='Address Line 2' />
                 </TextFieldGroupContainer>
                 <TextFieldGroupContainer cols='1fr 1fr 1fr 1fr'>
 
-                    <TextField name='state' variant='outlined' size='small' label='State' />
-                    <TextField name='city' variant='outlined' size='small' label='City' />
-                    <TextField name='zip' type='number' variant='outlined' size='small' label='Zip Code' />
-                    <TextField name='country' variant='outlined' size='small' label='Country' />
+                    <TextField required name='state' variant='outlined' size='small' label='State' />
+                    <TextField required name='city' variant='outlined' size='small' label='City' />
+                    <TextField required name='zip' type='number' variant='outlined' size='small' label='Zip Code' />
+                    <TextField required name='country' variant='outlined' size='small' label='Country' />
                 </TextFieldGroupContainer>
                 <TextFieldGroupContainer cols='1fr 1fr'>
-                    <TextField name='personal_phone' type='number' variant='outlined' size='small' label='Personal Phone' />
+                    <TextField required name='personal_phone' type='number' variant='outlined' size='small' label='Personal Phone' />
                     <TextField name='secondary_phone' type='number' variant='outlined' size='small' label='Emergency Phone' />
                 </TextFieldGroupContainer>
                 <TextFieldGroupContainer cols='1fr'>
@@ -140,29 +140,29 @@ const AddCandidate = () => {
                 <h3>Job Details</h3>
 
                 <TextFieldGroupContainer cols='1fr 1fr'>
-                    <DatePicker inputRef={refStartDate} format='YYYY-MM-DD' slotProps={{ textField: { size: 'small' } }} label="Start Date" />
+                    <DatePicker required inputRef={refStartDate} format='YYYY-MM-DD' slotProps={{ textField: { size: 'small' } }} label="Start Date" />
 
-                    <TextField name='employment_category' variant='outlined' size='small' label='Employment Cateogry' />
+                    <TextField required name='employment_category' variant='outlined' size='small' label='Employment Cateogry' />
 
 
                 </TextFieldGroupContainer>
 
 
                 <TextFieldGroupContainer cols='1fr 1fr'>
-                    <TextField name='job_title' variant='outlined' size='small' label='Job Title' />
+                    <TextField required name='job_title' variant='outlined' size='small' label='Job Title' />
 
                     <Autocomplete
                         disablePortal
                         options={UserRoles}
-                        renderInput={(params) => <TextField {...params} ariant='outlined' size='small' name='user_role' label="Role" />}
+                        renderInput={(params) => <TextField required {...params} ariant='outlined' size='small' name='user_role' label="Role" />}
                     />
                    
                 </TextFieldGroupContainer>
 
                 <TextFieldGroupContainer cols='1fr 2fr 1fr'>
-                    <TextField name='currency' variant='outlined' size='small' label='Currency' />
+                    <TextField required name='currency' variant='outlined' size='small' label='Currency' />
 
-                    <TextField name='pay_rate' variant='outlined' size='small' label='Pay Rate' />
+                    <TextField required name='pay_rate' variant='outlined' size='small' type='number' label='Pay Rate' />
                     <Autocomplete
                         disablePortal
                         options={PayUnit}
