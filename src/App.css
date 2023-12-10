@@ -94,7 +94,6 @@ h2 {
   --box-shadow-1: 2px 2px 0.25rem #00000008,
   --box-shadow-2: 2px 2px 1rem #00000010,
 
-
   /* --color-primary: #d11b21;
   --color-primary-dark: #1f1f70;
   --color-primary-light: #fbcbcb;
@@ -146,4 +145,8 @@ h2 {
 span.size-1 {
   font-size: 1rem;
   color: var(--grey);
+}
+
+.material-symbols-outlined{
+  font-size: 1.25rem;
 }

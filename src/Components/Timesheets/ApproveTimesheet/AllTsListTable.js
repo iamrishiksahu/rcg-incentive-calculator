@@ -95,7 +95,7 @@ const rows = [
   },
 ];
 
-export default function AllTsListTable() {
+export default function AllTsListTable({selectedCandidate}) {
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);

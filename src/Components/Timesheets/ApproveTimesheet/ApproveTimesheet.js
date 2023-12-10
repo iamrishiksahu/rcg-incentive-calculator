@@ -15,37 +15,37 @@ const ApproveTimesheet = () => {
         {
             name: 'Rishik Sahu',
             profile_image: 'asdf',
-            designation: 'Web Developer',
+            designation: 'Frontend Developer',
             department: 'IT'
         }, {
-            name: 'Rishik Sahu',
+            name: 'Suma Chapa',
             profile_image: 'asdf',
-            designation: 'Web Developer',
+            designation: 'Backend Developer',
             department: 'IT'
         }, {
-            name: 'Rishik Sahu',
-            profile_image: 'asdf',
-            designation: 'Web Developer',
+            name: 'Jayamurali Krishna',
+            profile_image: 'https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D',
+            designation: 'Team Lead',
             department: 'IT'
         }, {
-            name: 'Rishik Sahu',
+            name: 'Haritha Tangudu',
             profile_image: 'asdf',
-            designation: 'Web Developer',
+            designation: 'Test Strategists',
             department: 'IT'
         }, {
-            name: 'Rishik Sahu',
-            profile_image: 'asdf',
-            designation: 'Web Developer',
+            name: 'Avinash Mukundan',
+            profile_image: 'https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D',
+            designation: 'CEO',
             department: 'IT'
         }, {
-            name: 'Rishik Sahu',
+            name: 'Bhavya Boddeti',
             profile_image: 'asdf',
-            designation: 'Web Developer',
+            designation: 'Manager',
             department: 'IT'
         }, {
-            name: 'Rishik Sahu',
-            profile_image: 'asdf',
-            designation: 'Web Developer',
+            name: 'Bhupati Venkata Krishna Kumar',
+            profile_image: 'https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D',
+            designation: 'Test Strategists',
             department: 'IT'
         }, {
             name: 'Rishik Sahu',
@@ -79,6 +79,8 @@ const ApproveTimesheet = () => {
             department: 'IT'
         },
     ])
+    const [selectedCandidate, setSelectedCandidate] = useState(null)
+    // const [selectedCandidate, setSelectedCandidate] = useState()
 
     useEffect(() => {
         setTitleProps({ title: 'Approve Timesheet' })
@@ -93,7 +95,6 @@ const ApproveTimesheet = () => {
                 paddingTop: '0rem'
             }}>
                 <Box sx={{
-                    // background: 'var(--white)',
                     borderRadius: '1rem',
                     boxShadow: '0 0 1rem #0000007'
                 }}>
@@ -167,9 +168,9 @@ const ApproveTimesheet = () => {
                     height: 'calc(100vh - 13.5rem)',
                     paddingBottom: '1rem',
                 }}>
-                    <CandidateList list={candidateList} />
+                    <CandidateList candidate={selectedCandidate} setCandidate={setSelectedCandidate} list={candidateList} />
 
-                    <ApproveDashboard />
+                    <ApproveDashboard candidate={selectedCandidate} setCandidate={setSelectedCandidate} />
 
                 </Box>
 

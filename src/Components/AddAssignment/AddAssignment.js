@@ -159,10 +159,10 @@ const AddAssignment = () => {
 
 
     }
-    const {setTitle} = usePageTitle()
+    const {setTitleProps} = usePageTitle()
 
     useEffect(() => {
-        setTitle('Add Assignment')
+        setTitleProps({title: 'Add Assignment', goBack: '/dashboard/assignments'})
     }, [])
 
     return (

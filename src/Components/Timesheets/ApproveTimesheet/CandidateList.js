@@ -3,9 +3,20 @@ import React from 'react'
 import CandidateListItem from './CandidateListItem'
 import IconContainer from '../../../CustomElements/Containers/IconContainer'
 
-const CandidateList = ({ list, setList }) => {
+const CandidateList = ({ list, setList, setCandidate }) => {
 
+    let idx = 0
+    const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#1abc9c', '#9b59b6', '#34495e', '#e67e22', '#27ae60', '#d35400']
+    const getIdx = () =>{
+        idx = idx+1
+        if(idx == colors.length) idx = 0
+        return idx
+    }
 
+    const handleCandidateClick = (data) => {
+        setCandidate(data)
+    }
+ 
     return (
         <Box sx={{
 
@@ -54,7 +65,7 @@ const CandidateList = ({ list, setList }) => {
             {list.map((item, idx) => {
 
                 return (
-                    <CandidateListItem key={idx} data={item} />
+                    <CandidateListItem key={idx} data={item} handleClick={handleCandidateClick} bgColor={colors[getIdx()]}/>
                 )
 
             })}
