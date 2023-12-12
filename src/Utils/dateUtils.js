@@ -26,7 +26,7 @@ export const getWeekDateRange = (inputDate, weekStart) => {
 
   // Set the date to the start of the week (Sunday)
   const startOfWeek = new Date(date.setDate(diff));
-  console.log(startOfWeek)
+  // console.log(startOfWeek)
 
   // Calculate the end of the week (Saturday)
   const endOfWeek = new Date(startOfWeek);
@@ -43,6 +43,21 @@ export const getWeekDateRange = (inputDate, weekStart) => {
     startOfWeek: formattedStartOfWeek.format('DD MMM, YYYY'),
     endOfWeek: formattedEndOfWeek.format('DD MMM,YYYY')
   };
+}
+
+export const getWeekStartFromEnd = (week_end) => {
+
+  // Clone the input date to avoid modifying the original date
+  const date = new Date(week_end);
+  console.log(date)
+
+
+  // Calculate the date of 7th previous day
+  const seventhPreviousDate = new Date(date);
+  seventhPreviousDate.setDate(date.getDate() - 5);
+
+  const formattedStartOfWeek = dayjs(seventhPreviousDate.toISOString().split('T')[0]).format('MM-DD-YYYY');
+  return formattedStartOfWeek
 }
 
 export const getDayShortName = (day) => {

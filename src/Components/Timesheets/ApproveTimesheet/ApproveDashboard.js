@@ -34,7 +34,7 @@ const ApproveDashboard = ({ candidate, setCandidate }) => {
       {candidate != null ?
         <Stack direction={'row'} alignItems={'center'}>
           <IconButton size='small' onClick={() => setCandidate(null)}>
-            <span class="material-symbols-outlined">
+            <span className="material-symbols-outlined">
               arrow_back_ios
             </span>
           </IconButton>

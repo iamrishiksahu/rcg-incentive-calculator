@@ -66,7 +66,7 @@ const TimesheetClarificationPopup = ({ open, setOpen, rowData }) => {
                         mr: '1rem'
                     }}>
                     Send
-                    <span class="material-symbols-outlined" style={{fontSize: '1rem', marginLeft: '0.5rem'}}>
+                    <span className="material-symbols-outlined" style={{fontSize: '1rem', marginLeft: '0.5rem'}}>
                         send
                     </span>
 

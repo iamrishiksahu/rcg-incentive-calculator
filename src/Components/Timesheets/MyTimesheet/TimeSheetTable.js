@@ -275,7 +275,7 @@ const TimeSheetTable = ({ dateRange, source }) => {
 
                         {fileAttachment ? <Typography color={'var(--color-text-2)'} fontSize={'0.9rem'}>{fileAttachment.name}</Typography> : null}
 
-                        <span class="material-symbols-outlined">
+                        <span className="material-symbols-outlined">
                             attachment
                         </span>
                         <Typography>Attach</Typography>

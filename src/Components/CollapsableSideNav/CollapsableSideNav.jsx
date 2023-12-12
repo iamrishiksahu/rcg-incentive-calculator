@@ -70,7 +70,7 @@ const CollapsableSideNav = ({ setTitle }) => {
 
                 {menuItems.map((item, idx) => {
                     return (
-                        <NavLink to={item.endpoint}>
+                        <NavLink key={idx} to={item.endpoint}>
                             <img width='21px' src={item.icon_url} alt="circle_1" />
                             {!isCollapsed && <span>{item.nav_item_name}</span>}
                         </NavLink>

@@ -65,7 +65,7 @@ const DashboardTopBar = () => {
       <Stack direction={'row'} alignItems={'center'}>
 
         {titleProps.goBack? <IconButton onClick={() => navigate(titleProps.goBack)}>
-          <span class="material-symbols-outlined">
+          <span className="material-symbols-outlined">
             arrow_back_ios
           </span>
         </IconButton> : <></> }

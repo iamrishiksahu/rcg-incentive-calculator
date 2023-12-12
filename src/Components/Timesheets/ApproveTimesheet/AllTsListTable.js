@@ -52,7 +52,167 @@ function createData(name, code, population, size) {
 }
 
 const rows = [
- {
+  {
+    name: 'Rishik Sahu',
+    department: 'IT',
+    total_hours: '40',
+    week_ending: '10-Dec-2023',
+    status: 'pending',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
+  }, {
+    name: 'Rishik Sahu',
+    department: 'IT',
+    total_hours: '40',
+    week_ending: '10-Dec-2023',
+    status: 'rejected',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
+  }, {
+    name: 'Rishik Sahu',
+    department: 'IT',
+    total_hours: '40',
+    week_ending: '10-Dec-2023',
+    status: 'pending',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
+  }, {
+    name: 'Rishik Sahu',
+    department: 'IT',
+    total_hours: '40',
+    week_ending: '10-Dec-2023',
+    status: 'pending',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
+  }, {
+    name: 'Rishik Sahu',
+    department: 'IT',
+    total_hours: '40',
+    week_ending: '10-Dec-2023',
+    status: 'pending',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
+  },{
+    name: 'Rishik Sahu',
+    department: 'IT',
+    total_hours: '40',
+    week_ending: '10-Dec-2023',
+    status: 'pending',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
+  }, {
+    name: 'Rishik Sahu',
+    department: 'IT',
+    total_hours: '40',
+    week_ending: '10-Dec-2023',
+    status: 'rejected',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
+  }, {
+    name: 'Rishik Sahu',
+    department: 'IT',
+    total_hours: '40',
+    week_ending: '10-Dec-2023',
+    status: 'pending',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
+  }, {
+    name: 'Rishik Sahu',
+    department: 'IT',
+    total_hours: '40',
+    week_ending: '10-Dec-2023',
+    status: 'pending',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
+  }, {
+    name: 'Rishik Sahu',
+    department: 'IT',
+    total_hours: '40',
+    week_ending: '10-Dec-2023',
+    status: 'pending',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
+  },{
+    name: 'Rishik Sahu',
+    department: 'IT',
+    total_hours: '40',
+    week_ending: '10-Dec-2023',
+    status: 'pending',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
+  }, {
+    name: 'Rishik Sahu',
+    department: 'IT',
+    total_hours: '40',
+    week_ending: '10-Dec-2023',
+    status: 'rejected',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
+  }, {
+    name: 'Rishik Sahu',
+    department: 'IT',
+    total_hours: '40',
+    week_ending: '10-Dec-2023',
+    status: 'pending',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
+  }, {
+    name: 'Rishik Sahu',
+    department: 'IT',
+    total_hours: '40',
+    week_ending: '10-Dec-2023',
+    status: 'pending',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
+  }, {
+    name: 'Rishik Sahu',
+    department: 'IT',
+    total_hours: '40',
+    week_ending: '10-Dec-2023',
+    status: 'pending',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
+  },{
+    name: 'Rishik Sahu',
+    department: 'IT',
+    total_hours: '40',
+    week_ending: '10-Dec-2023',
+    status: 'pending',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
+  }, {
+    name: 'Rishik Sahu',
+    department: 'IT',
+    total_hours: '40',
+    week_ending: '10-Dec-2023',
+    status: 'rejected',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
+  }, {
+    name: 'Rishik Sahu',
+    department: 'IT',
+    total_hours: '40',
+    week_ending: '10-Dec-2023',
+    status: 'pending',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
+  }, {
+    name: 'Rishik Sahu',
+    department: 'IT',
+    total_hours: '40',
+    week_ending: '10-Dec-2023',
+    status: 'pending',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
+  }, {
+    name: 'Rishik Sahu',
+    department: 'IT',
+    total_hours: '40',
+    week_ending: '10-Dec-2023',
+    status: 'pending',
+    submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
+    company: 'Rapid Tech Serv.',
+  },{
     name: 'Rishik Sahu',
     department: 'IT',
     total_hours: '40',
@@ -98,7 +258,8 @@ const rows = [
 export default function AllTsListTable({selectedCandidate}) {
 
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
 
   const navigate = useNavigate()
 
@@ -157,7 +318,7 @@ return (
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows
+        {rows
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((row) => {
               return (
@@ -182,7 +343,7 @@ return (
       </Table>
     </TableContainer>
     <TablePagination
-      rowsPerPageOptions={[10, 25, 100]}
+      rowsPerPageOptions={[5, 10, 25, 100]}
       component="div"
       count={rows.length}
       rowsPerPage={rowsPerPage}

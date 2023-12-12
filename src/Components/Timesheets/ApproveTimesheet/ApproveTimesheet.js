@@ -165,7 +165,6 @@ const ApproveTimesheet = () => {
                     backgroundColor: 'var(--white)',
                     gap: '1rem',
                     borderRadius: '1rem',
-                    height: 'calc(100vh - 13.5rem)',
                     paddingBottom: '1rem',
                 }}>
                     <CandidateList candidate={selectedCandidate} setCandidate={setSelectedCandidate} list={candidateList} />

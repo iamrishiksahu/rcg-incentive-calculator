@@ -3,7 +3,7 @@ import usePageTitle from '../../../hooks/usePageTitle'
 import { useParams } from 'react-router-dom'
 import { Box } from '@mui/material'
 import dayjs from 'dayjs'
-import { getWeekDateRange } from '../../../Utils/dateUtils'
+import { getWeekDateRange, getWeekStartFromEnd } from '../../../Utils/dateUtils'
 import format from 'date-fns/format'
 import TimeSheetTable from '../MyTimesheet/TimeSheetTable'
 
@@ -11,11 +11,13 @@ const SingleTimesheetApproval = () => {
     const { setTitleProps } = usePageTitle()
     const {candidate_id, week_ending} = useParams()
 
-    console.log(week_ending)
-    const today = dayjs(week_ending).format('YYYY-MM-DD')
-    console.log(today)
-    const [dateRange, setDateRange] = useState(getWeekDateRange(today, 'mon'))
-  
+    const startDate = getWeekStartFromEnd(week_ending)
+
+    const dateRange = {
+        startOfWeek: startDate,
+        endOfWeek: week_ending
+    }
+    console.log(getWeekStartFromEnd(week_ending))
 
     useEffect(() => {
         setTitleProps({ title: `${candidate_id}'s ${week_ending} Timesheet`, goBack: '/dashboard/approve-timesheet' })
