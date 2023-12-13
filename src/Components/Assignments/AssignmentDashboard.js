@@ -1,9 +1,11 @@
-import { Box, Button, CircularProgress, TextField, Typography } from '@mui/material'
+import { Box, Button, CircularProgress, TextField, Typography, InputAdornment } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import axiosp from '../../Utils/axiosConfig'
 import { useNavigate } from 'react-router-dom'
 import usePageTitle from '../../hooks/usePageTitle'
 import AssignmentDashboardTable from './AssignmentDashboardTable'
+import { Stack } from '@mui/system'
+import IconContainer from '../../CustomElements/Containers/IconContainer'
 
 const AssignmentDashboard = () => {
 
@@ -124,8 +126,6 @@ const AssignmentDashboard = () => {
     }
   }
 
-
-
   const loadCandidates = async () => {
     try {
       const res = await axiosp.get('/candidate_details')
@@ -140,48 +140,62 @@ const AssignmentDashboard = () => {
 
   useEffect(() => {
     loadCandidates()
-    setTitleProps({title: 'Assignment Dashboard'})
+    setTitleProps({ title: 'Assignment Dashboard' })
 
   }, [])
 
 
   return (
     <Box sx={{
-      padding: '2rem'
+      padding: '2rem',
+      paddingTop: '0'
     }}>
 
       <form
         onSubmit={handleSearch}
         style={{
-          marginBottom: '2rem',
           display: 'flex',
           gap: '1rem',
-          alignItems: 'center'
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          background: 'var(--color-white)',
+          padding: '1rem',
+          borderRadius: '0.5rem 0.5rem 0 0',
+
         }}>
 
-        <TextField
-          variant="outlined"
-          size="small"
-          placeholder="Search Candiate..."
-          name='search_field'
-          sx={{
-            width: '24%',
-            "& fieldset": { border: 'none' },
-            borderRadius: "2rem",
-            backgroundColor: "white",
-            boxShadow: '0 0 1rem 0.25rem rgba(0,0,0,0.03)'
-          }}
-          onKeyDown={(key) => {
-            if (key.code == "Enter") {
-              //add to the list
-              // handleEnter({ action: 1 });
-            }
-          }} />
+        <Typography variant='h6'>Candidate List</Typography>
 
-        <Button type='submit' sx={{ borderRadius: '1.5rem' }} variant='outlined'>
-          Search
+        <Stack direction={'row'} spacing={'1rem'} width={'50%'} justifyContent={'flex-end'}>
 
-        </Button>
+          <TextField
+            variant='outlined'
+            size='small'
+            placeholder='Candidate name'
+            InputProps={{
+
+              startAdornment: (
+                <InputAdornment position="start">
+
+                  <IconContainer sx={{ marginTop: '3px' }} size={'1rem'} icon={'search'} />
+
+                </InputAdornment>
+              ), endAdornment: (
+                <InputAdornment position="end">
+
+                  <Button type='submit' variant='text'>search</Button>
+
+                </InputAdornment>
+              ),
+            }}
+            sx={{
+              top: '0px',
+              background: 'var(--color-white)',
+            }}
+
+          />
+        </Stack>
+
 
 
 

@@ -62,7 +62,7 @@ const AssignmentDashboardTable = ({ data }) => {
               <TableCell component="th" scope="row" sx={{
                 position: 'sticky',
                 left: 0,
-                backgroundColor: '#f0eded',
+                backgroundColor: '#fafafa',
               }}>
 
                 <Link style={{color: 'rgba(0, 0, 0, 0.87)'}} to={(`/dashboard/add-assignment/${row?.id}`)} >
