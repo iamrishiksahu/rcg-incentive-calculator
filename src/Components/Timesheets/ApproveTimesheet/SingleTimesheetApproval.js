@@ -27,10 +27,7 @@ const SingleTimesheetApproval = () => {
         <Box sx={{
             margin: '2rem',
             marginTop: '0',
-            padding: '2rem',
-            boxShadow: 'var(--box-shadow-1)',
             borderRadius: '1rem',
-            backgroundColor: 'var(--white)'
         }}>
             <TimeSheetTable source={'APPROVER'} dateRange={dateRange} />
         </Box>

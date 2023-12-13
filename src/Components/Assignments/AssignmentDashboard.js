@@ -6,6 +6,7 @@ import usePageTitle from '../../hooks/usePageTitle'
 import AssignmentDashboardTable from './AssignmentDashboardTable'
 import { Stack } from '@mui/system'
 import IconContainer from '../../CustomElements/Containers/IconContainer'
+import FlexBox from '../../CustomElements/Containers/FlexBox'
 
 const AssignmentDashboard = () => {
 
@@ -151,58 +152,60 @@ const AssignmentDashboard = () => {
       paddingTop: '0'
     }}>
 
-      <form
-        onSubmit={handleSearch}
-        style={{
-          display: 'flex',
-          gap: '1rem',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          background: 'var(--color-white)',
-          padding: '1rem',
-          borderRadius: '0.5rem 0.5rem 0 0',
 
-        }}>
+      {/* <Box sx={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', padding: '1rem' }}> */}
 
-        <Typography variant='h6'>Candidate List</Typography>
+      <FlexBox sx={{
+        flexWrap: 'wrap',
+      }}>
 
-        <Stack direction={'row'} spacing={'1rem'} width={'50%'} justifyContent={'flex-end'}>
+        <form
+          onSubmit={handleSearch}
+          style={{
+            display: 'flex',
+            gap: '1rem',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            background: 'var(--color-white)',
+            borderRadius: '0.5rem 0.5rem 0 0',
+          }}>
 
-          <TextField
-            variant='outlined'
-            size='small'
-            placeholder='Candidate name'
-            InputProps={{
+          <Typography variant='h6'>Candidate List</Typography>
 
-              startAdornment: (
-                <InputAdornment position="start">
+          <Stack direction={'row'} spacing={'1rem'} width={'50%'} justifyContent={'flex-end'}>
 
-                  <IconContainer sx={{ marginTop: '3px' }} size={'1rem'} icon={'search'} />
+            <TextField
+              variant='outlined'
+              size='small'
+              placeholder='Candidate name'
+              InputProps={{
 
-                </InputAdornment>
-              ), endAdornment: (
-                <InputAdornment position="end">
+                startAdornment: (
+                  <InputAdornment position="start">
 
-                  <Button type='submit' variant='text'>search</Button>
+                    <IconContainer sx={{ marginTop: '3px' }} size={'1rem'} icon={'search'} />
 
-                </InputAdornment>
-              ),
-            }}
-            sx={{
-              top: '0px',
-              background: 'var(--color-white)',
-            }}
+                  </InputAdornment>
+                ), endAdornment: (
+                  <InputAdornment position="end">
 
-          />
-        </Stack>
+                    <Button type='submit' variant='text'>search</Button>
+
+                  </InputAdornment>
+                ),
+              }}
+              sx={{
+                top: '0px',
+                background: 'var(--color-white)',
+              }}
+
+            />
+          </Stack>
 
 
 
 
-      </form>
-
-      <Box sx={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-
+        </form>
 
 
         {isLoading || !data
@@ -212,8 +215,10 @@ const AssignmentDashboard = () => {
             : <></>
 
         }
+      </FlexBox>
 
-      </Box>
+
+      {/* </Box> */}
 
 
     </Box>

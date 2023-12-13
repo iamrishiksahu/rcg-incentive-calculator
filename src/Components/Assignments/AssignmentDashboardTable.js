@@ -30,11 +30,11 @@ const AssignmentDashboardTable = ({ data }) => {
     <TableContainer component={Paper} className='table-container'>
       <Table sx={{ minWidth: 650 }} aria-label="simple table" >
         <TableHead>
-          <TableRow>
+          <TableRow sx={{ background: '#fff0f0',}}>
             <TableCell sx={{
               position: 'sticky',
               left: 0,
-              background: '#fff',
+              background: '#fff0f0',
               minWidth: '200px',
             }}>Candidate Name</TableCell>
             <TableCell align="center" sx={{ minWidth: '120px' }}>Bill Start</TableCell>

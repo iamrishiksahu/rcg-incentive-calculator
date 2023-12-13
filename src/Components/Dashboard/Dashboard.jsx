@@ -24,8 +24,8 @@ const Dashboard = () => {
       <CollapsableSideNav setTitle={setTitle} />
 
       <main style={{
-        marginLeft: '18rem',
-        maxWidth: 'calc(100vw - 18rem)',
+        marginLeft: '16.5rem',
+        maxWidth: 'calc(100vw - 16.5rem)',
         backgroundColor: 'var(--color-main-bg)',
         minHeight: '100vh',
       }}>

@@ -68,7 +68,7 @@ const DashboardTopBar = () => {
         alignItems: 'center',
         paddingLeft: '2rem',
         justifyContent: 'space-between',
-        marginRight: '1.5rem',
+        marginRight: '2rem',
         minHeight: '5rem',
       }}
     >
@@ -162,14 +162,11 @@ const DashboardTopBar = () => {
 
 
 
-        <IconButton sx={{ background: 'white', boxShadow: 'var(--box-shadow)' }}>
-
-
-          <img src='/images/top-bar/notification.svg' alt='s' />
-
-
-
-        </IconButton>
+        <Tooltip title={'All Notifications'}>
+          <IconButton sx={{ background: 'white', boxShadow: 'var(--box-shadow)' }}>
+            <img src='/images/top-bar/notification.svg' alt='s' />
+          </IconButton>
+        </Tooltip>
 
 
       </Box>

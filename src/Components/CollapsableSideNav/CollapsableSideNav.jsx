@@ -53,7 +53,6 @@ const menuItems = [
 
 const CollapsableSideNav = ({ setTitle }) => {
 
-    const navigate = useNavigate();
 
     const [isCollapsed, setIsCollapsed] = useState(false);
 
