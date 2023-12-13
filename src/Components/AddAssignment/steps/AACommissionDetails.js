@@ -91,7 +91,7 @@ const AACommissionDetails = ({ setFormData, handleNext, handleBack }) => {
             <TextFieldGroupContainer cols='1fr 1fr 5fr'>
 
                 <Button variant='contained' onClick={handleContinue}>
-                    Continue
+                    Finalize
                 </Button>
                 <Button onClick={handleBack}>
                     Back

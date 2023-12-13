@@ -32,6 +32,10 @@ export default function AddAssignmentStepper() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  const handleFinalize = () => {
+    alert('Do you want to finalize?')
+  }
+
 
   const steps = [
     {
@@ -60,7 +64,7 @@ export default function AddAssignmentStepper() {
       label: 'Commissions',
       layout: <AACommissionDetails
         setFormData={setFormData}
-        handleNext={handleNext}
+        handleNext={handleFinalize}
         handleBack={handleBack} />
     },
   ];

@@ -92,9 +92,6 @@ const AACandidateDetails = ({setFormData, handleNext, handleBack}) => {
             <Button variant='contained' onClick={handleContinue}>
                 Continue
             </Button>
-            <Button  onClick={handleBack}>
-                Back
-            </Button>
 
             </TextFieldGroupContainer>
 
