@@ -1,12 +1,12 @@
 import { Box, Typography } from '@mui/material'
 import { Stack } from '@mui/system'
-import { Avatar } from 'antd'
 import React from 'react'
+import Avatar from '../../../CustomElements/Avatar'
 
 const CandidateListItem = ({ data, handleClick, bgColor }) => {
 
   const getFirstCharFromName = () => {
-    return data.name.substring(0,1)
+    return data.name.substring(0, 1)
   }
 
   const getRandomMutedColor = () => {
@@ -39,22 +39,10 @@ const CandidateListItem = ({ data, handleClick, bgColor }) => {
 
       }}>
       <Stack direction={'row'} spacing={'1rem'} alignItems={'center'}>
-        <Box
-          sx={{
-            height: '36px',
-            width: '36px',
-            backgroundColor: `${bgColor}85`,
-            backgroundImage: `url('${data.profile_image}')`,
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-            borderRadius: '50%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          {!data.profile_image.includes('http')? getFirstCharFromName() : ''}
-        </Box>
+
+        <Avatar
+          bgColor={bgColor}
+          src={!data.profile_image.includes('http') ? getFirstCharFromName() : data.profile_image} />
         <Box>
           <Typography>{data.name}</Typography>
           <Typography variant='body2'>{data.designation + ', ' + data.department}</Typography>

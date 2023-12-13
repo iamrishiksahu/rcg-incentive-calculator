@@ -13,6 +13,7 @@ import { PageTitleProvider } from '../../context/PageTitleProvider'
 import { Navigate } from 'react-router-dom'
 import ApproveTimesheet from '../Timesheets/ApproveTimesheet/ApproveTimesheet'
 import SingleTimesheetApproval from '../Timesheets/ApproveTimesheet/SingleTimesheetApproval'
+import MainDashboard2 from './MainDashboard2'
 const Dashboard = () => {
 
   const [title, setTitle] = useState('Dashboard')
@@ -34,7 +35,7 @@ const Dashboard = () => {
           <DashboardTopBar />
 
           <Routes>
-            <Route path='/' element={<MainDashboard />} />
+            <Route path='/' element={<MainDashboard2 />} />
             <Route path='/approve-timesheete' element={<Test />} />
             <Route path='/add-candidate' element={<AddCandidate />} />
             <Route path='/assignments' element={<AssignmentDashboard />} />

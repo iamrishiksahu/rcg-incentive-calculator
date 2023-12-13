@@ -90,9 +90,10 @@ h2 {
   --blue: #1a6efc;
   --blue-2: #4585f3;
   --blue-3: #dde9ff;
+  --link: #1a6efc;
 
-  --box-shadow-1: 2px 2px 0.25rem #00000008,
-  --box-shadow-2: 2px 2px 1rem #00000010,
+  --box-shadow-1: 2px 2px 0.25rem #00000008;
+  --box-shadow-2: 2px 2px 1rem #00000010;
 
   /* --color-primary: #d11b21;
   --color-primary-dark: #1f1f70;

@@ -15,7 +15,7 @@ const NewsFeedItem = ({ title, sender, date }) => {
             '&:last-child': {
                 borderBottom: 'none'
             },
-            '&:hover':{
+            '&:hover': {
                 scale: '1.03',
                 backgroundColor: '#ffeeee20'
             }
@@ -30,8 +30,8 @@ const NewsFeedItem = ({ title, sender, date }) => {
                 color: '#00000080',
             }}>
 
-                <Typography variant='body2'>{sender}</Typography>
-                <Typography variant='body2'>{date}</Typography>
+                <Typography variant='body2' >{sender}</Typography>
+                <Typography variant='body2' >{date}</Typography>
             </Box>
 
         </Box>

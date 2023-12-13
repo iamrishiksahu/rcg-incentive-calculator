@@ -7,7 +7,7 @@ const H1 = (props) => {
         <Typography
             sx={{
                 fontSize: '3rem',
-                fontWeight: props.bold? '600' : '400',
+                fontWeight: props.bold ? '600' : '400',
                 ...props.sx,
             }} >
 
@@ -23,7 +23,7 @@ const H2 = (props) => {
             sx={{
                 fontSize: '2rem',
                 color: 'var(--color-dark)',
-                fontWeight: props.bold? '600' : '400',
+                fontWeight: props.bold ? '600' : '400',
                 ...props.sx,
 
             }} >
@@ -40,7 +40,7 @@ const H3 = (props) => {
             sx={{
                 fontSize: '1.5rem',
                 color: 'var(--color-dark)',
-                fontWeight: props.bold? '600' : '400',
+                fontWeight: props.bold ? '600' : '400',
                 ...props.sx,
             }} >
 
@@ -56,7 +56,7 @@ const PText = (props) => {
             variant='body'
             onClick={props.onClick}
             sx={{
-                fontWeight: props.bold? '600' : '400',
+                fontWeight: props.bold ? '600' : '400',
                 ...props.sx,
             }} >
 
@@ -94,5 +94,36 @@ const Small = (props) => {
     )
 }
 
+const TextLink = (props) => {
+    return (
+        <Typography
+            variant={props.variant || 'body'}
+            sx={{
+                fontSize: '0.75rem',
+                cursor: 'pointer',
+                color: 'var(--link)',
+                ...props.sx,
 
-export { H1, H2, H3, PText, Small };
+            }} >
+
+            {props.children}
+        </Typography >
+    )
+}
+
+const TextTitle = (props) => {
+    return (
+        <Typography
+            variant={props.variant || 'h6'}
+            sx={{
+                fontSize: '0.85rem',
+                color: 'var(--color-text-3)',
+                ...props.sx
+            }}>
+            {props.children}
+        </Typography>
+    )
+}
+
+
+export { H1, H2, H3, PText, Small, TextLink, TextTitle};
