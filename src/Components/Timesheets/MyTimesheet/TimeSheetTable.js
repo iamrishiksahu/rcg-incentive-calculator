@@ -7,6 +7,7 @@ import dayjs from 'dayjs';
 import { getDayShortName, getMonthShortNameFromNumber } from '../../../Utils/dateUtils';
 import { TextFieldGroupContainer } from '../../../CustomElements/Containers/TexFieldGroupContainer';
 import TimesheetClarificationPopup from '../ApproveTimesheet/TimesheetClarificationPopup';
+import FlexBox from '../../../CustomElements/Containers/FlexBox';
 
 
 const getNthDay = (currDay, n) => {
@@ -149,7 +150,7 @@ const TimeSheetTable = ({ dateRange, source }) => {
     return (<>
 
         <form>
-            <Paper sx={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <FlexBox sx={{padding: '2rem'}}>
 
                 <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} sx={{ marginBottom: '0.5rem', marginTop: '-0.5rem' }} >
                     <Typography variant='h6'> {source == 'APPROVER' ? 'Week Ending: ' + dateRange.endOfWeek : 'Enter Timehseet'}</Typography>
@@ -265,11 +266,11 @@ const TimeSheetTable = ({ dateRange, source }) => {
                                 transform: 'scale(1.07)'
                             }
                         }}
-                        
+
                         onClick={() => {
-                            !isApprover?
-                            additionalDetailsAttachementRef.current.click()
-                            : console.log()
+                            !isApprover ?
+                                additionalDetailsAttachementRef.current.click()
+                                : console.log()
                         }}
                         direction={'row'} spacing={'0.5rem'} alignItems={'center'}>
 
@@ -290,8 +291,8 @@ const TimeSheetTable = ({ dateRange, source }) => {
                     </Stack>
                 </Stack>
                 <TextField disabled={source == 'APPROVER'} variant='outlined' size='small' placeholder='Enter details (if any)' minRows={'3'} multiline type='text' />
-
-            </Paper>
+            </FlexBox>
+            {/* </Paper> */}
         </form>
 
         <TimesheetClarificationPopup open={clarificationDialog} setOpen={setClarificationDialog} rowData={rowData} />

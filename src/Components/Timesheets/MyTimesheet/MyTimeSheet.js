@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 import { DateCalendar } from '@mui/x-date-pickers'
 import { getWeekDateRange } from '../../../Utils/dateUtils'
 import { format } from 'date-fns'
+import FlexBox from '../../../CustomElements/Containers/FlexBox'
 
 const cols = ['Day', 'Regular', 'Double Time', 'Over Time', 'Expenses', 'Status']
 
@@ -151,10 +152,10 @@ const MyTimeSheet = () => {
   useEffect(() => {
     setDateRange(getWeekDateRange(selectedDate, 'mon'))
   }, [selectedDate])
-  
+
 
   useEffect(() => {
-    setTitleProps({title:'My Timesheet'})
+    setTitleProps({ title: 'My Timesheet' })
   }, [])
 
   return (
@@ -170,37 +171,33 @@ const MyTimeSheet = () => {
         gap: '2rem'
       }}>
 
-        <Paper sx={{
-          paddingRight: '1rem',
-        }}>
+        <FlexBox sx={{ padding: '0' }}>
+
           <DateCalendar
             showDaysOutsideCurrentMonth
             value={selectedDate} onChange={(val) => setSelectedDate(val)} />
-        </Paper>
+        </FlexBox>
 
-        <Paper sx={{
-          padding: '1rem'
-        }}>
+
+        <FlexBox gap='0.25rem'>
 
           <Typography variant='h6' >Holidays</Typography>
           <Typography variant='body1' >No Holidays This Month!</Typography>
-        </Paper>
+        </FlexBox>
 
-        <Paper sx={{
-          padding: '1rem'
-        }}>
+        <FlexBox gap='0.25rem'>
 
           <Typography variant='h6' >Clarifications</Typography>
           <Typography variant='body1' >No Clarification Requests!</Typography>
-        </Paper>
+        </FlexBox>
 
 
 
       </Box>
 
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
 
-        <Paper sx={{
+        {/* <Paper sx={{
           display: 'flex',
           justifyContent: 'space-between',
           gap: '1rem',
@@ -210,7 +207,10 @@ const MyTimeSheet = () => {
           borderRadius: '0.25rem',
           // marginBottom: '-0rem',
           // borderRadius: 0
-        }}>
+        }}> */}
+
+        <FlexBox row  sx={{justifyContent: 'space-between', padding: '0.5rem'}}>
+
 
           <Box
             sx={{
@@ -225,7 +225,7 @@ const MyTimeSheet = () => {
               borderRadius: '1rem'
             }}>
 
-              Selected Week: <span style={{fontWeight: '500'}}>{dateRange?.startOfWeek + ' to ' + dateRange?.endOfWeek}</span>
+              Selected Week: <span style={{ fontWeight: '500' }}>{dateRange?.startOfWeek + ' to ' + dateRange?.endOfWeek}</span>
             </Typography>
 
 
@@ -262,9 +262,11 @@ const MyTimeSheet = () => {
 
 
 
-        </Paper>
+          {/* </Paper> */}
+        </FlexBox>
 
-        <TimeSheetTable  source={'CANDIDATE'} dateRange={dateRange}/>
+
+        <TimeSheetTable source={'CANDIDATE'} dateRange={dateRange} />
       </Box>
 
 
