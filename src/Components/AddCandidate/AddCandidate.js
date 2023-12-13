@@ -89,13 +89,13 @@ const AddCandidate = () => {
     }, [])
     return (
 
-        <form className='parent' onSubmit={handleSubmitClick} >
+        <form className='as' onSubmit={handleSubmitClick} >
 
             <div className='card' style={{
                 // boxShadow: 'var(--shadow-card-1)',
             }}>
 
-                <h3>Add Candidate Details</h3>
+                <h3>Candidate Details</h3>
 
                 <TextFieldGroupContainer cols='1fr 1fr 1fr'>
 

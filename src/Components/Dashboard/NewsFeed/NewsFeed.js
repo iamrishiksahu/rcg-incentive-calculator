@@ -41,7 +41,8 @@ const NewsFeed = () => {
         <Box sx={{
             borderRadius: '1rem',
             background: 'var(--white)',
-            padding: '1.5rem'
+            padding: '1.5rem',
+            boxShadow: 'var(--box-shadow-1)'
         }}>
 
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>

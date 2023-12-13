@@ -1,6 +1,7 @@
-.parent{
+.as{
     margin: 0;
     padding: 2rem;
+    padding-top: 0px;
     display: grid;
     align-items: start;
     grid-template-columns: 1fr 1fr;
@@ -16,7 +17,7 @@
     width: 100%;
     gap: 1rem;
     box-sizing: border-box;
-    box-shadow: var(--box-shadow-2);
+    box-shadow: var(--box-shadow-1);
     background-color: var(--color-card-bg);
 }
 
