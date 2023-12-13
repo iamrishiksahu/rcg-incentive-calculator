@@ -1,4 +1,4 @@
-import { CircularProgress, Typography } from '@mui/material'
+import { CircularProgress, Tooltip, Typography } from '@mui/material'
 import { Box, Stack } from '@mui/system'
 import React, { useEffect } from 'react'
 import DashboardCard from './DashboardComponents/DashboardCard'
@@ -8,6 +8,7 @@ import { TextLink, TextTitle } from '../../CustomElements/Typography/Typgraphy'
 import NewsFeed from './NewsFeed/NewsFeed'
 import Avatar from '../../CustomElements/Avatar'
 import usePageTitle from '../../hooks/usePageTitle'
+import { Steps } from 'antd'
 
 const MainDashboard2 = () => {
     const navigate = useNavigate()
@@ -120,11 +121,11 @@ const MainDashboard2 = () => {
                             </Stack>
                             <Stack direction={'row'} spacing={'1rem'}>
                                 <Stack>
-                                    <Typography variant='body2'>Consumed</Typography>
+                                    <Typography variant='body2'>Casual</Typography>
                                     <Typography variant='h6' fontWeight={600}>3.25/7.88</Typography>
                                 </Stack>
                                 <Stack>
-                                    <Typography variant='body2'>Consumed</Typography>
+                                    <Typography variant='body2'>Emergency</Typography>
                                     <Typography variant='h6' fontWeight={600}>3.25/7.88</Typography>
                                 </Stack>
                             </Stack>
@@ -200,7 +201,7 @@ const MainDashboard2 = () => {
                             </Stack>
                             <Stack>
                                 <TextTitle>Work Email</TextTitle>
-                                <Typography variant='body'>rishik.sahu</Typography>
+                                <a href='mailto:rishik.sahu@rapidtechservices.com'><Typography variant='body'>rishik.sahu</Typography></a>
                             </Stack>
                             <Stack>
                                 <TextTitle>Personal Email</TextTitle>
@@ -224,66 +225,43 @@ const MainDashboard2 = () => {
                         paddingTop: '1.5rem'
                     }}>
 
-                        <Typography variant='h6' fontWeight={400}>Educational Details</Typography>
+                        <Steps
+                            progressDot
+                            current={100}
+                            direction="vertical"
+                            items={[
+                                {
+                                    title: 'Frontend UI Developer',
+                                    subTitle: 'Rapid Techbologies (2 Months)',
+                                    description: <>
+                                        <Typography>– Working in the Front-End part for design, development, and deployment of Yukta Portal Project - an HRMS.</Typography>
+                                        <Typography>– As the sole team member in Front-End, led the project from scratch, utilizing React.JS, Material-UI & Redux-Toolkit as the core technology.</Typography>
+                                    </>,
+                                },
+                                {
+                                    title: 'Web Developer',
+                                    subTitle: 'Ghughar Media (6 Months)',
+                                    description: <>
+                                        <Typography>– Developed captivating and responsive landing pages for products and services strategically driving an increase of 20% in conversion rates.</Typography>
+                                        <Typography>– Seamlessly integrated secure payment gateways on websites to facilitate online payments which catered over 20,000 digital delivery of products and services.</Typography>
+                                    </>,
+                                },
+                                {
+                                    title: 'Android Developer',
+                                    subTitle: 'Jharkhand Warrior (8 Months)',
+                                    description: <>
+                                        <Typography>– Spearheaded the end-to-end development and deployment of the Jharkhand Warrior android app, leveraging Native Android Development within an agile development framework.</Typography>
+                                        <Typography>– Integrated Firestore and Firebase Realtime Database to facilitate video lesson consumption and test taking environment where more than 1000 users watched lessons and took tests.</Typography>
+                                        <Typography>– Integrated and managed video hosting platform Vimeo and created module to prohibit video piracy.</Typography>
+                                    </>,
+                                },
+                            ]}
+                        />
 
-                        <Box sx={{
-                            display: 'grid',
-                            gridTemplateColumns: '1fr 1fr',
-                            gap: '2rem',
-                        }}>
-                            <Stack>
-                                <TextTitle>Specialization</TextTitle>
-                                <Typography variant='body'>Mathematics & Computing</Typography>
-                            </Stack>
-                            <Stack>
-                                <TextTitle>CGPA/Percentage</TextTitle>
-                                <Typography variant='body'>8.62</Typography>
-                            </Stack>
-                            <Stack>
-                                <TextTitle>University/College</TextTitle>
-                                <Typography variant='body'>BIT Mesra, Ranchi</Typography>
-                            </Stack>
-                            <Stack>
-                                <TextTitle>Degree</TextTitle>
-                                <Typography variant='body'>I.M.Sc.</Typography>
-                            </Stack>
-                        </Box>
-
-                    </DashboardCard>
-
-                    <DashboardCard sx={{
-                        padding: '2rem',
-                        paddingTop: '1.5rem'
-                    }}>
-                        <Typography variant='h6' fontWeight={400}>Contact Details</Typography>
-
-                        <Box sx={{
-                            display: 'grid',
-                            gridTemplateColumns: '1fr 1fr',
-                            gap: '2rem',
-                        }}>
-                            <Stack>
-                                <TextTitle>Work Phone</TextTitle>
-                                <Typography variant='body'>+91-9098989898</Typography>
-                            </Stack>
-                            <Stack>
-                                <TextTitle>Personal Phone</TextTitle>
-                                <Typography variant='body'>+91-8987400143</Typography>
-                            </Stack>
-                            <Stack>
-                                <TextTitle>Work Email</TextTitle>
-                                <Typography variant='body'>rishik.sahu</Typography>
-                            </Stack>
-                            <Stack>
-                                <TextTitle>Personal Email</TextTitle>
-                                <Typography variant='body'>iamrishiksahu@gmail.com</Typography>
-                            </Stack>
-                        </Box>
 
                     </DashboardCard>
+
                 </Box>
-
-
 
 
             </Stack>
@@ -293,21 +271,23 @@ const MainDashboard2 = () => {
             <Stack spacing={'1rem'} width={'100%'}>
 
                 {/* FIRST ROW */}
-                <DashboardCard row
-                    onClick={() => navigate('/dashboard/my-profile')}
-                    sx={{
-                        cursor: 'pointer',
-                        '&:hover': {
-                            transform: 'scale(1.02)'
-                        }
-                    }} >
-                    <Progress size={40} type="circle" percent={75} style={{ display: 'flex', alignItems: 'center' }} />
-                    <Stack>
-                        <Typography variant='h6'>Profile Completion</Typography>
-                        <Typography variant='body2'>Click to complete your profile!</Typography>
-                    </Stack>
+                <Tooltip title={'Go to yout profile.'}>
+                    <DashboardCard row
+                        onClick={() => navigate('/dashboard/my-profile')}
+                        sx={{
+                            cursor: 'pointer',
+                            '&:hover': {
+                                transform: 'scale(1.02)'
+                            }
+                        }} >
+                        <Progress size={40} type="circle" percent={75} style={{ display: 'flex', alignItems: 'center' }} />
+                        <Stack>
+                            <Typography variant='h6'>Profile Completion</Typography>
+                            <Typography variant='body2'>Click to complete your profile!</Typography>
+                        </Stack>
 
-                </DashboardCard>
+                    </DashboardCard>
+                </Tooltip>
 
                 <NewsFeed />
 
