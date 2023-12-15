@@ -14,6 +14,7 @@ import { Navigate } from 'react-router-dom'
 import ApproveTimesheet from '../Timesheets/ApproveTimesheet/ApproveTimesheet'
 import SingleTimesheetApproval from '../Timesheets/ApproveTimesheet/SingleTimesheetApproval'
 import MainDashboard2 from './MainDashboard2'
+import MyProfile from '../user/MyProfile/MyProfile'
 const Dashboard = () => {
 
   const [title, setTitle] = useState('Dashboard')
@@ -39,6 +40,7 @@ const Dashboard = () => {
             <Route path='/approve-timesheete' element={<Test />} />
             <Route path='/add-candidate' element={<AddCandidate />} />
             <Route path='/assignments' element={<AssignmentDashboard />} />
+            <Route path='/my-profile' element={<MyProfile />} />
             <Route path='/add-assignment/:id' element={<AddAssignment />} />
             <Route path='/generate-invoice' element={<Login5 />} />
             <Route path='/submit-timesheet' element={<Login5 />} />
