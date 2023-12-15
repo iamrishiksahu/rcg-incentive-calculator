@@ -40,7 +40,7 @@ const AACandidateDetails = ({setFormData, handleNext, handleBack}) => {
             <TextFieldGroupContainer cols='1fr 1fr 1fr'>
                 <DatePicker inputRef={refStartDate} format='YYYY-MM-DD' slotProps={{ textField: { size: 'small' } }} label="Start Date" />
                 <DatePicker inputRef={refEndDate} format='YYYY-MM-DD' slotProps={{ textField: { size: 'small' } }} label="End Date" />
-                <TextField inputRef={refJobdivaID} variant='outlined' size='small' type='text' label='JobDiva ID' />
+                <TextField inputRef={refJobdivaID} variant='outlined' size='small' type='number' label='JobDiva ID' />
             </TextFieldGroupContainer>
 
             <TextFieldGroupContainer cols='1fr 2.1fr'>
@@ -76,7 +76,7 @@ const AACandidateDetails = ({setFormData, handleNext, handleBack}) => {
 
             <TextFieldGroupContainer cols='1fr'>
                 <TextField inputRef={refBillingCompanyName} variant='outlined' size='small' label='Billing Company Name' />
-                <TextField inputRef={refBillingCompanyAddress} variant='outlined' size='small' label='Billing Company Name' />
+                <TextField inputRef={refBillingCompanyAddress} variant='outlined' size='small' label='Billing Company Address' />
             </TextFieldGroupContainer>
 
             <TextFieldGroupContainer cols='8fr 1fr'>

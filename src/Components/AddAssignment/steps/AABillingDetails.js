@@ -143,7 +143,7 @@ const AABillingDetails = ({ setFormData, handleNext, handleBack }) => {
             <TextFieldGroupContainer cols='1fr'>
 
                 <TextField required inputRef={refTimeSheetEntryFormat} variant='outlined' size='small' label='Timesheet Entry Format' />
-                <TextField required inputRef={refPaymentTerms} variant='outlined' size='small' label='Payment Terms' />
+                <TextField required inputRef={refPaymentTerms} type='number' variant='outlined' size='small' label='Payment Terms' />
             </TextFieldGroupContainer>
             <TextFieldGroupContainer cols='1fr 1fr 5fr'>
 
