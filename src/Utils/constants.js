@@ -57,4 +57,14 @@ const DummyWorkList = [
     'Main Project'
 ]
 
-export {DivisionsList, AmountUnitList, CurrencyList, WorkLocationList, PayUnit, DummyCandidateList, DummyWorkList, UserRoles, PayFrequencyList, BillingUnitsList}
+const WeekNameList = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+]
+
+export {DivisionsList, AmountUnitList, CurrencyList, WorkLocationList, PayUnit, DummyCandidateList, DummyWorkList, UserRoles, PayFrequencyList, BillingUnitsList, WeekNameList}

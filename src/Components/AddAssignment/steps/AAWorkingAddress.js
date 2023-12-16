@@ -1,9 +1,11 @@
-import React, { useRef, useState } from 'react'
-import { Button, TextField, Autocomplete, FormControlLabel, Checkbox} from '@mui/material'
+import React, { useEffect, useRef, useState } from 'react'
+import { Button, TextField, Autocomplete, FormControlLabel, Checkbox } from '@mui/material'
 // import './AddAssignment.css'
 import { TextFieldGroupContainer } from '../../../CustomElements/Containers/TexFieldGroupContainer';
 
 import { WorkLocationList } from '../../../Utils/constants';
+
+import countryStateData from '../../../Utils/countryStateData.json'
 
 
 const AAWorkingAddress = ({ setFormData, handleNext, handleBack }) => {
@@ -23,10 +25,48 @@ const AAWorkingAddress = ({ setFormData, handleNext, handleBack }) => {
     const refPassDiscount = useRef();
     const refBillingAddressSameAsWorkingAddress = useRef();
 
+    const [statesList, setStatesList] = useState([])
+    const [countryList, setCountryList] = useState([])
+    const [selectedCountry, setSelectedCountry] = useState(null)
+    const [selectedState, setSelectedState] = useState(null)
+
     const handleContinue = async () => {
         await setFormData((d) => { return { ...d, data: 'sadf' } })
         handleNext()
     }
+
+
+    const loadCountryDropDown = async () => {
+        const countryArray = []
+
+        countryStateData.map((item, key) => {
+            countryArray.push(item.country_name)
+        })
+
+        console.log(countryArray)
+        setCountryList(countryArray)
+    }
+
+    const loadStatesOfSelectedCountry = () => {
+        const statesArray = []
+        try {
+            const data = countryStateData.find(item => item.country_name == selectedCountry)
+            data.states.map((item, key) => {
+                statesArray.push(item.state_name)
+            })
+            setStatesList(statesArray)
+
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
+        loadCountryDropDown()
+    }, [])
+    useEffect(() => {
+        loadStatesOfSelectedCountry()
+    }, [selectedCountry])
 
 
 
@@ -48,7 +88,13 @@ const AAWorkingAddress = ({ setFormData, handleNext, handleBack }) => {
                     options={WorkLocationList}
                     renderInput={(params) => <TextField {...params} ariant='outlined' size='small' inputRef={refWorkingLocation} label="Work Location" />}
                 />
-                <TextField inputRef={refWorkingCountry} variant='outlined' size='small' label='Country' />
+                <Autocomplete
+                    disablePortal
+                    options={countryList}
+                    onChange={(e) => setSelectedCountry(e.currentTarget.textContent)}
+                    renderInput={(params) => <TextField {...params} ariant='outlined' size='small' inputRef={refWorkingCountry} label="Country" />}
+                />
+                {/* <TextField inputRef={refWorkingCountry} variant='outlined' size='small' label='Country' /> */}
             </TextFieldGroupContainer>
 
 
@@ -60,12 +106,19 @@ const AAWorkingAddress = ({ setFormData, handleNext, handleBack }) => {
 
             <TextFieldGroupContainer cols='1fr 1fr 1fr'>
                 <TextField inputRef={refWorkingCity} variant='outlined' size='small' label='City' />
-                <TextField inputRef={refWorkingState} variant='outlined' size='small' label='State' />
+                <Autocomplete
+                    disablePortal
+                    // disabled={statesList.length == 0}
+                    options={statesList}
+                    onChange={(e) => setSelectedState(e.currentTarget.textContent)}
+                    renderInput={(params) => <TextField {...params} ariant='outlined' size='small' inputRef={refWorkingState} label="Country" />}
+                />
+                {/* <TextField inputRef={refWorkingState} variant='outlined' size='small' label='State' /> */}
                 <TextField inputRef={refPinCode} type='number' variant='outlined' size='small' label='Pin Code' />
 
             </TextFieldGroupContainer>
 
-      
+
             <TextFieldGroupContainer cols='1fr 1fr 5fr'>
 
                 <Button variant='contained' onClick={handleContinue}>
