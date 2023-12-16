@@ -5,6 +5,7 @@ const FlexBox = (props) => {
     return (
         <Box {...props} sx={{
             display: 'flex',
+            flex: 1,
             gap: props.gap || '1rem',
             alignItems: props.row ? 'center' : '',
             justifyContent: props.row ? '' : 'center',

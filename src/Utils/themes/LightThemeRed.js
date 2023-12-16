@@ -3,6 +3,16 @@ import { createTheme } from "@mui/material";
 export const LightThemeRed = createTheme({
     typography: {
         fontFamily: 'Inter, sans-serif',
+        h4: {
+            fontSize: '1.25rem'
+        },
+        h3: {
+            fontSize: '2rem'
+        },
+        link: {
+            color: 'var(--link)',
+            cursor: 'pointer'
+        }
     },
     palette: {
         primary: {
@@ -17,6 +27,9 @@ export const LightThemeRed = createTheme({
         },
         rs: {
             test: '#000000'
+        },
+        link: {
+            main: '#1a6efc'
         }
     },
 })
