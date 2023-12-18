@@ -101,7 +101,7 @@ const TextLink = (props) => {
             sx={{
                 fontSize: '0.75rem',
                 cursor: 'pointer',
-                color: 'var(--link)',
+                color: props.primary? 'var(--color-primary)' : 'var(--link)',
                 ...props.sx,
 
             }} >

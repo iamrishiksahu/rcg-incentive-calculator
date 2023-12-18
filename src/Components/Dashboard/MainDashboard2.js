@@ -59,7 +59,7 @@ const MainDashboard2 = () => {
 
                     </DashboardCard>
                     <DashboardCard sx={{ width: '50%', height: 'max-content' }}>
-                        <TextTitle>Reporting To</TextTitle>
+                        <TextTitle>Reporting Manager</TextTitle>
                         <Stack direction={'row'} spacing={'1rem'} alignItems={'center'}>
                             <Avatar bgColor={''} src={'https://rapidtech.keka.com/files/4f689000-8639-4b64-9aa6-c95fb3b1b05e/50x50/profileimage/27e33446975f4aac809eb7aca3b703fb.jpg?1702396800000'} />
                             <Stack>
@@ -80,13 +80,13 @@ const MainDashboard2 = () => {
                     <DashboardCard row>
                         <Stack sx={{ gap: '0.5rem', padding: '0rem 1rem' }} >
 
-                            <img height={24} width={24} style={{ mzarginBottom: '0.5rem' }} src='/images/dashboard/candidate/wall-clock.png' />
+                            <img height={24} width={24} style={{ mzarginBottom: '0.5rem' }} src='/images/dashboard/candidate/red/wall-clock.png' />
                             <Typography variant='body2'>Average Hours</Typography>
                             <Typography variant='h6' fontWeight={600}>7h 34m</Typography>
                         </Stack>
                         <Stack sx={{ gap: '0.5rem', padding: '0rem 1rem' }} >
 
-                            <img height={24} width={24} style={{ marginBottom: '0.5rem' }} src='/images/dashboard/candidate/mountain.png' />
+                            <img height={24} width={24} style={{ marginBottom: '0.5rem' }} src='/images/dashboard/candidate/red/mountain.png' />
                             <Typography variant='body2'>On-Time Arrivals</Typography>
                             <Typography variant='h6' fontWeight={600}>97.88%</Typography>
                         </Stack>
@@ -97,13 +97,13 @@ const MainDashboard2 = () => {
 
                         <Stack sx={{ gap: '0.5rem', padding: '0rem 1rem' }} >
 
-                            <img height={24} width={24} style={{ marginBottom: '0.5rem' }} src='/images/dashboard/candidate/flag.png' />
+                            <img height={24} width={24} style={{ marginBottom: '0.5rem' }} src='/images/dashboard/candidate/red/flag.png' />
                             <Typography variant='body2'>Average Check-in</Typography>
                             <Typography variant='h6' fontWeight={600}>09:25AM</Typography>
                         </Stack>
                         <Stack sx={{ gap: '0.5rem', padding: '0rem 1rem' }} >
 
-                            <img height={24} width={24} style={{ marginBottom: '0.5rem' }} src='/images/dashboard/candidate/check-out.png' />
+                            <img height={24} width={24} style={{ marginBottom: '0.5rem' }} src='/images/dashboard/candidate/red/check-out.png' />
                             <Typography variant='body2'>Average Check-out</Typography>
                             <Typography variant='h6' fontWeight={600}>07:12PM</Typography>
                         </Stack>
@@ -115,7 +115,7 @@ const MainDashboard2 = () => {
                         <Stack sx={{ gap: '0.5rem', padding: '0rem 1rem' }} >
 
                             <Stack direction={'row'} spacing={'1rem'}>
-                                <img height={24} width={24} style={{ marginBottom: '0.5rem' }} src='/images/dashboard/candidate/vacation.png' />
+                                <img height={24} width={24} style={{ marginBottom: '0.5rem' }} src='/images/dashboard/candidate/red/vacation.png' />
                                 <Typography>Leaves</Typography>
 
                             </Stack>

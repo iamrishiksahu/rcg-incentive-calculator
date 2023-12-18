@@ -9,10 +9,20 @@ export const LightThemeRed = createTheme({
         h3: {
             fontSize: '2rem'
         },
-        link: {
+        link1: {
             color: 'var(--link)',
             cursor: 'pointer'
-        }
+        },
+        link2: {
+            color: 'var(--color-primary)',
+            cursor: 'pointer'
+        },
+        mutedText1: {
+            color: 'var(--color-text-1)'
+        },
+        mutedText2: {
+            color: 'var(--color-text-2)'
+        },
     },
     palette: {
         primary: {
