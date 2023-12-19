@@ -12,9 +12,6 @@ const AddCandidate = () => {
 
     const refStartDate = useRef()
 
-    const [trg, settrg] = useState(null)
-
-
     const performFormValidations = (e) => {
 
         try {
@@ -47,7 +44,7 @@ const AddCandidate = () => {
                 gitlab: e.target.github.value,
                 personal_website: e.target.website.value,
                 stackoverflow: e.target.stackoverflow.value,
-                // reporting_manager: e.target.reporting_manager.value,
+                reporting_manager: e.target.reporting_manager.value,
 
             }
 
@@ -64,13 +61,7 @@ const AddCandidate = () => {
 
     const resetFields = (e) => {
         e.target.reset()
-        settrg(!trg)
     }
-
-    useEffect(() => {
-        console.log('d');
-    }, [trg])
-
 
     const handleSubmitClick = async (e) => {
         e.preventDefault()
@@ -122,7 +113,7 @@ const AddCandidate = () => {
 
                 <TextFieldGroupContainer cols='1fr 1fr'>
                     <TextField required name='add_line_1' variant='outlined' size='small' label='Address Line 1' />
-                    <TextField name='add_line_2' variant='outlined    ed' size='small' label='Address Line 2' />
+                    <TextField name='add_line_2' variant='outlined' size='small' label='Address Line 2' />
                 </TextFieldGroupContainer>
                 <TextFieldGroupContainer cols='1fr 1fr 1fr 1fr'>
 
@@ -158,7 +149,7 @@ const AddCandidate = () => {
                 </TextFieldGroupContainer>
 
 
-                <TextFieldGroupContainer cols='1fr 1fr'>
+                <TextFieldGroupContainer cols='2fr 1fr 2fr'>
                     <TextField required name='job_title' variant='outlined' size='small' label='Job Title' />
 
                     <Autocomplete
@@ -167,7 +158,7 @@ const AddCandidate = () => {
                         renderInput={(params) => <TextField required {...params} ariant='outlined' size='small' name='user_role' label="Role" />}
                     />
 
-                    {/* <TextField required name='reporting_manager' variant='outlined' size='small' label='Reporting Manager' /> */}
+                    <TextField required name='reporting_manager' variant='outlined' size='small' label='Reporting Manager' />
                 </TextFieldGroupContainer>
 
                 <TextFieldGroupContainer cols='1fr 2fr 1fr'>
