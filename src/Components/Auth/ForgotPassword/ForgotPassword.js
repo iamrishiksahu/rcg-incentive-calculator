@@ -15,7 +15,7 @@ const ForgotPassword = () => {
         console.log(email)
 
         try {
-            const res = await axiosp.post('/forget_password', {
+            const res = await axiosp.post('/user/forget_password', {
                 email: email
             })
             if (res.status == 201) {

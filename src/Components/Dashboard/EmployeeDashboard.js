@@ -10,7 +10,7 @@ import Avatar from '../../CustomElements/Avatar'
 import usePageTitle from '../../hooks/usePageTitle'
 import { Steps } from 'antd'
 
-const MainDashboard2 = () => {
+const EmployeeDashboard = () => {
     const navigate = useNavigate()
     const { setTitleProps } = usePageTitle()
 
@@ -302,4 +302,4 @@ const MainDashboard2 = () => {
     )
 }
 
-export default MainDashboard2
+export default EmployeeDashboard

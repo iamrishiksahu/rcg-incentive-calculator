@@ -9,6 +9,7 @@ import { DateCalendar } from '@mui/x-date-pickers'
 import { getWeekDateRange } from '../../../Utils/dateUtils'
 import { format } from 'date-fns'
 import FlexBox from '../../../CustomElements/Containers/FlexBox'
+import axiosp from '../../../Utils/axiosConfig'
 
 const cols = ['Day', 'Regular', 'Double Time', 'Over Time', 'Expenses', 'Status']
 
@@ -153,6 +154,56 @@ const MyTimeSheet = () => {
     setDateRange(getWeekDateRange(selectedDate, 'mon'))
   }, [selectedDate])
 
+  const reqObj = {
+    week_starting: 'asd',
+    week_ending: 'asd',
+    submitted_time: '20:20:20:20:20',
+    user_id: 'user',
+    types: ['regular', 'over_time', 'double_time', 'expenses'],
+    regular: {
+      mon: '8',
+      tue: '9',
+      wed: '3'
+    },
+    over_time: {
+      mon: '8',
+      tue: '9',
+      wed: '3'
+    },
+    double_time: {
+      mon: '8',
+      tue: '9',
+      wed: '3'
+    },
+    expenses: {
+      mon: '8',
+      tue: '9',
+      wed: '3'
+    },
+    additional_details: {
+      details: 'asdfasfasdf',
+      attachment_url: 'asdf',
+      attachment_name: 'sadfas',
+    },
+
+  }
+
+  const submitTimesheetToServer = async () => {
+
+    try {
+      const res = await axiosp.post('/timesheet4/time-entries/', {
+
+      })
+      if(res.status == 201){
+        alert('Timesheet Submitted Successfully!')
+      }
+    } catch (err) {
+      console.log(err)
+    }
+
+
+  }
+
 
   useEffect(() => {
     setTitleProps({ title: 'My Timesheet' })
@@ -209,7 +260,7 @@ const MyTimeSheet = () => {
           // borderRadius: 0
         }}> */}
 
-        <FlexBox row  sx={{justifyContent: 'space-between', padding: '0.5rem'}}>
+        <FlexBox row sx={{ justifyContent: 'space-between', padding: '0.5rem' }}>
 
 
           <Box

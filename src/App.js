@@ -26,13 +26,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <NoInternetConnection>
-
           <Provider store={store}>
-
             <BrowserRouter>
-
               <Routes>
-
                 <Route path='/'>
                   <Route index element={<Login5 />} />
                   <Route path='forgot-password' element={<ForgotPassword />} />

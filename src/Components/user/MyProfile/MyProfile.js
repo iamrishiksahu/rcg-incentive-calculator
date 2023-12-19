@@ -1,13 +1,31 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PageContainer from '../../../CustomElements/Containers/PageContainer'
 import usePageTitle from '../../../hooks/usePageTitle'
 import { Paper, Stack, Tooltip, Typography } from '@mui/material'
 import FlexBox from '../../../CustomElements/Containers/FlexBox'
 import { Steps } from 'antd'
+import axiosp from '../../../Utils/axiosConfig'
 
 const MyProfile = () => {
 
     const { setTitleProps } = usePageTitle()
+
+    const [profileData, setProfileData] = useState(null)
+    const loadMyProfileData = async () => {
+        try{
+            const res = await axiosp.get('/dashboard/welcome_profile/')
+            console.log(res.data)
+            setProfileData(res.data)
+
+        }catch(err){
+            console.log(err)
+        }
+    }
+
+    const sampleResponseBody = {
+        "total_completion": 0
+        // backend work is required
+    }
 
     useEffect(() => {
         setTitleProps({ title: 'My Profile' })
