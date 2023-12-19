@@ -54,10 +54,9 @@ const Dashboard = () => {
 
           <Routes>
             <Route path='/' element={<RenderRoleBasedDashboard />} />
-            <Route path='/approve-timesheete' element={<Test />} />
             <Route path='/add-candidate' element={<AddCandidate />} />
             <Route path='/assignments' element={<AssignmentDashboard />} />
-            <Route path='/my-profile' element={<MyProfile />} />
+            <Route path='/my-profile/*' element={<MyProfile />} />
             <Route path='/add-assignment/:id' element={<AddAssignment />} />
             <Route path='/generate-invoice' element={<Login5 />} />
             <Route path='/submit-timesheet' element={<Login5 />} />
