@@ -169,7 +169,7 @@ const AssignmentDashboard = () => {
             borderRadius: '0.5rem 0.5rem 0 0',
           }}>
 
-          <Typography variant='h6'>Candidate Assignment Details</Typography>
+          <Typography variant='h6'>Candidate Assignment</Typography>
 
           <Stack direction={'row'} spacing={'1rem'} width={'50%'} justifyContent={'flex-end'}>
 
