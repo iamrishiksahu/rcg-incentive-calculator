@@ -15,25 +15,49 @@ const MainDashboard = () => {
     const navigate = useNavigate()
 
     const { setTitleProps } = usePageTitle()
-
-
     const [candidateList, setCandidateList] = useState([])
+    const [dashboardData, setDashboardData] = useState(null)
 
-    const loadCandidates = async () => {
+    const loadMainDashboardData = async () => {
         try {
-            const res = await axiosp.get('/candidate_details')
+            const res = await axiosp.get('/dashboard/main_dashboard/')
             console.log(res.data)
-            setCandidateList(res.data)
+            setDashboardData(res.data)
         } catch (err) {
+            alert('Error loading data! Please try again.')
             console.log(err)
-        } finally {
-            // setIsLoading(false)
         }
     }
 
+    const sampleResponseBody = {
+        "total_employees": 2,
+        "total_timesheet_submissions": 0,
+        "approved_timesheets": 0,
+        "Pending_timesheets": 0,
+        "Rejected_timesheets": 0,
+        "assigned_employees": 0,
+        "assignment_percentage": 0,
+        "submitted_timesheets_percentage": 0,
+        "approved_timesheets_percentage": 0,
+        "domain_dept_count": 0,
+        "contractors_count": 0,
+        "interns_count": 0,
+        "remote_workers_percentage": 0,
+        "rapid_office_workers_percentage": 0,
+        "client_office_workers_percentage": 0,
+        "part_time_employees_count": 0,
+        "divisions_count": 0,
+        "full_time_employees_count": 0,
+        "it_clients_count": 0,
+        "healthcare_clients_count": 0,
+        "overseas_edu_clients_count": 0,
+        "staffing_clients_count": 0
+    }
+
+
     useEffect(() => {
-        loadCandidates()
-        setTitleProps({title: 'Dashboard'})
+        loadMainDashboardData()
+        setTitleProps({ title: 'Dashboard' })
     }, [])
 
 

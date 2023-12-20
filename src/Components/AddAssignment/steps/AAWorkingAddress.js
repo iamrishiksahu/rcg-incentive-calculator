@@ -66,6 +66,7 @@ const AAWorkingAddress = ({ setFormData, handleNext, handleBack }) => {
     }, [])
     useEffect(() => {
         loadStatesOfSelectedCountry()
+        setSelectedState(null)
     }, [selectedCountry])
 
 
@@ -91,6 +92,7 @@ const AAWorkingAddress = ({ setFormData, handleNext, handleBack }) => {
                 <Autocomplete
                     disablePortal
                     options={countryList}
+                    value={selectedState}
                     onChange={(e) => setSelectedCountry(e.currentTarget.textContent)}
                     renderInput={(params) => <TextField {...params} ariant='outlined' size='small' inputRef={refWorkingCountry} label="Country" />}
                 />
@@ -111,7 +113,7 @@ const AAWorkingAddress = ({ setFormData, handleNext, handleBack }) => {
                     // disabled={statesList.length == 0}
                     options={statesList}
                     onChange={(e) => setSelectedState(e.currentTarget.textContent)}
-                    renderInput={(params) => <TextField {...params} ariant='outlined' size='small' inputRef={refWorkingState} label="Country" />}
+                    renderInput={(params) => <TextField {...params} ariant='outlined' size='small' inputRef={refWorkingState} label="State" />}
                 />
                 {/* <TextField inputRef={refWorkingState} variant='outlined' size='small' label='State' /> */}
                 <TextField inputRef={refPinCode} type='number' variant='outlined' size='small' label='Pin Code' />

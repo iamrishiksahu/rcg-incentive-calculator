@@ -13,11 +13,28 @@ import { PageTitleProvider } from '../../context/PageTitleProvider'
 import { Navigate } from 'react-router-dom'
 import ApproveTimesheet from '../Timesheets/ApproveTimesheet/ApproveTimesheet'
 import SingleTimesheetApproval from '../Timesheets/ApproveTimesheet/SingleTimesheetApproval'
-import MainDashboard2 from './MainDashboard2'
+import EmployeeDashboard from './EmployeeDashboard'
 import MyProfile from '../user/MyProfile/MyProfile'
+import useAuth from '../../customHooks/useAuth'
 const Dashboard = () => {
 
   const [title, setTitle] = useState('Dashboard')
+  const { auth } = useAuth()
+
+  const rolesForMainDashboard = ['Admin', 'HR', 'Finance', 'Manager']
+
+  const RenderRoleBasedDashboard = () => (
+    <>
+      {
+        rolesForMainDashboard.includes(auth.user_role) ?
+          < MainDashboard />
+          :
+          <EmployeeDashboard />
+      }
+    </>
+  )
+
+
 
   return (
     <div>
@@ -36,11 +53,10 @@ const Dashboard = () => {
           <DashboardTopBar />
 
           <Routes>
-            <Route path='/' element={<MainDashboard2 />} />
-            <Route path='/approve-timesheete' element={<Test />} />
+            <Route path='/' element={<RenderRoleBasedDashboard />} />
             <Route path='/add-candidate' element={<AddCandidate />} />
             <Route path='/assignments' element={<AssignmentDashboard />} />
-            <Route path='/my-profile' element={<MyProfile />} />
+            <Route path='/my-profile/*' element={<MyProfile />} />
             <Route path='/add-assignment/:id' element={<AddAssignment />} />
             <Route path='/generate-invoice' element={<Login5 />} />
             <Route path='/submit-timesheet' element={<Login5 />} />
@@ -48,7 +64,7 @@ const Dashboard = () => {
             <Route path='/approve-timesheet/:candidate_id/:week_ending' element={<SingleTimesheetApproval />} />
             <Route path='/my-timesheet' element={<MyTimeSheet />} />
             <Route path='/sign-out' element={<Navigate to='/' />} />
-           
+
           </Routes>
 
         </PageTitleProvider>

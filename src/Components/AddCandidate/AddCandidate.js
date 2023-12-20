@@ -1,6 +1,6 @@
 import { Button, TextField, Box, Autocomplete, } from '@mui/material'
 import './AddCandidate.css'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { TextFieldGroupContainer } from '../../CustomElements/Containers/TexFieldGroupContainer'
 import { DatePicker } from '@mui/x-date-pickers'
 import { useRef } from 'react'
@@ -12,19 +12,17 @@ const AddCandidate = () => {
 
     const refStartDate = useRef()
 
-    
     const performFormValidations = (e) => {
-        
+
         try {
-            
-            
+
+
             const data = {
-                
+
                 suffix: '',
                 first_name: e.target.first_name.value,
                 middle_name: e.target.middle_name.value,
                 last_name: e.target.last_name.value,
-
                 official_email: e.target.primary_email.value,
                 personal_email: e.target.secondary_email.value,
                 address1: e.target.add_line_1.value,
@@ -36,10 +34,8 @@ const AddCandidate = () => {
                 personal_mobile_number: e.target.personal_phone.value,
                 Emergency_mobile_number: e.target.secondary_phone.value,
                 user_role: e.target.user_role.value,
-
                 start_date: refStartDate.current.value,
                 job_title: e.target.job_title.value,
-
                 currency: e.target.currency.value,
                 employment_category: e.target.employment_category.value,
                 pay_rate: e.target.pay_rate.value,
@@ -48,10 +44,12 @@ const AddCandidate = () => {
                 gitlab: e.target.github.value,
                 personal_website: e.target.website.value,
                 stackoverflow: e.target.stackoverflow.value,
+                reporting_manager: e.target.reporting_manager.value,
 
             }
 
             console.log(data)
+
             return data
 
         } catch (err) {
@@ -61,6 +59,9 @@ const AddCandidate = () => {
 
     }
 
+    const resetFields = (e) => {
+        e.target.reset()
+    }
 
     const handleSubmitClick = async (e) => {
         e.preventDefault()
@@ -68,7 +69,7 @@ const AddCandidate = () => {
         const data = performFormValidations(e)
 
         try {
-            const res = await axiosp.post('/add_candidate_and_send_credentials/', data);
+            const res = await axiosp.post('/candidate_details/add_candidate_and_send_credentials/', data);
             console.log(res);
             if (res.status == 201) {
                 alert('Successfully Added Candidate!')
@@ -82,14 +83,14 @@ const AddCandidate = () => {
 
     }
 
-    const {setTitleProps} = usePageTitle()
+    const { setTitleProps } = usePageTitle()
 
     useEffect(() => {
-        setTitleProps({title: 'Add Candidate'})
+        setTitleProps({ title: 'Add Candidate' })
     }, [])
     return (
 
-        <form className='as' onSubmit={handleSubmitClick} >
+        <form className='as' onSubmit={handleSubmitClick} onReset={resetFields} >
 
             <div className='card' style={{
                 // boxShadow: 'var(--shadow-card-1)',
@@ -148,7 +149,7 @@ const AddCandidate = () => {
                 </TextFieldGroupContainer>
 
 
-                <TextFieldGroupContainer cols='1fr 1fr'>
+                <TextFieldGroupContainer cols='2fr 1fr 2fr'>
                     <TextField required name='job_title' variant='outlined' size='small' label='Job Title' />
 
                     <Autocomplete
@@ -156,7 +157,8 @@ const AddCandidate = () => {
                         options={UserRoles}
                         renderInput={(params) => <TextField required {...params} ariant='outlined' size='small' name='user_role' label="Role" />}
                     />
-                   
+
+                    <TextField required name='reporting_manager' variant='outlined' size='small' label='Reporting Manager' />
                 </TextFieldGroupContainer>
 
                 <TextFieldGroupContainer cols='1fr 2fr 1fr'>
@@ -180,11 +182,12 @@ const AddCandidate = () => {
                 gap: '1rem'
             }}>
                 <Button variant='outlined'
+                    type='reset'
                 >
                     Reset Fields
 
                 </Button>
-                <Button variant='contained'
+                <Button variant='outlined'
                     type='submit'
                 >
                     Submit

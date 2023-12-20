@@ -29,19 +29,19 @@ const ResetPassword = () => {
         }
 
         try {
-            const res = await axiosp.post(`/reset_password/${uid}/${token}`, {
+            const res = await axiosp.post(`/user/reset_password/${uid}/${token}/`, {
                 new_password: n,
                 confirm_new_password: cn
             })
             console.log(res.data)
-            if(res.status == 201){
+            if (res.status == 201) {
                 alert('Password changed successfully!')
+                // Redirect to login 
                 navigate('/')
             }
-            console.log(res)
         } catch (err) {
             console.log(err)
-            alert('Something went wrong!')
+            alert('Something went wrong! Please contact Administrator!')
             console.log(n, " ", cn)
         }
 

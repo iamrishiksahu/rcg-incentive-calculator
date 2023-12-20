@@ -94,7 +94,7 @@ const AssignmentDashboard = () => {
     bill_end: '22-10-2023',
     pay_end: '22-10-2023',
     assignment_status: 'Assigned',
-    job_title: 'Web Developer',
+    job_title: 'Python Developer',
     working_state: 'Jharkhand',
     assignment_division: 'IT',
     client_contact: 'Bhavya B.',
@@ -106,7 +106,6 @@ const AssignmentDashboard = () => {
   },
   ])
 
-  const navigate = useNavigate()
 
   const handleSearch = async (e) => {
     e.preventDefault()
@@ -140,7 +139,7 @@ const AssignmentDashboard = () => {
   }
 
   useEffect(() => {
-    loadCandidates()
+    // loadCandidates()
     setTitleProps({ title: 'Assignment Dashboard' })
 
   }, [])
@@ -170,7 +169,7 @@ const AssignmentDashboard = () => {
             borderRadius: '0.5rem 0.5rem 0 0',
           }}>
 
-          <Typography variant='h6'>Candidate List</Typography>
+          <Typography variant='h6'>Candidate Assignment</Typography>
 
           <Stack direction={'row'} spacing={'1rem'} width={'50%'} justifyContent={'flex-end'}>
 

@@ -114,7 +114,7 @@ const AddAssignment = () => {
             bill_rate: refBillRate.current.value,
             net_bill: refNetBill.current.value,
             margin: refMargin.current.value,
-            timesheet_entry_formate: refTimeSheetEntryFormat.current.value,
+            timesheet_entry_format: refTimeSheetEntryFormat.current.value,
             frequency: refPaymentFrequency.current.value,
             billing_units: refBillingUnit.current.value,
             week_ending: refWeekEnding.current.value,
@@ -148,7 +148,7 @@ const AddAssignment = () => {
 
         try {
 
-            const res = await axiosp.post('/Assignment_add_job_details/', extractData);
+            const res = await axiosp.post('/assignment_add_job_details/', extractData);
             console.log(res.data)
             alert('Successfully Saved!')
 

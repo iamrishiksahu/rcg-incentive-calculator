@@ -2,12 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { AuthProvider } from './context/AuthProvider';
+import { ToastProvider } from './context/ToastProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <AuthProvider>
+  <AuthProvider>
+    <ToastProvider>
       <App />
-    </AuthProvider>
+    </ToastProvider>
+  </AuthProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

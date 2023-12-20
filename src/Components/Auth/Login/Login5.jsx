@@ -19,7 +19,7 @@ const Login5 = () => {
     const navigate = useNavigate();
     const refEmail = useRef()
     const refPassword = useRef()
-    const {setAuth} = useAuth()
+    const { setAuth } = useAuth()
     const from = window.location.state?.from?.pathname || '/dashboard';
 
     const dispatch = useDispatch();
@@ -33,10 +33,26 @@ const Login5 = () => {
         e.preventDefault()
 
         try {
-            const res = await axiosp.post('/login_user/', {
+            const res = await axiosp.post('/user/login_user/', {
                 email: refEmail.current.value,
                 password: refPassword.current.value
             })
+
+            // const sampleResponseBody = {
+
+
+            //     "user_role": "Employee",
+            //     "user_id": 2,
+            //     "user_full_name": "string string string",
+            //     "user_email": "chapasuma@gmail.com",
+
+            //     "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyOTA2Mzc5LCJpYXQiOjE3MDI5MDYwNzksImp0aSI6IjQ3MzRhM2IzZDJlNjQzZGNiMGRkMjdmYjRkNzkyOTQ3IiwidXNlcl9pZCI6Mn0.VTMSPJIzTrXyJk6lrSYL9B94Fj5JWIru3WWxRIMa_n8",
+
+            //     "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcwMjk5MjQ3OSwiaWF0IjoxNzAyOTA2MDc5LCJqdGkiOiIyMGJjMTcwYTllYjA0YmY1YTBjMGI5Zjg2MDY5YmQ3NiIsInVzZXJfaWQiOjJ9.7eS0GpEs4KC9s-2fN9vPDBz8EahzlI277FjAJ-WwqRo",
+
+
+            // }
+
 
             const accessToken = res?.data?.access_token
 
@@ -44,9 +60,10 @@ const Login5 = () => {
             if (accessToken) {
                 dispatch(setAuthData(res.data));
                 setAuth(res.data)
-                // navigate('/dashboard')
+                navigate('/dashboard')               
 
-                navigate(from, { replace: true });
+            } else {
+                alert('Something went wrong! Please contact administrator!')
             }
 
 
@@ -136,8 +153,8 @@ const Login5 = () => {
                                 <PText>Remember Me</PText>
                             </FlexBoxH>
                             <PText sx={{ cursor: 'pointer' }}
-                            onClick={()=>{navigate('/forgot-password')}}
-                             >Forgot Password</PText>
+                                onClick={() => { navigate('/forgot-password') }}
+                            >Forgot Password</PText>
                         </FlexBoxH>
 
 
