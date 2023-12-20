@@ -1,0 +1,24 @@
+name: Update the code restart the service
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  update-and-reload:
+    runs-on: self-hosted
+    steps:
+
+    - name: update the code
+      run: |
+        
+        cd /home/Yukta/Yukta
+        git fetch --all
+        git pull origin main
+        for branch in $(git branch -r | grep -vE "HEAD|main" | awk -F/ '{print $2}'); do
+        git -C ../$branch pull origin $branch
+        done
+    - name: Reload the server
+      run: |  
+        pm2 reload frontend
