@@ -23,7 +23,7 @@ const holidayList = [
     '23-01-2024'
 ]
 
-const TimeSheetTable = ({ dateRange, source }) => {
+const TimeSheetTable = ({ dateRange, source, handleTimesheetSubmit}) => {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [clarificationDialog, setClarificationDialog] = React.useState(false)
@@ -99,15 +99,22 @@ const TimeSheetTable = ({ dateRange, source }) => {
 
     // Avoid a layout jump when reaching the last page with empty rows.
 
+  
+
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
 
-    const handleSubmitTimeSheet = (row) => {
+    const handleSubmitTimeSheet = (e) => {
         // navigate(`/submit-timesheet/${JSON.stringify(row)}`)
         // open the submit timesheet dialog
-        setRowData(row)
+        // setRowData(row)
+        handleTimesheetSubmit(e)
+    }
+
+    const handleTimesheetReset = (e) => {
+        e.target.reset()
     }
 
     const renderTimesheetStatus = (row) => {
@@ -149,8 +156,8 @@ const TimeSheetTable = ({ dateRange, source }) => {
 
     return (<>
 
-        <form>
-            <FlexBox sx={{padding: '2rem'}}>
+        <form onSubmit={handleSubmitTimeSheet} onReset={handleTimesheetReset}>
+            <FlexBox sx={{ padding: '2rem' }}>
 
                 <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} sx={{ marginBottom: '0.5rem', marginTop: '-0.5rem' }} >
                     <Typography variant='h6'> {source == 'APPROVER' ? 'Week Ending: ' + dateRange.endOfWeek : 'Enter Timehseet'}</Typography>
@@ -163,8 +170,8 @@ const TimeSheetTable = ({ dateRange, source }) => {
                                 <Button variant='outlined'>Approve</Button>
                             </Stack>
                             : <Stack direction={'row'}>
-                                <Button variant='text'>Reset</Button>
-                                <Button variant='outlined'>Submit</Button>
+                                <Button variant='text' type='reset'>Reset</Button>
+                                <Button variant='outlined' type='submit'>Submit</Button>
                             </Stack>
                     }
 
@@ -202,7 +209,7 @@ const TimeSheetTable = ({ dateRange, source }) => {
 
                     {rowsData.map((item, idx) => {
                         return (
-                            <TextField key={idx} size='small' variant='outlined' name={`tf_regular_${idx}`} placeholder={item.day} disabled={(item.day == 'Sat' || item.day == 'Sun' || holidayList.includes(item.date)) ? true : false} />
+                            <TextField key={idx} size='small' variant='outlined' name={`tf_regular_${idx}`} placeholder={item.day} disabled={(item.day == 'Sat' || item.day == 'Sun' || holidayList.includes(item.date)) ? true : false} required />
                         )
                     })}
 
@@ -283,6 +290,8 @@ const TimeSheetTable = ({ dateRange, source }) => {
                         {/* Hidden file input */}
                         <input
                             type="file"
+                            name='attachment_box'
+                            title={fileAttachment? fileAttachment.name: 'no-file-attached'}
                             ref={additionalDetailsAttachementRef}
                             style={{ display: 'none' }}
                             onChange={handleFileSelect}
@@ -290,7 +299,7 @@ const TimeSheetTable = ({ dateRange, source }) => {
 
                     </Stack>
                 </Stack>
-                <TextField disabled={source == 'APPROVER'} variant='outlined' size='small' placeholder='Enter details (if any)' minRows={'3'} multiline type='text' />
+                <TextField disabled={source == 'APPROVER'} variant='outlined' size='small' placeholder='Enter details (if any)' minRows={'3'} multiline type='text' name='additional_details_tf' />
             </FlexBox>
             {/* </Paper> */}
         </form>

@@ -3,6 +3,8 @@ import { Snackbar, Alert } from "@mui/material";
 
 const ToastContext = createContext({});
 
+const toastTypes = ['error', 'warning', 'info', 'success']
+
 export const ToastProvider = ({ children }) => {
     const [data, setData] = useState({
         open: false,
@@ -43,7 +45,7 @@ export const ToastProvider = ({ children }) => {
                 horizontal: data.position ? data.position.split('-')[1] : 'left'
             }}
             >
-                <Alert severity={data.type || 'info'} sx={{ width: '100%' }}>
+                <Alert severity={toastTypes.includes(data.type)? data.type : 'info'} sx={{ width: '100%' }}>
                     {data.message}
                 </Alert>
             </Snackbar>

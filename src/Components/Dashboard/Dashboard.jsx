@@ -16,6 +16,7 @@ import SingleTimesheetApproval from '../Timesheets/ApproveTimesheet/SingleTimesh
 import EmployeeDashboard from './EmployeeDashboard'
 import MyProfile from '../user/MyProfile/MyProfile'
 import useAuth from '../../customHooks/useAuth'
+import RequireAuth from '../../Wrappers/RequireAuth'
 const Dashboard = () => {
 
   const [title, setTitle] = useState('Dashboard')
@@ -53,16 +54,22 @@ const Dashboard = () => {
           <DashboardTopBar />
 
           <Routes>
-            <Route path='/' element={<RenderRoleBasedDashboard />} />
-            <Route path='/add-candidate' element={<AddCandidate />} />
-            <Route path='/assignments' element={<AssignmentDashboard />} />
-            <Route path='/my-profile/*' element={<MyProfile />} />
-            <Route path='/add-assignment/:id' element={<AddAssignment />} />
-            <Route path='/generate-invoice' element={<Login5 />} />
-            <Route path='/submit-timesheet' element={<Login5 />} />
-            <Route path='/approve-timesheet' element={<ApproveTimesheet />} />
-            <Route path='/approve-timesheet/:candidate_id/:week_ending' element={<SingleTimesheetApproval />} />
-            <Route path='/my-timesheet' element={<MyTimeSheet />} />
+            {/* Employee only routes */}
+            {/* <Route element={<RequireAuth allowedRoles={['Employee']} />}> */}
+              <Route path='/' element={<RenderRoleBasedDashboard />} />
+              <Route path='/my-profile/*' element={<MyProfile />} />
+              <Route path='/my-timesheet' element={<MyTimeSheet />} />
+            {/* </Route> */}
+
+            {/* ADMIN | MANAGER | HR | FINANCE only routes */}
+            {/* <Route element={<RequireAuth allowedRoles={['Manager', 'Admin', 'HR', 'Finance']} />}> */}
+              <Route path='/add-candidate' element={<AddCandidate />} />
+              <Route path='/add-assignment/:id' element={<AddAssignment />} />
+              <Route path='/assignments' element={<AssignmentDashboard />} />
+              <Route path='/approve-timesheet' element={<ApproveTimesheet />} />
+              <Route path='/approve-timesheet/:candidate_id/:week_ending' element={<SingleTimesheetApproval />} />
+            {/* </Route> */}
+
             <Route path='/sign-out' element={<Navigate to='/' />} />
 
           </Routes>

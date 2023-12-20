@@ -7,10 +7,13 @@ import { useRef } from 'react'
 import axiosp from '../../Utils/axiosConfig'
 import { PayUnit, UserRoles } from '../../Utils/constants'
 import usePageTitle from '../../hooks/usePageTitle'
+import useToast from '../../customHooks/useToast'
 const AddCandidate = () => {
 
 
     const refStartDate = useRef()
+
+    const {setToast} = useToast()
 
     const performFormValidations = (e) => {
 
@@ -23,28 +26,29 @@ const AddCandidate = () => {
                 first_name: e.target.first_name.value,
                 middle_name: e.target.middle_name.value,
                 last_name: e.target.last_name.value,
-                official_email: e.target.primary_email.value,
-                personal_email: e.target.secondary_email.value,
+                email: e.target.primary_email.value,
+                email2: e.target.secondary_email.value,
                 address1: e.target.add_line_1.value,
                 address2: e.target.add_line_1.value,
                 state: e.target.state.value,
                 city: e.target.city.value,
-                pin_code: e.target.zip.value,
+                pin_code: parseInt(e.target.zip.value),
                 country: e.target.country.value,
                 personal_mobile_number: e.target.personal_phone.value,
-                Emergency_mobile_number: e.target.secondary_phone.value,
-                user_role: e.target.user_role.value,
+                emergency_mobile_number: e.target.secondary_phone.value,
+                role: e.target.user_role.value,
                 start_date: refStartDate.current.value,
                 job_title: e.target.job_title.value,
                 currency: e.target.currency.value,
                 employment_category: e.target.employment_category.value,
                 pay_rate: e.target.pay_rate.value,
                 pay_rate_choices: e.target.pay_unit.value,
-                linkedin: e.target.linkedin.value,
+                linkedin_profile_id: e.target.linkedin.value,
                 gitlab: e.target.github.value,
                 personal_website: e.target.website.value,
                 stackoverflow: e.target.stackoverflow.value,
                 reporting_manager: e.target.reporting_manager.value,
+
 
             }
 
@@ -66,18 +70,20 @@ const AddCandidate = () => {
     const handleSubmitClick = async (e) => {
         e.preventDefault()
 
-        const data = performFormValidations(e)
+        const reqbody = performFormValidations(e)
 
         try {
-            const res = await axiosp.post('/candidate_details/add_candidate_and_send_credentials/', data);
+            const res = await axiosp.post('/candidate_details/add_candidate_details_and_send_credentials/', reqbody);
             console.log(res);
             if (res.status == 201) {
-                alert('Successfully Added Candidate!')
+                setToast({message: 'Candidate added successfully!'})
             } else {
-                alert('Failed!')
+                setToast({message: 'Candidate addition failed!'})
             }
         } catch (err) {
             console.log(err)
+            setToast({message: 'Error occured while adding candidate!', type: 'error'})
+
         }
 
 
@@ -90,7 +96,7 @@ const AddCandidate = () => {
     }, [])
     return (
 
-        <form className='as' onSubmit={handleSubmitClick} onReset={resetFields} >
+        <form noValidate className='as' onSubmit={handleSubmitClick} onReset={resetFields} >
 
             <div className='card' style={{
                 // boxShadow: 'var(--shadow-card-1)',
@@ -187,7 +193,7 @@ const AddCandidate = () => {
                     Reset Fields
 
                 </Button>
-                <Button variant='outlined'
+                <Button variant='contained'
                     type='submit'
                 >
                     Submit

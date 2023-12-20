@@ -191,19 +191,105 @@ const MyTimeSheet = () => {
   }
 
 
-  const {setToast} = useToast()
+  const { setToast } = useToast()
 
-  const submitTimesheetToServer = async () => {
+  const validateFormEntries = (e) => {
 
     try {
-      const res = await axiosp.post('/timesheet4/time-entries/', {
 
-      })
-      if(res.status == 201){
-        alert('Timesheet Submitted Successfully!')
+      const regular = {
+        mon: e.target.tf_regular_0.value || 0,
+        tue: e.target.tf_regular_1.value || 0,
+        wed: e.target.tf_regular_2.value || 0,
+        thu: e.target.tf_regular_3.value || 0,
+        fri: e.target.tf_regular_4.value || 0,
+        sat: e.target.tf_regular_5.value || 0,
+        sun: e.target.tf_regular_6.value || 0,
+      }
+      const overTime = {
+        mon: e.target.tf_overtime_0.value || 0,
+        tue: e.target.tf_overtime_1.value || 0,
+        wed: e.target.tf_overtime_2.value || 0,
+        thu: e.target.tf_overtime_3.value || 0,
+        fri: e.target.tf_overtime_4.value || 0,
+        sat: e.target.tf_overtime_5.value || 0,
+        sun: e.target.tf_overtime_6.value || 0,
+      }
+      const doubleTime = {
+        mon: e.target.tf_doubletime_0.value || 0,
+        tue: e.target.tf_doubletime_1.value || 0,
+        wed: e.target.tf_doubletime_2.value || 0,
+        thu: e.target.tf_doubletime_3.value || 0,
+        fri: e.target.tf_doubletime_4.value || 0,
+        sat: e.target.tf_doubletime_5.value || 0,
+        sun: e.target.tf_doubletime_6.value || 0,
+      }
+      const expenses = {
+        mon: e.target.tf_expenses_0.value || 0,
+        tue: e.target.tf_expenses_1.value || 0,
+        wed: e.target.tf_expenses_2.value || 0,
+        thu: e.target.tf_expenses_3.value || 0,
+        fri: e.target.tf_expenses_4.value || 0,
+        sat: e.target.tf_expenses_5.value || 0,
+        sun: e.target.tf_expenses_6.value || 0,
+      }
+
+      const data = {
+        week_starting: dateRange.startOfWeek,
+        week_ending: dateRange.endOfWeek,
+        submitted_time: Date.now().toLocaleString(),
+        status: 'pending', // means submitted by employee, pending for approval
+        types: ['regular', 'expenses', 'over_time', 'double_time'],
+        regular: {
+          ...regular,
+          total: regular.mon + regular.tue + regular.wed + regular.thu + regular.fri + regular.sat + regular.sun,
+        },
+        expenses: {
+          ...expenses,
+          total: expenses.mon + expenses.tue + expenses.wed + expenses.thu + expenses.fri + expenses.sat + expenses.sun,
+        },
+        double_time: {
+          ...doubleTime,
+          total: doubleTime.mon + doubleTime.tue + doubleTime.wed + doubleTime.thu + doubleTime.fri + doubleTime.sat + doubleTime.sun,
+        },
+        over_time: {
+          ...overTime,
+          total: overTime.mon + overTime.tue + overTime.wed + overTime.thu + overTime.fri + overTime.sat + overTime.sun,
+        },
+        additional_details: {
+          details: e.target.additional_details_tf.value,
+          attachment_url: 'asdf',
+          attachment_name: e.target.attachment_box.title,
+        },
+      }
+
+      return data
+    } catch (err) {
+      console.log(err)
+      return 'err'
+    }
+  }
+
+  const handleTimesheetSubmit = async (e) => {
+
+    e.preventDefault()
+
+    const payload = validateFormEntries(e)
+
+    if (payload == 'err') {
+      setToast({ type: 'error', message: 'Error submitting the timesheet!' })
+      return
+    }
+
+    try {
+      const res = await axiosp.post('/timesheet4/time-entries/', payload)
+      if (res.status == 201) {
+        setToast({ type: 'success', message: 'Timesheet Submitted Successfully!' })
       }
     } catch (err) {
       console.log(err)
+      setToast({ type: 'error', message: 'Error submitting the timesheet!' })
+
     }
 
 
@@ -252,18 +338,6 @@ const MyTimeSheet = () => {
       </Box>
 
       <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-
-        {/* <Paper sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          gap: '1rem',
-          marginBottom: '1rem',
-          backgroundColor: 'var(--white)',
-          padding: '.5492rem 1rem',
-          borderRadius: '0.25rem',
-          // marginBottom: '-0rem',
-          // borderRadius: 0
-        }}> */}
 
         <FlexBox row sx={{ justifyContent: 'space-between', padding: '0.5rem' }}>
 
@@ -322,7 +396,7 @@ const MyTimeSheet = () => {
         </FlexBox>
 
 
-        <TimeSheetTable source={'CANDIDATE'} dateRange={dateRange} />
+        <TimeSheetTable handleTimesheetSubmit={handleTimesheetSubmit} source={'CANDIDATE'} dateRange={dateRange} />
       </Box>
 
 
