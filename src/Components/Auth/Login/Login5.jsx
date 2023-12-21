@@ -1,5 +1,5 @@
 import { Box, Container, Card, Checkbox, Typography } from '@mui/material'
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { VGap } from '../../../CustomElements/Gaps/Gap'
 import { PText, Small } from '../../../CustomElements/Typography/Typgraphy'
 import { LoginButton } from '../../../CustomElements/Buttons/Buttons'
@@ -10,7 +10,7 @@ import './Login.css'
 import axiosp from '../../../Utils/axiosConfig'
 import { useSelector, useDispatch } from 'react-redux';
 import { setAuthData } from '../../../features/auth/authState';
-
+import useToast from '../../../customHooks/useToast'
 import { useNavigate } from 'react-router'
 import useAuth from '../../../customHooks/useAuth'
 
@@ -25,6 +25,8 @@ const Login5 = () => {
     const dispatch = useDispatch();
     const authData = useSelector((state) => state.authData);
 
+    const { setToast } = useToast()
+
     useEffect(() => {
         console.log('authData: ', authData)
     }, [authData])
@@ -32,10 +34,26 @@ const Login5 = () => {
     const loginHandler = async (e) => {
         e.preventDefault()
 
+        const email =  refEmail.current.value;
+        const password = refPassword.current.value;
+
+        const emailRegex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/;
+
+
+        if(email == '' || !emailRegex.test(email)){
+            setToast({type: 'error', message: 'Please enter a valid email!', position: 'top-center'})
+            return 
+        }
+
+        if(password == ''){
+            setToast({type: 'error', message: 'Please enter your password!', position: 'top-center'})
+            return 
+        }
+
         try {
             const res = await axiosp.post('/user/login_user/', {
-                email: refEmail.current.value,
-                password: refPassword.current.value
+                email: email,
+                password: password
             })
 
             // const sampleResponseBody = {
@@ -60,16 +78,17 @@ const Login5 = () => {
             if (accessToken) {
                 dispatch(setAuthData(res.data));
                 setAuth(res.data)
-                navigate('/dashboard')               
+                setToast({ type: 'success', message: 'Login successful!' })
+                navigate('/dashboard')
 
             } else {
-                alert('Something went wrong! Please contact administrator!')
+                setToast({ type: 'error', message: 'Something went wrong! Please contact administrator!', position: 'top-center' })
             }
 
 
         } catch (err) {
             console.log(err)
-            alert('Something went wrong!')
+            setToast({ type: 'error', message: 'Something went wrong! Please contact administrator!', position: 'top-center' })
         }
     }
     return (
@@ -102,69 +121,68 @@ const Login5 = () => {
 
                 <div className='login-right-container'>
 
-                    <div className='login-card'>
+                        <div className='login-card'>
 
-                        <Box sx={{
+                            <Box sx={{
 
-                            display: 'flex',
-                            gap: '0.5rem',
+                                display: 'flex',
+                                gap: '0.5rem',
 
-                        }}>
-
-                            <H2 sx={{
-                                fontWeight: '500',
-                                color: 'white',
-                                fontSize: '2.5rem'
-                            }}>YUKTA</H2>
-                            <H2 sx={{
-                                fontWeight: '300',
-                                color: 'white',
-                                fontSize: '2.5rem'
-
-                            }}>Portal</H2>
-                        </Box>
-
-                        <VGap value='1rem' />
-
-
-                        <PText>Sign in with your Account.</PText>
-                        <VGap value='0.5rem' />
-
-                        {/* <VGap value='1rem' /> */}
-
-                        <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                            <PText>Email</PText>
-                            <LoginTextField inputRef={refEmail} icon='alternate_email' type='email' placeholder='yourmail@email.com' />
-                        </Box>
-                        <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                            <PText>Password</PText>
-                            <LoginTextField inputRef={refPassword} icon='key' type='password' placeholder='password' />
-                        </Box>
-
-                        <FlexBoxH sx={{
-                            justifyContent: 'space-between',
-                            width: '100%'
-                        }}>
-                            <FlexBoxH sx={{
-                                gap: '0px',
-                                marginLeft: '-0.6rem',
                             }}>
-                                <Checkbox />
-                                <PText>Remember Me</PText>
+
+                                <H2 sx={{
+                                    fontWeight: '500',
+                                    color: 'white',
+                                    fontSize: '2.5rem'
+                                }}>YUKTA</H2>
+                                <H2 sx={{
+                                    fontWeight: '300',
+                                    color: 'white',
+                                    fontSize: '2.5rem'
+
+                                }}>Portal</H2>
+                            </Box>
+
+                            <VGap value='1rem' />
+
+
+                            <PText>Sign in with your Account.</PText>
+                            <VGap value='0.5rem' />
+
+                            {/* <VGap value='1rem' /> */}
+
+                            <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                <PText>Email</PText>
+                                <LoginTextField inputRef={refEmail} icon='alternate_email' type='email' placeholder='yourmail@email.com' />
+                            </Box>
+                            <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                <PText>Password</PText>
+                                <LoginTextField inputRef={refPassword} icon='key' type='password' placeholder='password' />
+                            </Box>
+
+                            <FlexBoxH sx={{
+                                justifyContent: 'space-between',
+                                width: '100%'
+                            }}>
+                                <FlexBoxH sx={{
+                                    gap: '0px',
+                                    marginLeft: '-0.6rem',
+                                }}>
+                                    <Checkbox />
+                                    <PText>Remember Me</PText>
+                                </FlexBoxH>
+                                <PText sx={{ cursor: 'pointer' }}
+                                    onClick={() => { navigate('/forgot-password') }}
+                                >Forgot Password</PText>
                             </FlexBoxH>
-                            <PText sx={{ cursor: 'pointer' }}
-                                onClick={() => { navigate('/forgot-password') }}
-                            >Forgot Password</PText>
-                        </FlexBoxH>
 
 
 
-                        <VGap value='1rem' />
+                            <VGap value='1rem' />
 
-                        <LoginButton onClick={loginHandler} >Login</LoginButton>
+                            <LoginButton onClick={loginHandler} >Login</LoginButton>
 
-                    </div>
-
+                        </div>
 
                 </div>
 
