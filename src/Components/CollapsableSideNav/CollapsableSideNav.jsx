@@ -113,7 +113,7 @@ const CollapsableSideNav = ({ setTitle }) => {
             setMenuItems(adminMenuItems)
         }else{
             //for testing only. Must be removed in production
-            setMenuItems(allMenuItems)
+            // setMenuItems(allMenuItems)
         }
 
     }, [])

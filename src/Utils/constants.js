@@ -1,3 +1,5 @@
+const AllUserRoles = ['Employee', 'Admin', 'HR', 'Finance', 'Manager']
+
 const DivisionsList = [
     { label: 'Information Technology', value: 1 },
     { label: 'Overseas Education', value: 2 },
@@ -67,4 +69,4 @@ const WeekNameList = [
     'Saturday',
 ]
 
-export {DivisionsList, AmountUnitList, CurrencyList, WorkLocationList, PayUnit, DummyCandidateList, DummyWorkList, UserRoles, PayFrequencyList, BillingUnitsList, WeekNameList}
+export {AllUserRoles, DivisionsList, AmountUnitList, CurrencyList, WorkLocationList, PayUnit, DummyCandidateList, DummyWorkList, UserRoles, PayFrequencyList, BillingUnitsList, WeekNameList}

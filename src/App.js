@@ -33,9 +33,9 @@ function App() {
                   <Route index element={<Login5 />} />
                   <Route path='forgot-password' element={<ForgotPassword />} />
                   <Route path='reset_password/:uid/:token' element={<ResetPassword />} />
-                  {/* <Route element={<RequireAuth allowedRoles={['Admin']} />} > */}
-                  <Route path='/dashboard/*' element={<Dashboard />} />
-                  {/* </Route> */}
+                  <Route element={<RequireAuth allowAll />} >
+                    <Route path='/dashboard/*' element={<Dashboard />} />
+                  </Route>
                   {/* <Route path='add-candidate' element`={<Dashboard />} /> */}
                 </Route>
                 <Route path='*' element={<Page404 />} />
