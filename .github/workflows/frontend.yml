@@ -20,7 +20,7 @@ jobs:
         pwd
         cd /home/git-test/Yukta_frontend
         pwd
-        git checkout backend 
+        git checkout frontend 
     - name: Update the code
       run: |
         pwd
