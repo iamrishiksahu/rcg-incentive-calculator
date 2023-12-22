@@ -10,15 +10,24 @@ jobs:
     runs-on: self-hosted
     steps:
 
-    - name: update the code
+    - name: Change the directory
       run: |
-        
-        cd /home/Yukta/Yukta
-        git fetch --all
-        git pull origin main
-        for branch in $(git branch -r | grep -vE "HEAD|main" | awk -F/ '{print $2}'); do
-        git -C ../$branch pull origin $branch
-        done
+        cd /home/git-test/Yukta_frontend
+
+    - name: pull the code
+      run: |
+        whoami
+        pwd
+        cd /home/git-test/Yukta_frontend
+        pwd
+        git checkout frontend 
+    - name: Update the code
+      run: |
+        pwd
+        cd /home/git-test/Yukta_frontend
+        pwd
+        git pull origin frontend
     - name: Reload the server
       run: |  
         pm2 reload frontend
+        
