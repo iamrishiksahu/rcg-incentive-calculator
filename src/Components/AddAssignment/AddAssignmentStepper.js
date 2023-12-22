@@ -11,11 +11,20 @@ import AACandidateDetails from './steps/AACandidateDetails';
 import AABillingDetails from './steps/AABillingDetails';
 import AACommissionDetails from './steps/AACommissionDetails';
 import AAWorkingAddress from './steps/AAWorkingAddress';
-
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import useToast from '../../customHooks/useToast'
+import axiosp from '../../Utils/axiosConfig'
 
 
 export default function AddAssignmentStepper() {
   const [activeStep, setActiveStep] = useState(0);
+  const [open, setOpen] = useState(false)
+
+  const { setToast } = useToast()
+
+  const handleDialogclose = () => {
+    setOpen(false)
+  }
 
   const [formData, setFormData] = useState({});
 
@@ -33,14 +42,35 @@ export default function AddAssignmentStepper() {
   };
 
   const handleFinalize = () => {
-    alert('Do you want to finalize?')
+    setOpen(true)
   }
+
+  const handleAddAssignment = async () => {
+    const reqPayload = {
+      ...formData.candidate_details, 
+      ...formData.billing_details,
+      ...formData.working_address,
+      ...formData.commission_details
+    }
+
+    try{
+      const res = await axiosp.post('/Assignment_add_job_details/', reqPayload)
+      console.log(res.data)
+      setToast({type: 'success', message: `Assignment added successfully! Assignment ID: ${res.data?.id}`})
+    }catch(err){
+      console.log(err)
+      setToast({type: 'error', message: 'Error in adding assignment!'})      
+    }
+   }
+
+
 
 
   const steps = [
     {
       label: 'Candidate Details',
       layout: <AACandidateDetails
+        formData={formData}
         setFormData={setFormData}
         handleNext={handleNext}
         handleBack={handleBack} />
@@ -49,6 +79,7 @@ export default function AddAssignmentStepper() {
       label: 'Billing Details',
 
       layout: <AABillingDetails
+        formData={formData}
         setFormData={setFormData}
         handleNext={handleNext}
         handleBack={handleBack} />
@@ -56,6 +87,7 @@ export default function AddAssignmentStepper() {
     {
       label: 'Working Address',
       layout: <AAWorkingAddress
+        formData={formData}
         setFormData={setFormData}
         handleNext={handleNext}
         handleBack={handleBack} />
@@ -63,6 +95,7 @@ export default function AddAssignmentStepper() {
     {
       label: 'Commissions',
       layout: <AACommissionDetails
+        formData={formData}
         setFormData={setFormData}
         handleNext={handleFinalize}
         handleBack={handleBack} />
@@ -76,7 +109,7 @@ export default function AddAssignmentStepper() {
 
   return (
     <Box>
-      <Stepper activeStep={activeStep} alternativeLabel sx={{mb: '2rem'}}>
+      <Stepper activeStep={activeStep} alternativeLabel sx={{ mb: '2rem' }}>
         {steps.map((step, index) => (
           <Step key={step.label}>
 
@@ -102,6 +135,23 @@ export default function AddAssignmentStepper() {
           </Button>
         </Paper>
       )} */}
+
+      <Dialog open={open} onClose={handleDialogclose}>
+
+        <DialogTitle>
+          Confirmation
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>Are you sure you want to add this following candidate?</DialogContentText>
+          {/* <Typography>{JSON.stringify(formData)}</Typography> */}
+        </DialogContent>
+
+        <DialogActions>
+          <Button sx={{textTransform: 'none'}} onClick={handleDialogclose}>Cancel</Button>
+          <Button sx={{textTransform: 'none'}} onClick={handleAddAssignment}>Confrim</Button>
+        </DialogActions>
+
+      </Dialog>
     </Box>
   );
 }

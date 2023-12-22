@@ -59,6 +59,44 @@ const employeeMenuItems = [
         endpoint: 'sign-out'
     },
 ]
+
+const allMenuItems = [
+    {
+        icon_url: '/images/side-nav/dashboard.png',
+        nav_item_name: 'Dashboard',
+        endpoint: ''
+    },
+    {
+        icon_url: '/images/side-nav/add-candidate.png',
+        nav_item_name: 'Add Candidate',
+        endpoint: 'add-candidate'
+    },
+    {
+        icon_url: '/images/side-nav/dashboard.png',
+        nav_item_name: 'Assignment Dashboard',
+        endpoint: 'assignments'
+    },
+    {
+        icon_url: '/images/side-nav/submit-timesheet.png',
+        nav_item_name: 'My Timesheet',
+        endpoint: 'my-timesheet'
+    },
+    {
+        icon_url: '/images/side-nav/approve-timesheet.png',
+        nav_item_name: 'Approve Timesheet',
+        endpoint: 'approve-timesheet'
+    },
+    {
+        icon_url: '/images/side-nav/login-hrms.png',
+        nav_item_name: 'Login to HRMS',
+        endpoint: 'https://rapidtech.keka.com/#/home/dashboard'
+    },
+    {
+        icon_url: '/images/side-nav/log-out.png',
+        nav_item_name: 'Sign Out',
+        endpoint: 'sign-out'
+    },
+]
 const CollapsableSideNav = ({ setTitle }) => {
 
     const [isCollapsed, setIsCollapsed] = useState(false);
@@ -73,6 +111,9 @@ const CollapsableSideNav = ({ setTitle }) => {
         } else if(['HR', 'Manager', 'Finance', 'Admin'].includes(auth?.role)) {
             // For all other roles
             setMenuItems(adminMenuItems)
+        }else{
+            //for testing only. Must be removed in production
+            setMenuItems(allMenuItems)
         }
 
     }, [])

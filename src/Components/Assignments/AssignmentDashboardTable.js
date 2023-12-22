@@ -16,7 +16,7 @@ const AssignmentDashboardTable = ({ data }) => {
 
 
   const rows = data.map((item) => {
-    return { ...item, name: item.candidate_first_name + " " + item.candidate_last_name }
+    return { ...item, name: item.candidate_firstname + " " + item.candidate_last_name }
   })
 
   return (
@@ -46,9 +46,11 @@ const AssignmentDashboardTable = ({ data }) => {
             <TableCell align="center" sx={{ minWidth: '100px' }}>Division</TableCell>
             <TableCell align="center" sx={{ minWidth: '150px' }}>Working State</TableCell>
             <TableCell align="center" sx={{ minWidth: '150px' }}>Client Contact</TableCell>
+            <TableCell align="center" sx={{ minWidth: '150px' }}>Bill Rate</TableCell>
+            <TableCell align="center" sx={{ minWidth: '150px' }}>Pay Rate</TableCell>
+            <TableCell align="center" sx={{ minWidth: '100px' }}>Spread</TableCell>
             <TableCell align="center" sx={{ minWidth: '150px' }}>Primary Recruiter</TableCell>
             <TableCell align="center" sx={{ minWidth: '150px' }}>Primary Sales</TableCell>
-            <TableCell align="center" sx={{ minWidth: '100px' }}>Spread</TableCell>
             <TableCell align="center" sx={{ minWidth: '150px' }}>Start Entered</TableCell>
             <TableCell align="center" sx={{ minWidth: '120px' }}>Optional Ref #</TableCell>
           </TableRow>
@@ -70,20 +72,22 @@ const AssignmentDashboardTable = ({ data }) => {
 
                 </Link>
               </TableCell>
-              <TableCell align="center">{row.bill_start}</TableCell>
-              <TableCell align="center">{row.bill_end}</TableCell>
-              <TableCell align="center">{row.pay_start}</TableCell>
-              <TableCell align="center">{row.pay_end}</TableCell>
-              <TableCell align="center">{row.assignment_status}</TableCell>
-              <TableCell align="center">{row.job_title}</TableCell>
-              <TableCell align="center">{row.assignment_division}</TableCell>
-              <TableCell align="center">{row.working_state}</TableCell>
-              <TableCell align="center">{row.client_contact}</TableCell>
-              <TableCell align="center">{row.primary_recruiter}</TableCell>
-              <TableCell align="center">{row.primary_sales}</TableCell>
-              <TableCell align="center">{row.spread}</TableCell>
-              <TableCell align="center">{row.start_entered}</TableCell>
-              <TableCell align="center">{row.optional_ref}</TableCell>
+              <TableCell align="center">{row?.job?.Bill_Stardate}</TableCell>.job
+              <TableCell align="center">{row?.job?.Bill_end_date}</TableCell>.job
+              <TableCell align="center">{row?.job?.pay_start_date}</TableCell>.job
+              <TableCell align="center">{row?.job?.pay_end_date}</TableCell>.job
+              <TableCell align="center">{row?.job?.Assignment_status}</TableCell>.job
+              <TableCell align="center">{row?.job?.job_title}</TableCell>.job
+              <TableCell align="center">{row?.job?.Assignment_division}</TableCell>.job
+              <TableCell align="center">{row?.job?.working_state}</TableCell>.job
+              <TableCell align="center">{row?.job?.client_contact}</TableCell>.job
+              <TableCell align="center">{row?.job?.Bill_Rate}</TableCell>.job
+              <TableCell align="center">{row?.job?.Pay_Rate}</TableCell>
+              <TableCell align="center">{row?.job?.Spread}</TableCell>
+              <TableCell align="center">{row?.job?.primary_recruiter}</TableCell>.job
+              <TableCell align="center">{row?.job?.primary_sales}</TableCell>.job
+              <TableCell align="center">{row?.job?.start_entered_date}</TableCell>.job
+              <TableCell align="center">{row?.job?.optional_Ref}</TableCell>.job
             </TableRow>
           ))}
         </TableBody>

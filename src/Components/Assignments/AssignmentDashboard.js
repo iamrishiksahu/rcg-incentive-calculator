@@ -7,126 +7,112 @@ import AssignmentDashboardTable from './AssignmentDashboardTable'
 import { Stack } from '@mui/system'
 import IconContainer from '../../CustomElements/Containers/IconContainer'
 import FlexBox from '../../CustomElements/Containers/FlexBox'
+import useToast from '../../customHooks/useToast'
+
+const dummyData = [{
+  id: '1',
+  candidate_first_name: 'Rishik',
+  candidate_last_name: 'Sahu',
+  bill_start: '22-10-2023',
+  pay_start: '22-10-2023',
+  bill_end: '22-10-2023',
+  pay_end: '22-10-2023',
+  assignment_status: 'Assigned',
+  job_title: 'Web Developer',
+  working_state: 'Jharkhand',
+  assignment_division: 'IT',
+  client_contact: 'Bhavya B.',
+  primary_recruiter: 'Ravi K V',
+  primary_sales: '34',
+  start_entered: '24-11-2000',
+  optional_ref: '124582',
+  spread: '$10'
+}, {
+  id: '1',
+  candidate_first_name: 'Rishik',
+  candidate_last_name: 'Sahu',
+  bill_start: '22-10-2023',
+  pay_start: '22-10-2023',
+  bill_end: '22-10-2023',
+  pay_end: '22-10-2023',
+  assignment_status: 'Assigned',
+  job_title: 'Web Developer',
+  working_state: 'Jharkhand',
+  assignment_division: 'IT',
+  client_contact: 'Bhavya B.',
+  primary_recruiter: 'Ravi K V',
+  primary_sales: '34',
+  start_entered: '24-11-2000',
+  optional_ref: '124582',
+  spread: '$10'
+}, {
+  id: '1',
+  candidate_first_name: 'Rishik',
+  candidate_last_name: 'Sahu',
+  bill_start: '22-10-2023',
+  pay_start: '22-10-2023',
+  bill_end: '22-10-2023',
+  pay_end: '22-10-2023',
+  assignment_status: 'Assigned',
+  job_title: 'Web Developer',
+  working_state: 'Jharkhand',
+  assignment_division: 'IT',
+  client_contact: 'Bhavya B.',
+  primary_recruiter: 'Ravi K V',
+  primary_sales: '34',
+  start_entered: '24-11-2000',
+  optional_ref: '124582',
+  spread: '$10'
+}, {
+  id: '1',
+  candidate_first_name: 'Rishik',
+  candidate_last_name: 'Sahu',
+  bill_start: '22-10-2023',
+  pay_start: '22-10-2023',
+  bill_end: '22-10-2023',
+  pay_end: '22-10-2023',
+  assignment_status: 'Assigned',
+  job_title: 'Web Developer',
+  working_state: 'Jharkhand',
+  assignment_division: 'IT',
+  client_contact: 'Bhavya B.',
+  primary_recruiter: 'Ravi K V',
+  primary_sales: '34',
+  start_entered: '24-11-2000',
+  optional_ref: '124582',
+  spread: '$10'
+}, {
+  id: '1',
+  candidate_first_name: 'Rishik',
+  candidate_last_name: 'Sahu',
+  bill_start: '22-10-2023',
+  pay_start: '22-10-2023',
+  bill_end: '22-10-2023',
+  pay_end: '22-10-2023',
+  assignment_status: 'Assigned',
+  job_title: 'Python Developer',
+  working_state: 'Jharkhand',
+  assignment_division: 'IT',
+  client_contact: 'Bhavya B.',
+  primary_recruiter: 'Ravi K V',
+  primary_sales: '34',
+  start_entered: '24-11-2000',
+  optional_ref: '124582',
+  spread: '$10'
+},]
 
 const AssignmentDashboard = () => {
 
   const { setTitleProps } = usePageTitle()
   const [isLoading, setIsLoading] = useState(false)
+  const [searchString, setSearchString] = useState('')
 
-  const [data, setData] = useState([{
-    id: '1',
-    candidate_first_name: 'Rishik',
-    candidate_last_name: 'Sahu',
-    bill_start: '22-10-2023',
-    pay_start: '22-10-2023',
-    bill_end: '22-10-2023',
-    pay_end: '22-10-2023',
-    assignment_status: 'Assigned',
-    job_title: 'Web Developer',
-    working_state: 'Jharkhand',
-    assignment_division: 'IT',
-    client_contact: 'Bhavya B.',
-    primary_recruiter: 'Ravi K V',
-    primary_sales: '34',
-    start_entered: '24-11-2000',
-    optional_ref: '124582',
-    spread: '$10'
-  }, {
-    id: '1',
-    candidate_first_name: 'Rishik',
-    candidate_last_name: 'Sahu',
-    bill_start: '22-10-2023',
-    pay_start: '22-10-2023',
-    bill_end: '22-10-2023',
-    pay_end: '22-10-2023',
-    assignment_status: 'Assigned',
-    job_title: 'Web Developer',
-    working_state: 'Jharkhand',
-    assignment_division: 'IT',
-    client_contact: 'Bhavya B.',
-    primary_recruiter: 'Ravi K V',
-    primary_sales: '34',
-    start_entered: '24-11-2000',
-    optional_ref: '124582',
-    spread: '$10'
-  }, {
-    id: '1',
-    candidate_first_name: 'Rishik',
-    candidate_last_name: 'Sahu',
-    bill_start: '22-10-2023',
-    pay_start: '22-10-2023',
-    bill_end: '22-10-2023',
-    pay_end: '22-10-2023',
-    assignment_status: 'Assigned',
-    job_title: 'Web Developer',
-    working_state: 'Jharkhand',
-    assignment_division: 'IT',
-    client_contact: 'Bhavya B.',
-    primary_recruiter: 'Ravi K V',
-    primary_sales: '34',
-    start_entered: '24-11-2000',
-    optional_ref: '124582',
-    spread: '$10'
-  }, {
-    id: '1',
-    candidate_first_name: 'Rishik',
-    candidate_last_name: 'Sahu',
-    bill_start: '22-10-2023',
-    pay_start: '22-10-2023',
-    bill_end: '22-10-2023',
-    pay_end: '22-10-2023',
-    assignment_status: 'Assigned',
-    job_title: 'Web Developer',
-    working_state: 'Jharkhand',
-    assignment_division: 'IT',
-    client_contact: 'Bhavya B.',
-    primary_recruiter: 'Ravi K V',
-    primary_sales: '34',
-    start_entered: '24-11-2000',
-    optional_ref: '124582',
-    spread: '$10'
-  }, {
-    id: '1',
-    candidate_first_name: 'Rishik',
-    candidate_last_name: 'Sahu',
-    bill_start: '22-10-2023',
-    pay_start: '22-10-2023',
-    bill_end: '22-10-2023',
-    pay_end: '22-10-2023',
-    assignment_status: 'Assigned',
-    job_title: 'Python Developer',
-    working_state: 'Jharkhand',
-    assignment_division: 'IT',
-    client_contact: 'Bhavya B.',
-    primary_recruiter: 'Ravi K V',
-    primary_sales: '34',
-    start_entered: '24-11-2000',
-    optional_ref: '124582',
-    spread: '$10'
-  },
+  const [data, setData] = useState([
   ])
 
+  const { setToast } = useToast()
 
-  const handleSearch = async (e) => {
-    e.preventDefault()
-
-    setIsLoading(true)
-    try {
-
-      const searchTxt = e.target.search_field.value;
-      const res = await axiosp.get(`/search_contact_by_sequence/?sequence=${searchTxt}`)
-
-      alert(searchTxt)
-      console.log(res.data)
-      setData(res.data)
-    } catch (err) {
-      console.log(err)
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  const loadCandidates = async () => {
+  const loadAllCandidates = async () => {
     try {
       const res = await axiosp.get('/candidate_details')
       console.log(res.data)
@@ -138,8 +124,29 @@ const AssignmentDashboard = () => {
     }
   }
 
+  const searchCandidates = async (e) => {
+    e.preventDefault()
+
+    if(searchString == ''){
+      // The query is an empty string, we want to show all candidates
+      await loadAllCandidates()
+      return
+    }
+
+    try{
+      console.log('sadf')
+      const res = await axiosp.get(`search_contact_by_sequence/?sequence=${searchString}`)
+      console.log(res.data)
+      setData(res.data)
+
+    }catch(err){
+      console.log(err)
+      setToast({type: 'error', message: 'Unable to search candidates!'})
+    }
+  }
+
   useEffect(() => {
-    // loadCandidates()
+    loadAllCandidates()
     setTitleProps({ title: 'Assignment Dashboard' })
 
   }, [])
@@ -159,7 +166,7 @@ const AssignmentDashboard = () => {
       }}>
 
         <form
-          onSubmit={handleSearch}
+          onSubmit={searchCandidates}
           style={{
             display: 'flex',
             gap: '1rem',
@@ -177,6 +184,7 @@ const AssignmentDashboard = () => {
               variant='outlined'
               size='small'
               placeholder='Candidate name'
+              onChange={(e) => setSearchString(e.target.value)}
               InputProps={{
 
                 startAdornment: (

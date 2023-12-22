@@ -96,7 +96,7 @@ const AddCandidate = () => {
     }, [])
     return (
 
-        <form noValidate className='as' onSubmit={handleSubmitClick} onReset={resetFields} >
+        <form className='as' onSubmit={handleSubmitClick} onReset={resetFields} >
 
             <div className='card' style={{
                 // boxShadow: 'var(--shadow-card-1)',
