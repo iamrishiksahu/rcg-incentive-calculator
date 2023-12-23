@@ -105,15 +105,10 @@ const CollapsableSideNav = ({ setTitle }) => {
 
 
     useEffect(() => {
-
-        if (auth?.role == 'Employee') {
+        if (auth?.user_role == 'Employee') {
             setMenuItems(employeeMenuItems)
-        } else if(['HR', 'Manager', 'Finance', 'Admin'].includes(auth?.role)) {
-            // For all other roles
+        } else if(['HR', 'Manager', 'Finance', 'Admin'].includes(auth?.user_role)) {
             setMenuItems(adminMenuItems)
-        }else{
-            //for testing only. Must be removed in production
-            // setMenuItems(allMenuItems)
         }
 
     }, [])

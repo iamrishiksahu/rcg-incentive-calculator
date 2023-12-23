@@ -28,7 +28,7 @@ const Login5 = () => {
     const { setToast } = useToast()
 
     useEffect(() => {
-        console.log('authData: ', authData)
+        // console.log('authData: ', authData)
     }, [authData])
 
     const loginHandler = async (e) => {
@@ -72,23 +72,33 @@ const Login5 = () => {
             // }
 
 
+            
             const accessToken = res?.data?.access_token
-
             console.log(res.data)
             if (accessToken) {
                 dispatch(setAuthData(res.data));
                 setAuth(res.data)
                 setToast({ type: 'success', message: 'Login successful!' })
                 navigate('/dashboard')
-
+                
             } else {
                 setToast({ type: 'error', message: 'Something went wrong! Please contact administrator!', position: 'top-center' })
             }
 
 
         } catch (err) {
-            console.log(err)
-            setToast({ type: 'error', message: 'Something went wrong! Please contact administrator!', position: 'top-center' })
+            if(err.response.status == 400){
+
+                setToast({ type: 'info', message: 'The provided email does not exists in our system! Please contact HR!', timeout: 6000, position: 'top-center' })
+            }else if(err.response.status == 401){
+                setToast({ type: 'info', message: 'The given password is incorrect! Kindly re-enter!', position: 'top-center', timeout: 6000 })
+                refPassword.current.value = ''
+            }else{
+
+                setToast({ type: 'error', message: 'Something went wrong! Please contact administrator!', position: 'top-center' })
+            }
+
+           
         }
     }
     return (

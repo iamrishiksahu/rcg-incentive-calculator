@@ -27,10 +27,9 @@ const Dashboard = () => {
   const RenderRoleBasedDashboard = () => (
     <>
       {
-        rolesForMainDashboard.includes(auth.user_role) ?
-          < MainDashboard />
-          :
-          <EmployeeDashboard />
+        rolesForMainDashboard.includes(auth.user_role)
+          ? < MainDashboard />
+          : <EmployeeDashboard />
       }
     </>
   )
@@ -55,14 +54,15 @@ const Dashboard = () => {
 
           <Routes>
             {/* Employee only routes */}
+            <Route path='/' element={<RenderRoleBasedDashboard />} />
             <Route element={<RequireAuth allowedRoles={['Employee']} />}>
-              <Route path='/' element={<RenderRoleBasedDashboard />} />
               <Route path='/my-profile/*' element={<MyProfile />} />
               <Route path='/my-timesheet' element={<MyTimeSheet />} />
             </Route>
 
             {/* ADMIN | MANAGER | HR | FINANCE only routes */}
             <Route element={<RequireAuth allowedRoles={['Manager', 'Admin', 'HR', 'Finance']} />}>
+              {/* <Route path='/' element={<RenderRoleBasedDashboard />} /> */}
               <Route path='/add-candidate' element={<AddCandidate />} />
               <Route path='/add-assignment/:id' element={<AddAssignment />} />
               <Route path='/assignments' element={<AssignmentDashboard />} />

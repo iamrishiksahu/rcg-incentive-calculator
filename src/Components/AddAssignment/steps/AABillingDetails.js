@@ -3,7 +3,7 @@ import { Box, Button, TextField, Autocomplete, FormControlLabel, Switch, Checkbo
 // import './AddAssignment.css'
 import { TextFieldGroupContainer } from '../../../CustomElements/Containers/TexFieldGroupContainer';
 import { DatePicker } from '@mui/x-date-pickers';
-import { DivisionsList, CurrencyList, PayFrequencyList, BillingUnitsList, WeekNameList } from '../../../Utils/constants';
+import { DivisionsList, CurrencyList, PayFrequencyList, BillingUnitsList, WeekNameList, WeekEndingChoice } from '../../../Utils/constants';
 import PurchaseOrderPopup from '../../PurchaseOrderPopup/PurchaseOrderPopup';
 
 
@@ -96,7 +96,7 @@ const AABillingDetails = ({ formData, setFormData, handleNext, handleBack }) => 
                 <TextFieldGroupContainer cols='1fr 1fr 1fr'>
                     <Autocomplete
                         disablePortal
-                        options={WeekNameList}
+                        options={WeekEndingChoice}
                         defaultValue={WeekNameList[0]}
                         renderInput={(params) => <TextField {...params} ariant='outlined' name='week_ending' size='small' inputRef={refWeekEnding} label="Week Ending" />}
                     />

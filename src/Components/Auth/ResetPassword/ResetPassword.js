@@ -4,10 +4,14 @@ import { Box, Typography, Button } from '@mui/material'
 import { LoginTextField } from '../../../CustomElements/TextFields/TextFields'
 import { VGap } from '../../../CustomElements/Gaps/Gap'
 import axiosp from '../../../Utils/axiosConfig'
+import useToast from '../../../customHooks/useToast'
+import { ErrorRounded } from '@mui/icons-material'
 
 const ResetPassword = () => {
 
     const { uid, token } = useParams()
+
+    const { setToast } = useToast()
 
     const navigate = useNavigate()
 
@@ -33,15 +37,14 @@ const ResetPassword = () => {
                 new_password: n,
                 confirm_new_password: cn
             })
+
             console.log(res.data)
-            if (res.status == 201) {
-                alert('Password changed successfully!')
-                // Redirect to login 
-                navigate('/')
-            }
+            setToast({ type: 'success', message: 'Password changed successfully!', timeout: 4500 })
+            // Redirect to login 
+            navigate('/')
         } catch (err) {
+            setToast({ type: 'error', message: err?.response?.data?.details || 'Some unexpected error occurred!', timeout: 4500 })
             console.log(err)
-            alert('Something went wrong! Please contact Administrator!')
             console.log(n, " ", cn)
         }
 

@@ -12,9 +12,8 @@ const AmountUnitList = [
     { label: '£/Yr', value: 3},
 ]
 const CurrencyList = [
-    { label: '₹ (Indian Rupees)', value: 1},
-    { label: '$ (US Dollars)', value: 2},
-    { label: '£ (Pound)', value: 3},
+    { label: 'INR', value: 1},
+    { label: 'USD', value: 2},
 ]
 const BillingUnitsList = [
     { label: 'Hours', value: 1},
@@ -28,10 +27,10 @@ const PayFrequencyList = [
     { label: 'Monthly', value: 3},
 ]
 const PayUnit = [
-    { label: '/ Hr', value: 1},
-    { label: '/ Dy', value: 2},
-    { label: '/ Mo', value: 2},
-    { label: '/ Yr', value: 3},
+    { label: 'Annual', value: 1},
+    { label: 'Monthly', value: 2},
+    { label: 'Hourly', value: 2},
+    { label: 'Daily', value: 3},
 ]
 const UserRoles = [
     { label: 'Employee', value: 1983},
@@ -69,4 +68,15 @@ const WeekNameList = [
     'Saturday',
 ]
 
-export {AllUserRoles, DivisionsList, AmountUnitList, CurrencyList, WorkLocationList, PayUnit, DummyCandidateList, DummyWorkList, UserRoles, PayFrequencyList, BillingUnitsList, WeekNameList}
+const WeekEndingChoice = [
+    'Friday',
+]
+
+const EmploymentCategoryList = [
+    'Full Time',
+    'Part Time',
+    'Contractor',
+    'Intern'
+]
+
+export {AllUserRoles, DivisionsList, AmountUnitList, CurrencyList, WorkLocationList, PayUnit, DummyCandidateList, DummyWorkList, UserRoles, PayFrequencyList, BillingUnitsList, WeekNameList, EmploymentCategoryList, WeekEndingChoice}

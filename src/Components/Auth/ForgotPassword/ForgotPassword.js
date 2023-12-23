@@ -4,26 +4,32 @@ import { LoginButton } from '../../../CustomElements/Buttons/Buttons'
 import { LoginTextField } from '../../../CustomElements/TextFields/TextFields'
 import axiosp from '../../../Utils/axiosConfig'
 import { VGap } from '../../../CustomElements/Gaps/Gap'
+import useToast from '../../../customHooks/useToast'
 
 const ForgotPassword = () => {
 
+    const { setToast } = useToast()
     const handleEmailEnter = async (e) => {
 
         e.preventDefault()
+
 
         const email = e.target.email.value
         console.log(email)
 
         try {
-            const res = await axiosp.post('/user/forget_password', {
+            const res = await axiosp.post('/user/forget_password/', {
                 email: email
             })
-            if (res.status == 201) {
-                return alert('Email sent successfully!')
-            }
+            setToast({ type: 'success', message: 'Email sent successfully!', position: 'bottom-center' })
             console.log(res.data, "status:", res.status)
         } catch (err) {
             console.log(err)
+
+            if (err.response.status == 404) {
+                //user not found
+                setToast({ type: 'error', message: 'No user exists with the provided email!', position: 'bottom-center' })
+            }
             return alert('Some error ocurred!')
 
         }
@@ -59,7 +65,7 @@ const ForgotPassword = () => {
             }}>
 
                 <LoginTextField sx={{
-                    background: '#FFEEEE50',
+                    background: 'var(--color-info-light)',
                     width: '300px'
 
                 }} name='email' icon='alternate_email' type='email' placeholder='enter registered email...' />

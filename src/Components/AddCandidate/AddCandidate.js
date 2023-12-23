@@ -5,7 +5,7 @@ import { TextFieldGroupContainer } from '../../CustomElements/Containers/TexFiel
 import { DatePicker } from '@mui/x-date-pickers'
 import { useRef } from 'react'
 import axiosp from '../../Utils/axiosConfig'
-import { PayUnit, UserRoles } from '../../Utils/constants'
+import { CurrencyList, EmploymentCategoryList, PayUnit, UserRoles } from '../../Utils/constants'
 import usePageTitle from '../../hooks/usePageTitle'
 import useToast from '../../customHooks/useToast'
 const AddCandidate = () => {
@@ -125,7 +125,7 @@ const AddCandidate = () => {
 
                     <TextField required name='state' variant='outlined' size='small' label='State' />
                     <TextField required name='city' variant='outlined' size='small' label='City' />
-                    <TextField required name='zip' type='number' variant='outlined' size='small' label='Zip Code' />
+                    <TextField required name='zip' inputProps={{ maxLength: 6 }} type='number' variant='outlined' size='small' label='Zip Code' />
                     <TextField required name='country' variant='outlined' size='small' label='Country' />
                 </TextFieldGroupContainer>
                 <TextFieldGroupContainer cols='1fr 1fr'>
@@ -149,14 +149,22 @@ const AddCandidate = () => {
                 <TextFieldGroupContainer cols='1fr 1fr'>
                     <DatePicker required inputRef={refStartDate} format='YYYY-MM-DD' slotProps={{ textField: { size: 'small' } }} label="Start Date" />
 
-                    <TextField required name='employment_category' variant='outlined' size='small' label='Employment Cateogry' />
+                    {/* <TextField required name='employment_category' variant='outlined' size='small' label='Employment Cateogry' /> */}
+                    <Autocomplete
+                        disablePortal
+                        options={EmploymentCategoryList}
+                        renderInput={(params) => <TextField required {...params} ariant='outlined' size='small' name='employment_category' label="Employment Category" />}
+                    />
 
+                </TextFieldGroupContainer>
+
+                <TextFieldGroupContainer cols='1fr'>
+                    <TextField required name='job_title' variant='outlined' size='small' label='Job Title' />
 
                 </TextFieldGroupContainer>
 
 
-                <TextFieldGroupContainer cols='2fr 1fr 2fr'>
-                    <TextField required name='job_title' variant='outlined' size='small' label='Job Title' />
+                <TextFieldGroupContainer cols='1fr 1fr'>
 
                     <Autocomplete
                         disablePortal
@@ -168,8 +176,12 @@ const AddCandidate = () => {
                 </TextFieldGroupContainer>
 
                 <TextFieldGroupContainer cols='1fr 2fr 1fr'>
-                    <TextField required name='currency' variant='outlined' size='small' label='Currency' />
-
+                    {/* <TextField required name='currency' variant='outlined' size='small' label='Currency' /> */}
+                    <Autocomplete
+                        disablePortal
+                        options={CurrencyList}
+                        renderInput={(params) => <TextField {...params} ariant='outlined' size='small' name='currency' label="Currency" />}
+                    />
                     <TextField required name='pay_rate' variant='outlined' size='small' type='number' label='Pay Rate' />
                     <Autocomplete
                         disablePortal
