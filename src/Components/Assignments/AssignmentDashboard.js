@@ -116,7 +116,11 @@ const AssignmentDashboard = () => {
     try {
       // const res = await axiosp.get('/candidate_details')
       const res = await axiosp.get('/dashboard/assignment_dashboard/')
-      setData(res.data.contacts)
+      console.log(res.data)
+      const data = res.data.contacts.map((item) => {
+        return { name: item.candidate_firstname + " " + item.candidate_last_name, ...item.job, id: item.id }
+      })
+      setData(data)
     } catch (err) {
       console.log(err)
     } finally {
@@ -127,21 +131,22 @@ const AssignmentDashboard = () => {
   const searchCandidates = async (e) => {
     e.preventDefault()
 
-    if(searchString == ''){
+    if (searchString == '') {
       // The query is an empty string, we want to show all candidates
       await loadAllCandidates()
       return
     }
 
-    try{
-      console.log('sadf')
+    try {
       const res = await axiosp.get(`search_contact_by_sequence/?sequence=${searchString}`)
-      console.log(res.data)
-      setData(res.data)
+      const data = res.data.map((item) => {
+        return { ...item, name: item.first_name + ' ' + item.last_name }
+      })
+      setData(data)
 
-    }catch(err){
+    } catch (err) {
       console.log(err)
-      setToast({type: 'error', message: 'Unable to search candidates!'})
+      setToast({ type: 'error', message: 'Unable to search candidates!' })
     }
   }
 

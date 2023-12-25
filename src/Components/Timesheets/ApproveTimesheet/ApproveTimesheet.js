@@ -1,4 +1,4 @@
-import { Box, Paper, Stack } from '@mui/material'
+import { Box, Paper, Skeleton, Stack } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import usePageTitle from '../../../hooks/usePageTitle'
 import CandidateList from './CandidateList'
@@ -88,13 +88,12 @@ const ApproveTimesheet = () => {
         try {
             const res = await axiosp.get('/candidate_details')
             const data = res.data.map((item) => {
-                return {...item, name: item.first_name + ' ' + item.last_name}
+                return { ...item, name: item.first_name + ' ' + item.last_name }
             })
             setCandidateList(data)
         } catch (err) {
             console.log(err)
         } finally {
-            //   setIsLoading(false)
         }
     }
 
@@ -185,9 +184,8 @@ const ApproveTimesheet = () => {
                     borderRadius: '1rem',
                     paddingBottom: '1rem',
                 }}>
-                    {candidateList ?
-                        <CandidateList candidate={selectedCandidate} setCandidate={setSelectedCandidate} list={candidateList} />
-                        : <></>}
+                    <CandidateList candidate={selectedCandidate} setCandidate={setSelectedCandidate} list={candidateList} loadAllCandidates={loadAllCandidates} setList={setCandidateList} />
+
 
                     <ApproveDashboard candidate={selectedCandidate} setCandidate={setSelectedCandidate} />
 

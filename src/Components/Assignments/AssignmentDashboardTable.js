@@ -15,9 +15,7 @@ import { Typography } from '@mui/material';
 const AssignmentDashboardTable = ({ data }) => {
 
 
-  const rows = data.map((item) => {
-    return {  name: item.candidate_firstname + " " + item.candidate_last_name, ...item.job, id: item.id }
-  })
+  const rows = data
 
   console.log(rows)
 
