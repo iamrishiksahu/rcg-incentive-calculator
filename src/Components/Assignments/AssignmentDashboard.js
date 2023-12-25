@@ -114,9 +114,9 @@ const AssignmentDashboard = () => {
 
   const loadAllCandidates = async () => {
     try {
-      const res = await axiosp.get('/candidate_details')
-      console.log(res.data)
-      setData(res.data)
+      // const res = await axiosp.get('/candidate_details')
+      const res = await axiosp.get('/dashboard/assignment_dashboard/')
+      setData(res.data.contacts)
     } catch (err) {
       console.log(err)
     } finally {

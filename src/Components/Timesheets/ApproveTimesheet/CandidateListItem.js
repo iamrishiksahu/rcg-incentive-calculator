@@ -6,7 +6,7 @@ import Avatar from '../../../CustomElements/Avatar'
 const CandidateListItem = ({ data, handleClick, bgColor }) => {
 
   const getFirstCharFromName = () => {
-    return data.name.substring(0, 1)
+    return data.first_name.substring(0, 1)
   }
 
   const getRandomMutedColor = () => {
@@ -42,10 +42,10 @@ const CandidateListItem = ({ data, handleClick, bgColor }) => {
 
         <Avatar
           bgColor={bgColor}
-          src={!data.profile_image.includes('http') ? getFirstCharFromName() : data.profile_image} />
+          src={!data?.profile_image?.includes('http') ? getFirstCharFromName() : data.profile_image} />
         <Box>
           <Typography>{data.name}</Typography>
-          <Typography variant='body2'>{data.designation + ', ' + data.department}</Typography>
+          <Typography variant='body2'>{data.job_title }</Typography>
         </Box>
       </Stack>
 

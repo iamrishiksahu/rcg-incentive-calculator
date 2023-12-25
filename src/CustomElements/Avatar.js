@@ -7,7 +7,6 @@ const Avatar = (props) => {
         : size.includes('rem') ? size.substring(0, size.length - 3) * 0.6 + 'rem'
             : '1rem'
 
-    console.log(fontSize)
     return (
         <Box
             sx={{

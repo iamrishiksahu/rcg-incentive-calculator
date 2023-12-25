@@ -28,7 +28,7 @@ const Login5 = () => {
     const { setToast } = useToast()
 
     useEffect(() => {
-        // console.log('authData: ', authData)
+        // 
     }, [authData])
 
     const loginHandler = async (e) => {
@@ -74,7 +74,7 @@ const Login5 = () => {
 
             
             const accessToken = res?.data?.access_token
-            console.log(res.data)
+            
             if (accessToken) {
                 dispatch(setAuthData(res.data));
                 setAuth(res.data)

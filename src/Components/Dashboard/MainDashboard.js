@@ -16,13 +16,35 @@ const MainDashboard = () => {
 
     const { setTitleProps } = usePageTitle()
     const [candidateList, setCandidateList] = useState([])
-    const [dashboardData, setDashboardData] = useState(null)
-
+    const [data, setData] = useState(
+        {
+            total_employees: '--',
+            total_timesheet_submissions: '--',
+            approved_timesheets: '--',
+            Pending_timesheets: '--',
+            Rejected_timesheets: '--',
+            assigned_employees: '--',
+            assignment_percentage: '--',
+            submitted_timesheets_percentage: '--',
+            approved_timesheets_percentage: '--',
+            domain_dept_count: '--',
+            contractors_count: '--',
+            interns_count: '--',
+            remote_workers_percentage: '--',
+            rapid_office_workers_percentage: '--',
+            client_office_workers_percentage: '--',
+            part_time_employees_count: '--',
+            divisions_count: '--',
+            full_time_employees_count: '--',
+            it_clients_count: '--',
+            healthcare_clients_count: '--',
+            overseas_edu_clients_count: '--',
+            staffing_clients_count: '--'
+        })
     const loadMainDashboardData = async () => {
         try {
             const res = await axiosp.get('/dashboard/main_dashboard/')
-            console.log(res.data)
-            setDashboardData(res.data)
+            setData(res.data)
         } catch (err) {
             alert('Error loading data! Please try again.')
             console.log(err)
@@ -85,35 +107,35 @@ const MainDashboard = () => {
 
                 <DashboardCounterBox
                     title={'Division'}
-                    count={4}
+                    count={data.divisions_count}
                     gradient={'#FF7979 -231.96%, rgba(255, 255, 255, 0.50) 111.72%'} />
                 <DashboardCounterBox
                     title={'Departments'}
-                    count={5}
+                    count={data.domain_dept_count}
                     gradient={'#8C79FF -179.52%, rgba(255, 255, 255, 0.00) 88.1%'} />
                 <DashboardCounterBox
                     title={'Full Time Employees'}
-                    count={144}
+                    count={data.full_time_employees_count}
                     gradient={'#FFD979 -141.93%, rgba(255, 255, 255, 0.50) 81.35%'} />
                 <DashboardCounterBox
                     title={'Part Time Employees'}
-                    count={144}
+                    count={data.part_time_employees_count}
                     gradient={' #79FFDF -141.93%, rgba(255, 255, 255, 0.50) 81.35%'} />
                 <DashboardCounterBox
                     title={'Contractors'}
-                    count={15}
+                    count={data.contractors_count}
                     gradient={'#9CFF79 -231.96%, rgba(255, 255, 255, 0.50) 111.72%'} />
                 <DashboardCounterBox
                     title={'Interns'}
-                    count={5}
+                    count={data.interns_count}
                     gradient={'#79F7FF -179.52%, rgba(255, 255, 255, 0.00) 88.1%'} />
                 <DashboardCounterBox
                     title={'Remote Workers'}
-                    count={144}
+                    count={data.remote_workers_percentage}
                     gradient={'#79DFFF -141.93%, rgba(255, 255, 255, 0.50) 81.35%'} />
                 <DashboardCounterBox
                     title={'Staffing Clients'}
-                    count={144}
+                    count={data.staffing_clients_count}
                     gradient={'#799FFF -141.93%, rgba(255, 255, 255, 0.50) 81.35%'} />
 
                 {/* <Box sx={{

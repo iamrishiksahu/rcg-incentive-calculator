@@ -1,13 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import { Stack, Typography } from '@mui/material';
+import React, { useState, useEffect } from 'react';
 
 const NoInternetConnection = (props) => {
     // state variable holds the state of the internet connection
     const [isOnline, setOnline] = useState(true);
 
     // On initization set the isOnline state.
-    useEffect(()=>{
+    useEffect(() => {
         setOnline(navigator.onLine)
-    },[])
+    }, [])
 
     // event listeners to update the state 
     window.addEventListener('online', () => {
@@ -19,14 +20,29 @@ const NoInternetConnection = (props) => {
     });
 
     // if user is online, return the child component else return a custom component
-    if(isOnline){
-    return(
-        props.children
-    )
+    if (isOnline) {
+        return (
+            props.children
+        )
     } else {
         console.log(' No Internet access')
 
-        return(<h1>No Interner Connection. Please try again later.</h1>)
+        return (
+            <Stack sx={{
+                alignItems: 'center',
+                height: '100vh',
+                justifyContent: 'center'
+            }}>
+
+                
+                <Typography variant='h2'>
+
+                    :( Can't connect to the <Typography variant='span' color={'primary'} fontSize={'4rem'} fontWeight={500}>INTERNET</Typography>
+                </Typography>
+
+                <Typography variant='h3' align='center' mt={'3rem'} fontWeight={600}>Please check your network connection!</Typography>
+            </Stack>
+        )
     }
 }
 

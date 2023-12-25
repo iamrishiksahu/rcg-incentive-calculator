@@ -125,7 +125,7 @@ const AddCandidate = () => {
 
                     <TextField required name='state' variant='outlined' size='small' label='State' />
                     <TextField required name='city' variant='outlined' size='small' label='City' />
-                    <TextField required name='zip' inputProps={{ maxLength: 6 }} type='number' variant='outlined' size='small' label='Zip Code' />
+                    <TextField required name='zip' inputProps={{ maxLength: 6, minLength: 6 }} type='tel' variant='outlined' size='small' label='Zip Code' />
                     <TextField required name='country' variant='outlined' size='small' label='Country' />
                 </TextFieldGroupContainer>
                 <TextFieldGroupContainer cols='1fr 1fr'>

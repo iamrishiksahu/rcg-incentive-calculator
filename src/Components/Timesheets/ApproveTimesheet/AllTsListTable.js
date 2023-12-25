@@ -13,8 +13,8 @@ import { useNavigate } from 'react-router-dom';
 
 const columns = [
   { id: 'name', label: 'Name', width: 130 },
-  { id: 'department', label: 'Department',  width: 130 },
-  { id: 'company', label: 'Company',  width: 130  },
+  { id: 'department', label: 'Department', width: 130 },
+  { id: 'company', label: 'Company', width: 130 },
   {
     id: 'week_ending',
     label: 'Week Ending',
@@ -92,7 +92,7 @@ const rows = [
     status: 'pending',
     submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
     company: 'Rapid Tech Serv.',
-  },{
+  }, {
     name: 'Rishik Sahu',
     department: 'IT',
     total_hours: '40',
@@ -132,7 +132,7 @@ const rows = [
     status: 'pending',
     submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
     company: 'Rapid Tech Serv.',
-  },{
+  }, {
     name: 'Rishik Sahu',
     department: 'IT',
     total_hours: '40',
@@ -172,7 +172,7 @@ const rows = [
     status: 'pending',
     submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
     company: 'Rapid Tech Serv.',
-  },{
+  }, {
     name: 'Rishik Sahu',
     department: 'IT',
     total_hours: '40',
@@ -212,7 +212,7 @@ const rows = [
     status: 'pending',
     submitted_at: dayjs(Date.now()).format('DD-MMM-YYYY HH:MM:A'),
     company: 'Rapid Tech Serv.',
-  },{
+  }, {
     name: 'Rishik Sahu',
     department: 'IT',
     total_hours: '40',
@@ -255,7 +255,7 @@ const rows = [
   },
 ];
 
-export default function AllTsListTable({selectedCandidate}) {
+export default function AllTsListTable({ selectedCandidate }) {
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -286,7 +286,6 @@ export default function AllTsListTable({selectedCandidate}) {
             : status == 'rejected' ? 'var(--color-primary-light)'
               : 'var(--color-info-dark)';
 
-    console.log(bgColor)
     return (
       <Typography sx={{
         backgroundColor: bgColor,
@@ -301,56 +300,57 @@ export default function AllTsListTable({selectedCandidate}) {
       </Typography >
     )
   }
-return (
-  <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-    <TableContainer component={Box} sx={{ maxHeight: 440}}>
-      <Table >
-        <TableHead>
-          <TableRow>
-          {columns.map((column) => (
-              <TableCell
-                align={column.align}
-                style={{ width: column.width }}
-              >
-                {column.label}
-              </TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-        {rows
-            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((row) => {
-              return (
-                <TableRow
-                sx={{
-                  cursor: 'pointer'
-                }}
-                onClick={() => handleTimesheetItemClick(row)}
-                hover role="checkbox" tabIndex={-1} key={row.code}>
+  return (
+    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+      <TableContainer component={Box} sx={{ maxHeight: 440 }}>
+        <Table >
+          <TableHead>
+            <TableRow>
+              {columns.map((column, idx) => (
+                <TableCell
+                  key={idx}
+                  align={column.align}
+                  style={{ width: column.width }}
+                >
+                  {column.label}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => {
+                return (
+                  <TableRow
+                    sx={{
+                      cursor: 'pointer'
+                    }}
+                    onClick={() => handleTimesheetItemClick(row)}
+                    hover role="checkbox" tabIndex={-1} key={row.code}>
 
-                  <TableCell align={columns[0].align}>{row.name}</TableCell>
-                  <TableCell align={columns[1].align}>{row.department}</TableCell>
-                  <TableCell align={columns[2].align}>{row.company}</TableCell>
-                  <TableCell align={columns[3].align}>{row.week_ending}</TableCell>
-                  <TableCell align={columns[4].align}>{row.total_hours}</TableCell>
-                  <TableCell align={columns[5].align}>{row.submitted_at}</TableCell>
-                  <TableCell align={columns[6].align}>{renderStatus(row.status)}</TableCell>
-                </TableRow>
-              );
-            })}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    <TablePagination
-      rowsPerPageOptions={[5, 10, 25, 100]}
-      component="div"
-      count={rows.length}
-      rowsPerPage={rowsPerPage}
-      page={page}
-      onPageChange={handleChangePage}
-      onRowsPerPageChange={handleChangeRowsPerPage}
-    />
-  </Paper>
-);
+                    <TableCell align={columns[0].align}>{row.name}</TableCell>
+                    <TableCell align={columns[1].align}>{row.department}</TableCell>
+                    <TableCell align={columns[2].align}>{row.company}</TableCell>
+                    <TableCell align={columns[3].align}>{row.week_ending}</TableCell>
+                    <TableCell align={columns[4].align}>{row.total_hours}</TableCell>
+                    <TableCell align={columns[5].align}>{row.submitted_at}</TableCell>
+                    <TableCell align={columns[6].align}>{renderStatus(row.status)}</TableCell>
+                  </TableRow>
+                );
+              })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25, 100]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
+    </Paper>
+  );
 }
