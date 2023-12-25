@@ -127,6 +127,7 @@ const AAWorkingAddress = ({ formData, setFormData, handleNext, handleBack }) => 
                         disablePortal
                         // disabled={statesList.length == 0}
                         options={statesList}
+                        value={selectedState}
                         onChange={(e) => setSelectedState(e.currentTarget.textContent)}
                         renderInput={(params) => <TextField {...params} ariant='outlined' name='state' size='small' inputRef={refWorkingState} label="State" />}
                     />

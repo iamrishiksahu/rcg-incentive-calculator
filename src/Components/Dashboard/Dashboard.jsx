@@ -53,15 +53,15 @@ const Dashboard = () => {
           <DashboardTopBar />
 
           <Routes>
-            {/* Employee only routes */}
+            {/* EMPLOYEE | ADMIN only routes */}
             <Route path='/' element={<RenderRoleBasedDashboard />} />
-            <Route element={<RequireAuth allowedRoles={['Employee']} />}>
+            <Route element={<RequireAuth allowedRoles={['Employee', 'Admin']} />}>
               <Route path='/my-profile/*' element={<MyProfile />} />
               <Route path='/my-timesheet' element={<MyTimeSheet />} />
             </Route>
 
-            {/* ADMIN | MANAGER | HR | FINANCE only routes */}
-            <Route element={<RequireAuth allowedRoles={['Manager', 'Admin', 'HR', 'Finance']} />}>
+            {/*  MANAGER | HR | FINANCE | ADMIN only routes */}
+            <Route element={<RequireAuth allowedRoles={['Manager', 'HR', 'Finance', 'Admin']} />}>
               {/* <Route path='/' element={<RenderRoleBasedDashboard />} /> */}
               <Route path='/add-candidate' element={<AddCandidate />} />
               <Route path='/add-assignment/:id' element={<AddAssignment />} />
@@ -69,6 +69,7 @@ const Dashboard = () => {
               <Route path='/approve-timesheet' element={<ApproveTimesheet />} />
               <Route path='/approve-timesheet/:candidate_id/:week_ending' element={<SingleTimesheetApproval />} />
             </Route>
+
 
             <Route path='/sign-out' element={<Navigate to='/' />} />
 

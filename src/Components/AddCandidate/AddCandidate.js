@@ -8,12 +8,56 @@ import axiosp from '../../Utils/axiosConfig'
 import { CurrencyList, EmploymentCategoryList, PayUnit, UserRoles } from '../../Utils/constants'
 import usePageTitle from '../../hooks/usePageTitle'
 import useToast from '../../customHooks/useToast'
+import countryStateData from '../../Utils/countryStateData.json'
+
 const AddCandidate = () => {
 
 
     const refStartDate = useRef()
 
-    const {setToast} = useToast()
+    const { setToast } = useToast()
+
+    const [statesList, setStatesList] = useState([])
+    const [countryList, setCountryList] = useState([])
+    const [selectedCountry, setSelectedCountry] = useState(null)
+    const [selectedState, setSelectedState] = useState(null)
+
+
+    const loadCountryDropDown = async () => {
+        const countryArray = []
+
+        countryStateData.map((item, key) => {
+            countryArray.push(item.country_name)
+        })
+
+        setCountryList(countryArray)
+    }
+
+    const loadStatesOfSelectedCountry = () => {
+
+        if (selectedCountry == null) { return }
+        const statesArray = []
+        try {
+            const data = countryStateData.find(item => item.country_name == selectedCountry)
+            data.states.map((item, key) => {
+                statesArray.push(item.state_name)
+            })
+            setStatesList(statesArray)
+
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
+        loadCountryDropDown()
+    }, [])
+    useEffect(() => {
+        loadStatesOfSelectedCountry()
+        setSelectedState('')
+    }, [selectedCountry])
+
+
 
     const performFormValidations = (e) => {
 
@@ -44,6 +88,7 @@ const AddCandidate = () => {
                 pay_rate: e.target.pay_rate.value,
                 pay_rate_choices: e.target.pay_unit.value,
                 linkedin_profile_id: e.target.linkedin.value,
+
                 gitlab: e.target.github.value,
                 personal_website: e.target.website.value,
                 stackoverflow: e.target.stackoverflow.value,
@@ -76,13 +121,13 @@ const AddCandidate = () => {
             const res = await axiosp.post('/candidate_details/add_candidate_details_and_send_credentials/', reqbody);
             console.log(res);
             if (res.status == 201) {
-                setToast({message: 'Candidate added successfully!'})
+                setToast({ message: 'Candidate added successfully!' })
             } else {
-                setToast({message: 'Candidate addition failed!'})
+                setToast({ message: 'Candidate addition failed!' })
             }
         } catch (err) {
             console.log(err)
-            setToast({message: 'Error occured while adding candidate!', type: 'error'})
+            setToast({ message: 'Error occured while adding candidate!', type: 'error' })
 
         }
 
@@ -123,10 +168,22 @@ const AddCandidate = () => {
                 </TextFieldGroupContainer>
                 <TextFieldGroupContainer cols='1fr 1fr 1fr 1fr'>
 
-                    <TextField required name='state' variant='outlined' size='small' label='State' />
+                    <Autocomplete
+                        disablePortal
+                        options={countryList}
+                        value={selectedCountry}
+                        onChange={(e) => setSelectedCountry(e.currentTarget.textContent)}
+                        renderInput={(params) => <TextField {...params} ariant='outlined' name='working_country' size='small'  label="Country" />}
+                    />
+                     <Autocomplete
+                        disablePortal
+                        options={statesList}
+                        value={selectedState}
+                        onChange={(e) => setSelectedState(e.currentTarget.textContent)}
+                        renderInput={(params) => <TextField {...params} ariant='outlined' name='state' size='small' label="State" />}
+                    />
                     <TextField required name='city' variant='outlined' size='small' label='City' />
                     <TextField required name='zip' inputProps={{ maxLength: 6, minLength: 6 }} type='tel' variant='outlined' size='small' label='Zip Code' />
-                    <TextField required name='country' variant='outlined' size='small' label='Country' />
                 </TextFieldGroupContainer>
                 <TextFieldGroupContainer cols='1fr 1fr'>
                     <TextField required name='personal_phone' type='number' variant='outlined' size='small' label='Personal Phone' />

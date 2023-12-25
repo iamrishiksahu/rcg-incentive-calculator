@@ -120,10 +120,10 @@ const Login5 = () => {
 
                     <img src='/images/login-page-hero-vector.svg' style={{ marginTop: '-4rem' }} />
 
-                    <PText bold >Redefining HR Management</PText >
+                    <PText bold >Employee Engagement Platform</PText >
                     <PText sx={{ textAlign: 'center' }}>
-                        The best Human Resource Management Platform<br />
-                        Powering Over 500+ Businesses.</PText>
+                    At Rapid, We Believe and Empower<br />
+                        Our Team With Success as Highest Priority.</PText>
                     <Small sx={{ color: 'var(--color-info-dark)' }}>© 2023 - Rapid Consulting Services</Small>
 
                 </div>

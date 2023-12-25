@@ -16,18 +16,8 @@ const AssignmentDashboardTable = ({ data }) => {
 
 
   const rows = data
-
-  console.log(rows)
-
   return (
-    // <Table columns={columns} dataSource={dataSource}
-
-    //   scroll={{
-    //     x: 1500,
-    //     y: 300,
-    //   }}
-    // />
-    <TableContainer component={Paper} className='table-container'>
+   <TableContainer component={Paper} className='table-container'>
       <Table sx={{ minWidth: 650 }} aria-label="simple table" >
         <TableHead>
           <TableRow sx={{ background: '#fff0f0',}}>
