@@ -1,4 +1,4 @@
-import { Box, Container, Card, Checkbox, Typography } from '@mui/material'
+import { Box, Container, Card, Checkbox, Typography, TextField } from '@mui/material'
 import React, { useRef, useEffect, useState } from 'react'
 import { VGap } from '../../../CustomElements/Gaps/Gap'
 import { PText, Small } from '../../../CustomElements/Typography/Typgraphy'
@@ -34,20 +34,20 @@ const Login5 = () => {
     const loginHandler = async (e) => {
         e.preventDefault()
 
-        const email =  refEmail.current.value;
+        const email = refEmail.current.value;
         const password = refPassword.current.value;
 
         const emailRegex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/;
 
 
-        if(email == '' || !emailRegex.test(email)){
-            setToast({type: 'error', message: 'Please enter a valid email!', position: 'top-center'})
-            return 
+        if (email == '' || !emailRegex.test(email)) {
+            setToast({ type: 'error', message: 'Please enter a valid email!', position: 'top-center' })
+            return
         }
 
-        if(password == ''){
-            setToast({type: 'error', message: 'Please enter your password!', position: 'top-center'})
-            return 
+        if (password == '') {
+            setToast({ type: 'error', message: 'Please enter your password!', position: 'top-center' })
+            return
         }
 
         try {
@@ -72,33 +72,33 @@ const Login5 = () => {
             // }
 
 
-            
+
             const accessToken = res?.data?.access_token
-            
+
             if (accessToken) {
                 dispatch(setAuthData(res.data));
                 setAuth(res.data)
                 setToast({ type: 'success', message: 'Login successful!' })
                 navigate('/dashboard')
-                
+
             } else {
                 setToast({ type: 'error', message: 'Something went wrong! Please contact administrator!', position: 'top-center' })
             }
 
 
         } catch (err) {
-            if(err.response.status == 400){
+            if (err.response.status == 400) {
 
                 setToast({ type: 'info', message: 'The provided email does not exists in our system! Please contact HR!', timeout: 6000, position: 'top-center' })
-            }else if(err.response.status == 401){
+            } else if (err.response.status == 401) {
                 setToast({ type: 'info', message: 'The given password is incorrect! Kindly re-enter!', position: 'top-center', timeout: 6000 })
                 refPassword.current.value = ''
-            }else{
+            } else {
 
                 setToast({ type: 'error', message: 'Something went wrong! Please contact administrator!', position: 'top-center' })
             }
 
-           
+
         }
     }
     return (
@@ -122,7 +122,7 @@ const Login5 = () => {
 
                     <PText bold >Employee Engagement Platform</PText >
                     <PText sx={{ textAlign: 'center' }}>
-                    At Rapid, We Believe and Empower<br />
+                        At Rapid, We Believe and Empower<br />
                         Our Team With Success as Highest Priority.</PText>
                     <Small sx={{ color: 'var(--color-info-dark)' }}>© 2023 - Rapid Consulting Services</Small>
 
@@ -131,68 +131,68 @@ const Login5 = () => {
 
                 <div className='login-right-container'>
 
-                        <div className='login-card'>
+                    <div className='login-card'>
 
-                            <Box sx={{
+                        <Box sx={{
 
-                                display: 'flex',
-                                gap: '0.5rem',
+                            display: 'flex',
+                            gap: '0.5rem',
 
-                            }}>
+                        }}>
 
-                                <H2 sx={{
-                                    fontWeight: '500',
-                                    color: 'white',
-                                    fontSize: '2.5rem'
-                                }}>YUKTA</H2>
-                                <H2 sx={{
-                                    fontWeight: '300',
-                                    color: 'white',
-                                    fontSize: '2.5rem'
+                            <H2 sx={{
+                                fontWeight: '500',
+                                color: 'white',
+                                fontSize: '2.5rem'
+                            }}>YUKTA</H2>
+                            <H2 sx={{
+                                fontWeight: '300',
+                                color: 'white',
+                                fontSize: '2.5rem'
 
-                                }}>Portal</H2>
-                            </Box>
+                            }}>Portal</H2>
+                        </Box>
 
-                            <VGap value='1rem' />
+                        <VGap value='1rem' />
 
 
-                            <PText>Sign in with your Account.</PText>
-                            <VGap value='0.5rem' />
+                        <PText>Sign in with your Account.</PText>
+                        <VGap value='0.5rem' />
 
-                            {/* <VGap value='1rem' /> */}
+                        {/* <VGap value='1rem' /> */}
 
-                            <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                <PText>Email</PText>
-                                <LoginTextField inputRef={refEmail} icon='alternate_email' type='email' placeholder='yourmail@email.com' />
-                            </Box>
-                            <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                <PText>Password</PText>
-                                <LoginTextField inputRef={refPassword} icon='key' type='password' placeholder='password' />
-                            </Box>
+                        <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                            <PText>Email</PText>
+                            <LoginTextField inputRef={refEmail} icon='alternate_email' type='email' placeholder='yourmail@email.com' />
+                        </Box>
+                        <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                            <PText>Password</PText>
+                            <LoginPasswordField inputRef={refPassword} icon='key' placeholder='password' />
+                        </Box>
 
+                        <FlexBoxH sx={{
+                            justifyContent: 'space-between',
+                            width: '100%'
+                        }}>
                             <FlexBoxH sx={{
-                                justifyContent: 'space-between',
-                                width: '100%'
+                                gap: '0px',
+                                marginLeft: '-0.6rem',
                             }}>
-                                <FlexBoxH sx={{
-                                    gap: '0px',
-                                    marginLeft: '-0.6rem',
-                                }}>
-                                    <Checkbox />
-                                    <PText>Remember Me</PText>
-                                </FlexBoxH>
-                                <PText sx={{ cursor: 'pointer' }}
-                                    onClick={() => { navigate('/forgot-password') }}
-                                >Forgot Password</PText>
+                                <Checkbox />
+                                <PText>Remember Me</PText>
                             </FlexBoxH>
+                            <PText sx={{ cursor: 'pointer' }}
+                                onClick={() => { navigate('/forgot-password') }}
+                            >Forgot Password</PText>
+                        </FlexBoxH>
 
 
 
-                            <VGap value='1rem' />
+                        <VGap value='1rem' />
 
-                            <LoginButton onClick={loginHandler} >Login</LoginButton>
+                        <LoginButton onClick={loginHandler} >Login</LoginButton>
 
-                        </div>
+                    </div>
 
                 </div>
 
@@ -205,3 +205,58 @@ const Login5 = () => {
 }
 
 export default Login5
+
+const LoginPasswordField = (props) => {
+
+    const [showPass, setShowPass] = useState(false)
+
+    return (
+        <div
+            style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+                borderRadius: "0.75rem",
+                backgroundColor: "var(--color-primary-light-2)",
+                padding: "0rem 1.5rem",
+                ...props.sx
+            }}
+        >
+            <span
+                style={{
+                    color: "var(--color-info-dark)",
+                    fontSize: "1rem",
+                }}
+                className="material-symbols-outlined"
+            >
+                key
+            </span>
+            <input
+                name={props.name}
+                ref={props.inputRef}
+                style={{
+                    outline: "none",
+                    border: "none",
+                    background: "none",
+                    width: "100%",
+                    height: "3rem",
+                }}
+                type={showPass ? 'text' : 'password'}
+                placeholder={props.placeholder}
+            />
+           
+           <span
+           onClick={() => setShowPass(true)}
+           onMouseOut={() => setShowPass(false)}
+                style={{
+                    color: "var(--color-info-dark)",
+                    fontSize: "1rem",
+                    cursor: 'pointer'
+                }}
+                className="material-symbols-outlined"
+            >
+                visibility
+            </span>
+        </div>
+    );
+};

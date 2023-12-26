@@ -15,7 +15,11 @@ const ForgotPassword = () => {
 
 
         const email = e.target.email.value
-        console.log(email)
+
+        if(email.trim().length == 0){
+            setToast({message: 'Please enter a valid email!', type: 'error', position: 'bottom-center'})
+            return
+        }
 
         try {
             const res = await axiosp.post('/user/forget_password/', {
@@ -24,14 +28,12 @@ const ForgotPassword = () => {
             setToast({ type: 'success', message: 'Email sent successfully!', position: 'bottom-center' })
             console.log(res.data, "status:", res.status)
         } catch (err) {
-            console.log(err)
 
             if (err.response.status == 404) {
                 //user not found
                 setToast({ type: 'error', message: 'No user exists with the provided email!', position: 'bottom-center' })
             }
-            return alert('Some error ocurred!')
-
+            return 
         }
 
 
