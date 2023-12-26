@@ -8,7 +8,7 @@ const toastTypes = ['error', 'warning', 'info', 'success']
 export const ToastProvider = ({ children }) => {
     const [data, setData] = useState({
         open: false,
-        timeout: 3600,
+        timeout: 4500,
         message: '',
         type: 'info', //error, warning, info, success
         position: ''

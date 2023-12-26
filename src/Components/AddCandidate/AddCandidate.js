@@ -65,7 +65,6 @@ const AddCandidate = () => {
 
 
             const data = {
-
                 suffix: '',
                 first_name: e.target.first_name.value,
                 middle_name: e.target.middle_name.value,
@@ -88,17 +87,11 @@ const AddCandidate = () => {
                 pay_rate: e.target.pay_rate.value,
                 pay_rate_choices: e.target.pay_unit.value,
                 linkedin_profile_id: e.target.linkedin.value,
-
                 gitlab: e.target.github.value,
                 personal_website: e.target.website.value,
                 stackoverflow: e.target.stackoverflow.value,
                 reporting_manager: e.target.reporting_manager.value,
-
-
             }
-
-            console.log(data)
-
             return data
 
         } catch (err) {
@@ -121,7 +114,7 @@ const AddCandidate = () => {
             const res = await axiosp.post('/candidate_details/add_candidate_details_and_send_credentials/', reqbody);
             console.log(res);
             if (res.status == 201) {
-                setToast({ message: 'Candidate added successfully!' })
+                setToast({ message: 'Candidate added successfully and login credentials sent via email!', timeout: 6000 })
             } else {
                 setToast({ message: 'Candidate addition failed!' })
             }
@@ -173,7 +166,7 @@ const AddCandidate = () => {
                         options={countryList}
                         value={selectedCountry}
                         onChange={(e) => setSelectedCountry(e.currentTarget.textContent)}
-                        renderInput={(params) => <TextField {...params} ariant='outlined' name='working_country' size='small'  label="Country" />}
+                        renderInput={(params) => <TextField {...params} ariant='outlined' name='country' size='small'  label="Country" />}
                     />
                      <Autocomplete
                         disablePortal
