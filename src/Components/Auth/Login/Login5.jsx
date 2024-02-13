@@ -192,6 +192,12 @@ const Login5 = () => {
 
                         <LoginButton onClick={loginHandler} >Login</LoginButton>
 
+                        <div>
+                            <button onClick={()=>{
+                        window.location.href = 'https://login.microsoftonline.com/f6b2b974-1e0c-44ca-89f8-56d4c4aaca05/oauth2/v2.0/authorize?client_id=46918538-8c76-40be-8d3d-0e009cea52ba&redirect_uri=http://localhost:3000/login/oauth2/code/sso&response_type=code+id_token&scope=openid%20profile%20email&response_mode=fragment&nonce=1528906255418&state=12345'
+                        }}>Microsoft</button>
+                        </div>  
+
                     </div>
 
                 </div>

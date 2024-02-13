@@ -16,6 +16,7 @@ import ForgotPassword from './Components/Auth/ForgotPassword/ForgotPassword';
 import ResetPassword from './Components/Auth/ResetPassword/ResetPassword';
 import { LightThemeBlue } from './Utils/themes/LightThemeBlue';
 import { LightThemeRed } from './Utils/themes/LightThemeRed';
+import RedirectButton from './RedirectButton';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
                   </Route>
                   {/* <Route path='add-candidate' element`={<Dashboard />} /> */}
                 </Route>
+                <Route path="/login/oauth2/code/sso" Component={RedirectButton} />
                 <Route path='*' element={<Page404 />} />
               </Routes>
             </BrowserRouter>
